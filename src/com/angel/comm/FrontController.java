@@ -36,12 +36,12 @@ public class FrontController extends HttpServlet {
                 map.put(key,classImplementsAction);
             }
         } catch (Exception e){
-            System.out.println(e.getMessage());
+            System.out.println("fre: "+e);
         } finally {
             if (reader != null) try {
                 reader.close();
             } catch (Exception e) {
-                System.out.println(e.getMessage());
+                System.out.println("readerclose: "+e.getMessage());
             }
         }
     }
