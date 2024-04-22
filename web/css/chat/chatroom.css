@@ -1,0 +1,73 @@
+
+.chat_interface{
+    position: relative;
+    width: 60vw;
+    height: 80px;
+    left: 20vw;
+    top: 0px;
+
+    background: #FFFFFF;
+    border: 1px solid #2189E9;
+}
+
+.chat_interface a {
+    display: inline-block;
+    text-align: center;
+    width: 120px;
+    height: 45px;
+    top: 16px;
+    background: #2189E9;
+    border-radius: 15px;
+    font-weight: 400;
+    font-size: 1.2rem;
+    text-decoration: none;
+
+    color: #FFFFFF;
+}
+
+/* 거래확정 */
+
+.chat_interface a:nth-child(1){
+    position: relative;
+    left: 50px;
+}
+
+/* 나가기 */
+.chat_interface a:nth-child(2){
+    position: absolute;
+    right: 50px;
+}
+
+.detail_prod {
+    position: relative;
+    width: 60vw;
+    height: 120px;
+    left: 20vw;
+    top: 1px;
+
+    background: #FFFFFF;
+    border: 1px solid #2189E9;
+}
+
+.detail_prod img {
+    position: relative;
+    width: 160px;
+    height: 120px;
+    left: 0;
+    top: 0;
+}
+
+.detail_prod span {
+
+    top: 0;
+    display: inline-block;
+}
+
+.detail_prod span:nth-child(2){
+    left: 0;
+}
+
+.detail_prod span:nth-child(3){
+    position: absolute;
+    left: 120px;
+}

@@ -8,20 +8,19 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
-<head>
-    <title>Title</title>
-</head>
 <body>
-<a href=""><img src="img/logo.jpg" alt="logo"><span>천사Mall</span></a>
-<a href="register.do">판매하기</a>
-<c:choose>
-    <c:when test="${empty sessionScope.id}">
-        <a href="login.do">로그인</a>
-    </c:when>
-    <c:otherwise>
-        <a href="logout.do">로그아웃</a>
-        <a href="detail.do">마이페이지</a>
-    </c:otherwise>
-</c:choose>
+<div>
+    <a href=""><img src="img/logo.jpg" alt="logo"><span class="home">천사Mall</span></a>
+    <a href="register.do"><span class="sell">판매하기</span></a>
+    <c:choose>
+        <c:when test="${empty sessionScope.id}">
+            <a href="login.do"><span class="login">로그인</span></a>
+        </c:when>
+        <c:otherwise>
+            <a href="logout.do"><span class="login">로그아웃</span></a>
+            <a href="detail.do"><span class="mypage">마이페이지</span></a>
+        </c:otherwise>
+    </c:choose>
+</div>
 </body>
 </html>

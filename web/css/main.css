@@ -1,0 +1,78 @@
+#header {
+    position: absolute;
+    width: 100vw;
+    height: 50px;
+    left: 0px;
+    top: 0px;
+    background: linear-gradient(0deg, #2189E9, #2189E9), #74D742;
+}
+body {
+    font-family: 'Inter';
+    font-style: normal;
+}
+a {
+    font-weight: 400;
+    font-size: 1.5rem;
+    line-height: 48px;
+    color: #FFFFFF;
+}
+
+/* logo img */
+
+img {
+    position: absolute;
+    width: 50px;
+    height: 45px;
+    left: 100px;
+    top: 3px;
+}
+
+a span {
+    position: absolute;
+    top: 2px;
+}
+
+/* 천사Mall */
+
+.home {
+    width: 170px;
+    height: 40px;
+    left: 150px;
+}
+
+/* 판매하기 */
+
+.sell{
+    width: 100px;
+    height: 40px;
+    right: 250px;
+}
+
+/* 로그인, 로그아웃 */
+
+.login{
+    width: 100px;
+    height: 40px;
+    right: 100px;
+}
+
+/* 마이페이지 */
+.mypage{
+    width: 50px;
+    height: 40px;
+    right: 100px;
+}
+
+#jsp_body{
+    position: absolute;
+    top: 50px;
+    font-size: 1rem;
+}
+
+#footer {
+    position: absolute;
+    bottom: 5px;
+    left: 100px;
+    font-size: 1rem;
+    color: dimgrey;
+}
