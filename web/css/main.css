@@ -10,11 +10,23 @@ body {
     font-family: 'Inter';
     font-style: normal;
 }
-a {
+
+#header a {
     font-weight: 400;
-    font-size: 1.5rem;
-    line-height: 48px;
+    font-size: 1.3rem;
+    padding: 5px 5px;
     color: #FFFFFF;
+    position: absolute;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    line-height: 2em;
+    height: 40px;
+}
+
+#header a:hover{
+    font-weight: 600;
+    background-color: #192d49;
 }
 
 /* logo img */
@@ -23,20 +35,14 @@ img {
     position: absolute;
     width: 50px;
     height: 45px;
-    left: 100px;
+    left:100px;
     top: 3px;
-}
-
-a span {
-    position: absolute;
-    top: 2px;
 }
 
 /* 천사Mall */
 
 .home {
-    width: 170px;
-    height: 40px;
+    width: 100px;
     left: 150px;
 }
 
@@ -44,22 +50,19 @@ a span {
 
 .sell{
     width: 100px;
-    height: 40px;
-    right: 250px;
+    right: 257px;
 }
 
 /* 로그인, 로그아웃 */
 
 .login{
     width: 100px;
-    height: 40px;
-    right: 100px;
+    right: 150px;
 }
 
 /* 마이페이지 */
 .mypage{
     width: 50px;
-    height: 40px;
     right: 100px;
 }
 

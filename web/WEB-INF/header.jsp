@@ -10,15 +10,16 @@
 <html>
 <body>
 <div>
-    <a href=""><img src="img/logo.jpg" alt="logo"><span class="home">천사Mall</span></a>
-    <a href="register.do"><span class="sell">판매하기</span></a>
+    <img src="img/logo.jpg" alt="logo">
+    <a class="home" href=""><span>천사Mall</span></a>
+    <a class="sell" href="register.do"><span>판매하기</span></a>
     <c:choose>
         <c:when test="${empty sessionScope.id}">
-            <a href="login.do"><span class="login">로그인</span></a>
+            <a class="login" href="login.do"><span>로그인</span></a>
         </c:when>
         <c:otherwise>
-            <a href="logout.do"><span class="login">로그아웃</span></a>
-            <a href="detail.do"><span class="mypage">마이페이지</span></a>
+            <a class="login" href="logout.do"><span>로그아웃</span></a>
+            <a class="mypage" href="detail.do"><span>마이페이지</span></a>
         </c:otherwise>
     </c:choose>
 </div>
