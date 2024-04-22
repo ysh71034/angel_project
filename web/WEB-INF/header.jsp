@@ -12,7 +12,7 @@
     <title>Title</title>
 </head>
 <body>
-<a href=""><img src="" alt="logo">천사Mall</a>
+<a href=""><img src="img/logo.jpg" alt="logo"><span>천사Mall</span></a>
 <a href="register.do">판매하기</a>
 <c:choose>
     <c:when test="${empty sessionScope.id}">

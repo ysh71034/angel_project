@@ -1,4 +1,4 @@
-package com.angel.MainController;
+package com.angel.comm;
 
 import com.angel.comm.Action;
 import com.angel.comm.Forward;
