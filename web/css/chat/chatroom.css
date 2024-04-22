@@ -16,17 +16,22 @@
     width: 120px;
     height: 45px;
     top: 16px;
-    background: #2189E9;
+    background: #3c66ab;
     border-radius: 15px;
     font-weight: 400;
     font-size: 1.2rem;
     text-decoration: none;
+    line-height: 2.5em;
 
     color: #FFFFFF;
 }
 
-/* 거래확정 */
+.chat_interface a:hover {
+    font-weight: 600;
+    background: #192d49;
+}
 
+/* 거래확정 */
 .chat_interface a:nth-child(1){
     position: relative;
     left: 50px;
@@ -44,8 +49,6 @@
     height: 120px;
     left: 20vw;
     top: 1px;
-
-    background: #FFFFFF;
     border: 1px solid #2189E9;
 }
 
@@ -57,17 +60,101 @@
     top: 0;
 }
 
-.detail_prod span {
-
+.detail_prod span, .detail_prod a {
+    position: absolute;
     top: 0;
     display: inline-block;
 }
 
+/* 카테고리 */
 .detail_prod span:nth-child(2){
-    left: 0;
+    left: 160px;
 }
 
-.detail_prod span:nth-child(3){
-    position: absolute;
-    left: 120px;
+/* 상품명 */
+.detail_prod a:nth-child(3) {
+    left: 280px;
+}
+
+
+.chat_body {
+    position: relative;
+    width: 60vw;
+    height: 500px;
+    left: 20vw;
+    top: 0px;
+    background: #FFFFFF;
+    border: 1px solid #2189E9;
+}
+
+#msg_box {
+    border-bottom: 1px solid #2189E9;
+    background-color: rgba(33, 137, 233, 0.6);
+    height: 440px;
+}
+
+#msg_box p {
+    position: relative;
+    padding: 5px 5px;
+    width: 25vw;
+    border-radius: 10px;
+    top: 10px;
+}
+
+#msg_box .enter {
+    margin: 0vh 2vw;
+    height: 30px;
+    background-color: rgba(195, 213, 225, 0.94);
+    left: 15vw;
+    text-align: center;
+}
+
+#msg_box .buyer_name {
+    margin: 0vh 2vw;
+    left: 1vw;
+}
+
+#msg_box .buyer_msg {
+    margin: 0vh 2vw 1vh 2vw;
+    height: 30px;
+    background-color: #FFFFFF;
+    left: 1vw;
+}
+
+#msg_box .seller_name {
+    margin: 0vh 2vw;
+    right: 1vw;
+}
+
+#msg_box .seller_msg {
+    margin: 0vh 2vw 1vh 2vw;
+    height: 30px;
+    background-color: yellow;
+    right: 1vw;
+}
+
+.chat_body form {
+    position: relative;
+    top: 10px;
+    left: 2vw;
+}
+
+.chat_body form input {
+    height: 40px;
+    width: 50vw;
+    border-radius: 5px;
+    border: 1px solid grey;
+}
+
+.chat_body form button {
+    height: 37px;
+    width: 50px;
+    background-color: yellow;
+    border: 1px solid grey;
+    border-radius: 5px;
+}
+
+.chat_body form button:hover {
+    border: 3px solid #192d49;
+    font-weight: 600;
 }

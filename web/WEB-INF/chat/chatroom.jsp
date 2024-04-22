@@ -21,15 +21,19 @@
         <section class="detail_prod">
             <img src="" alt="product_img">
             <span>가구/장비</span>
-            <span>[디지털] EPSON)프로젝터 (EB-2065)</span>
+            <a href="detailprod.do?pid=">[디지털] EPSON)프로젝터 (EB-2065)</a>
         </section>
     </div>
     <div class="chat_body">
         <section id="msg_box">
-            <p>p.id_01 채팅방</p>
+            <p class="enter">p.id_01 채팅방</p>
+            <p class="buyer_name">😊 구매자</p>
+            <p class="buyer_msg">안녕하세요!</p>
+            <p class="seller_name">😊 판매자</p>
+            <p class="seller_msg">판매자입니다.</p>
         </section>
         <form>
-            <input type="text" name="content">
+            <input type="text" name="content" autofocus>
             <button type="button">전송</button>
         </form>
     </div>
