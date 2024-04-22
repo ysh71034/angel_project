@@ -9,10 +9,10 @@
 <html>
 <head>
     <title>천사몰 - 채팅방</title>
-    <link rel="stylesheet" href="css/chatroom.css">
+    <link rel="stylesheet" href="css/chat/chatroom.css">
 </head>
 <body>
-<div id="wrap">
+<div id="chatwrap">
     <div class="top_bar">
         <section class="chat_interface">
             <a href="contract">거래확정</a>
