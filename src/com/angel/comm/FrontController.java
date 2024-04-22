@@ -14,7 +14,7 @@ import java.lang.reflect.Constructor;
 import java.util.*;
 
 @WebServlet(name="FrontController", urlPatterns = "*.do"
-            ,initParams = {@WebInitParam(name="init",value = "/WEB-INF/prop.properties")})
+        ,initParams = {@WebInitParam(name="init",value = "/WEB-INF/prop.properties")})
 public class FrontController extends HttpServlet {
     private Map<String, Action> map = Collections.synchronizedMap(new HashMap<>());
     @Override
