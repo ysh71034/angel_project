@@ -1,3 +1,59 @@
-li{
+body{
+    margin:0;
+    padding: 0;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#reg_wrap {
+    position: relative;
+    width: 90%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: flex;
+   right: 80%;
+}
+ul li{
     list-style: none;
+    margin-bottom: 20px;
+
+}
+#fileinput{
+    display: none;
+}
+.square-button{
+    width: 100px;
+    height: 100px;
+    background-color: gray;
+    color: white;
+    text-align: center;
+    line-height: 100px;
+    cursor: pointer;
+}
+.prodinfo {
+    margin-bottom: 20px;
+}
+
+input[type="text"], select, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; /* 박스 사이즈가 padding을 포함하도록 설정 */
+}
+/*판매 등록 버튼*/
+.regbutton{
+    text-align: center;
+    width: 100%;
+    padding: 10px;
+    background-color: #2189E9;
+    border:none;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
 }
