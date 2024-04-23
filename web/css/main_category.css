@@ -1,0 +1,25 @@
+#category {
+    border: 1px solid silver;
+    position: relative;
+}
+
+#category label{
+    display: block;
+}
+
+#category img{
+    border: 1px solid silver;
+    /*left: -100px;*/
+    margin: 20px;
+    position: relative;
+}
+
+#category a{
+    border: 1px solid silver;
+    color: black;
+    text-decoration: none;
+}
+
+#category a:hover{
+    color: deepskyblue;
+}

@@ -9,7 +9,9 @@
 <html>
 <head>
     <title>Title</title>
+    <link rel="stylesheet" href="css/user/login.css">
 </head>
+
 <body>
 <form method="post" action="login_result.do">
 <ul>
