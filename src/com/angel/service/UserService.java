@@ -17,20 +17,22 @@ public class UserService {
     private UserService(){}
 
 
-    public void loginUser(UserDTO dto) {
+    public UserDTO loginUser(String userID, String password) {
         DBConnection db = DBConnection.getDbConn();
         Connection conn = null;
         UserDAO dao = UserDAO.getDao();
 
+        UserDTO dto = new UserDTO();
         try{
             conn = db.getConnection();
-            dao.loginUser(conn, dto);
+            dto = dao.loginUser(conn, userID, password);
 
         }catch (SQLException | NamingException e){
             System.out.println(e);
         }finally{
             if(conn!=null)try{conn.close();} catch (Exception e){}
         }
+        return dto;
     }
 
 

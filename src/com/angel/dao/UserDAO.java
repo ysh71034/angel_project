@@ -16,18 +16,19 @@ public class UserDAO {
     private UserDAO(){}
 
 
-    public void loginUser(Connection conn, UserDTO dto) throws SQLException {
+    public UserDTO loginUser(Connection conn, String userID, String password) throws SQLException {
         StringBuilder sql = new StringBuilder();
         sql.append(" select userID, password            ");
         sql.append(" from users                           ");
         sql.append(" where userID = ? and password = ?  ");
 
         ResultSet rs = null;
+        UserDTO dto = new UserDTO();
         try(PreparedStatement pstmt = conn.prepareStatement(sql.toString());
             )
         {
-            pstmt.setString(1, dto.getUserID());
-            pstmt.setString(2, dto.getPassword());
+            pstmt.setString(1, userID);
+            pstmt.setString(2, password);
             rs = pstmt.executeQuery();
 
             while(rs.next()){
@@ -35,6 +36,7 @@ public class UserDAO {
                 dto.setPassword(rs.getString("password"));
             }
         }
+        return dto;
     }
 
     public void joinUser(Connection conn, UserDTO dto) throws SQLException{

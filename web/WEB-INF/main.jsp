@@ -18,7 +18,17 @@
         <jsp:include page="header.jsp"/>
     </haeder>
     <section id="jsp_body">
-        <jsp:include page="${param.page}"/>
+        <c:set var="login" value="${param.page}"></c:set>
+        <c:choose>
+            <c:when test="${empty login || login == ''}">
+                <jsp:include page="mainBody/categoryTest.jsp"/>
+                <jsp:include page="mainBody/newProdTest.jsp"/>
+            </c:when>
+            <c:otherwise>
+                <jsp:include page="${login}"/>
+            </c:otherwise>
+        </c:choose>
+
     </section>
     <footer id="footer">
         <jsp:include page="footer.jsp"/>

@@ -1,0 +1,23 @@
+#brandNew {
+    width: 100%;
+    border: 1px solid silver;
+    position: relative;
+}
+
+#brandNew label{
+    display: block;
+}
+
+#brandNew img{
+    margin: 20px;
+    position: relative;
+}
+
+#brandNew a{
+    color: black;
+    text-decoration: none;
+}
+
+#brandNew a:hover{
+    color: deepskyblue;
+}
