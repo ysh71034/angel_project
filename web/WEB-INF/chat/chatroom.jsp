@@ -6,11 +6,17 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <link rel="stylesheet" href="css/chat/chatroom.css">
+<%--    <script deter src="js/chatroom.js"></script>--%>
+    <script>
+        init_data(${param.buyerNo},${param.productNo});
+    </script>
 </head>
 <body>
+<c:set var="sessionID" value="${sessionScope.sessionID}"/>
 <div id="chatwrap">
     <div class="top_bar">
         <section class="chat_interface">
@@ -25,8 +31,8 @@
     </div>
     <div class="chat_body">
         <section id="msg_box">
-            <p class="enter">p.id_01 채팅방</p>
-            <p class="buyer_name">😊 구매자</p>
+            <p class="enter">${sessionID} 님이 채팅방에 입장하셨습니다.</p>
+            <p class="buyer_name">😊 ${sessionID}</p>
             <p class="buyer_msg">안녕하세요! 혹시 제주도에도 배송이 되는지 여쭤보려구요~~~</p>
             <p class="seller_name">😊 판매자</p>
             <p class="seller_msg">판매자입니다.</p>
