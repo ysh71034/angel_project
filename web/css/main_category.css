@@ -1,25 +1,48 @@
 #category {
     border: 1px solid silver;
     position: relative;
+    width: 100vw;
+    height: 23vh;
+    margin: 20px 0 20px 0;
+    padding: 0;
+}
+#category ul{
+    display: flex;
+    justify-content: center;
+    text-align: center;
 }
 
+#category ul li{
+    border: 1px solid silver;
+    list-style: none;
+    display: inline;
+}
 #category label{
     display: block;
-}
-
-#category img{
-    border: 1px solid silver;
-    /*left: -100px;*/
-    margin: 20px;
     position: relative;
+    left: 50px;
+    margin: 10px;
 }
 
 #category a{
     border: 1px solid silver;
     color: black;
     text-decoration: none;
+    position: relative;
+    word-break: break-all;
+    overflow-wrap: break-word;
 }
+
+#category img{
+    border: 1px solid silver;
+    width: 100px;
+    margin: 0 20px 0 20px;
+    display: block;
+    position: relative;
+}
+
 
 #category a:hover{
     color: deepskyblue;
 }
+

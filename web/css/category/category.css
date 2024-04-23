@@ -1,0 +1,47 @@
+#tab, #prodList{
+    width: 100vw;
+}
+
+#tab ul{
+    border: 1px solid silver;
+    width: 90%;
+    display: flex;
+    justify-content: center;
+}
+
+#tab ul li{
+    list-style: none;
+    display: inline-block;
+    margin: 5px;
+    padding: 20px 30px 20px 30px;
+}
+
+#tab a{
+    color: black;
+    text-decoration: none;
+}
+
+#tab a:hover{
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+/*
+    auto-fill
+    column의 개수를 미리 정하지 않고
+    설정된 너비가 허용하는 한
+    최대한 셀을 채운다
+*/
+#prodList ul{
+    width: 85vw;
+    height: 80vh;
+    text-align: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(25%, auto));
+}
+
+#prodList ul li{
+    border: 1px solid silver;
+    margin: 10px;
+    list-style: none;
+}
