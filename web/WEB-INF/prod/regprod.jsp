@@ -10,22 +10,20 @@
 <head>
     <title>Title</title>
     <link rel="stylesheet" href="css/prod/regprod.css">
+    <script defer src="js/prod/regprod.js"></script>
 </head>
 <body>
-<div>등록하기</div>
+<div id="reg_wrap">
 <form method="post" action="regprod_result.do" enctype="multipart/form-data">
 <ul>
     <li>
+        <div class="square-button" id="squareButton">이미지</div>
+        <input type="file" name="img" id="fileinput" multiple>
+    </li>
+    <div class="prodinfo">
+    <li class="title">
         <label for="name">상품명</label>
         <input type="text" name="name" id="name">
-    </li>
-    <li>
-        <label for="img1">이미지</label>
-        <input type="file" name="img1" id="img1">
-        <label for="img2">이미지</label>
-        <input type="file" name="img2" id="img2">
-        <label for="img3">이미지</label>
-        <input type="file" name="img3" id="img3">
     </li>
     <li>
         <label for="category">카테고리</label>
@@ -45,10 +43,13 @@
         <label for="info">제품설명</label>
         <textarea name="info" id="info" rows="10" cols="30"></textarea>
     </li>
+    </div>
     <li>
-        <button type="submit">판매등록</button>
+        <button type="submit" class="regbutton">판매등록</button>
     </li>
+
 </ul>
 </form>
+</div>
 </body>
 </html>
