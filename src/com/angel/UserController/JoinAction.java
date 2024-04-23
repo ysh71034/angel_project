@@ -14,7 +14,7 @@ public class JoinAction implements Action {
 
         Forward forward = new Forward();
         forward.setForward(true);
-        forward.setUrl("/WEB-INF/main.jsp?page=join/join.jsp");
+        forward.setUrl("/WEB-INF/main.jsp?page=user/join.jsp");
         return forward;
 
     }

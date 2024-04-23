@@ -107,6 +107,7 @@
     background-color: rgba(195, 213, 225, 0.94);
     left: 15vw;
     text-align: center;
+    height: auto;
 }
 
 #msg_box .buyer_name {

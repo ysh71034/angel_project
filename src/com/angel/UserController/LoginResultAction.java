@@ -29,7 +29,7 @@ public class LoginResultAction implements Action {
         if(userID != null && password != null) {
             if (userID.equals(dto.getUserID()) && password.equals(dto.getPassword())) {
                 HttpSession session = request.getSession();
-                session.setAttribute("userID", userID);
+                session.setAttribute("sessionID", userID);
 //                session.setMaxInactiveInterval(0);
 
                 System.out.println("성공");
