@@ -8,15 +8,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>천사몰 - 채팅방</title>
     <link rel="stylesheet" href="css/chat/chatroom.css">
 </head>
 <body>
 <div id="chatwrap">
     <div class="top_bar">
         <section class="chat_interface">
-            <a href="contract">거래확정</a>
-            <a href="index">나가기</a>
+            <a href="contract.do">거래확정</a>
+            <a href="main.do">나가기</a>
         </section>
         <section class="detail_prod">
             <img src="" alt="product_img">
@@ -28,7 +27,7 @@
         <section id="msg_box">
             <p class="enter">p.id_01 채팅방</p>
             <p class="buyer_name">😊 구매자</p>
-            <p class="buyer_msg">안녕하세요!</p>
+            <p class="buyer_msg">안녕하세요! 혹시 제주도에도 배송이 되는지 여쭤보려구요~~~</p>
             <p class="seller_name">😊 판매자</p>
             <p class="seller_msg">판매자입니다.</p>
         </section>
