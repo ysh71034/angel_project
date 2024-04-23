@@ -11,7 +11,7 @@
 <body>
 <div>
     <img src="img/logo.jpg" alt="logo">
-    <a class="home" href=""><span>천사Mall</span></a>
+    <a class="home" href="main.do"><span>천사Mall</span></a>
     <a class="sell" href="register.do"><span>판매하기</span></a>
     <c:choose>
         <c:when test="${empty sessionScope.id}">
