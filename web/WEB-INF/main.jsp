@@ -9,7 +9,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>천사몰 - main</title>
+    <title>${requestScope.title}</title>
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>

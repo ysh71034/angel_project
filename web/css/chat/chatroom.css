@@ -119,18 +119,21 @@
     height: 30px;
     background-color: #FFFFFF;
     left: 1vw;
+    height: auto;
 }
 
 #msg_box .seller_name {
+    text-align: right;
     margin: 0vh 2vw;
-    right: 1vw;
+    left: 30vw;
 }
 
 #msg_box .seller_msg {
     margin: 0vh 2vw 1vh 2vw;
     height: 30px;
     background-color: yellow;
-    right: 1vw;
+    left: 30vw;
+    height: auto;
 }
 
 .chat_body form {
