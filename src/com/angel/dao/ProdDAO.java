@@ -1,4 +1,144 @@
 package com.angel.dao;
 
+import com.angel.dto.ImageDTO;
+import com.angel.dto.ProdDTO;
+import com.angel.dto.UserDTO;
+
+import java.sql.*;
+
 public class ProdDAO {
+    public static ProdDAO dao = new ProdDAO();
+    public ProdDAO(){}
+    public static ProdDAO getDAO(){
+        return dao;
+    }
+
+    public void insertProd(Connection conn, ProdDTO dto) throws SQLException {
+        StringBuilder sql = new StringBuilder();
+        sql.append("  insert   into   products(  ");
+        sql.append("   productName               ");
+        sql.append("    ,description             ");
+        sql.append("    ,price                   ");
+        sql.append("    ,sellerNo               ");
+        sql.append("    ,categoryNo             ");
+        sql.append("    ,registerDate)             ");
+        sql.append("     values(  ?,  ?,  ?, ?, ?, ?)     ");
+        try(PreparedStatement pstmt = conn.prepareStatement(sql.toString(),Statement.RETURN_GENERATED_KEYS)) {
+            if(dto.getCategoryName().equals("book")){
+                dto.setCategoryNo(1);
+            }else if(dto.getCategoryName().equals("furniture")){
+                dto.setCategoryNo(2);
+            }else if(dto.getCategoryName().equals("req")){
+                dto.setCategoryNo(3);
+            }else if(dto.getCategoryName().equals("party")){
+                dto.setCategoryNo(4);
+            }else{
+                dto.setCategoryNo(5);
+            }
+
+            pstmt.setString(1,dto.getProductName());
+            pstmt.setString(2,dto.getDescription());
+            pstmt.setInt(3,dto.getPrice());
+            pstmt.setInt(4,dto.getSellerNo());
+            pstmt.setInt(5,dto.getCategoryNo());
+            pstmt.setDate(6,dto.getRegisterDate());
+            pstmt.executeUpdate();
+
+            try(ResultSet gen = pstmt.getGeneratedKeys()) {
+                if(gen.next()){
+                    dto.setProductNo(gen.getInt(1));
+                }
+            }
+        }
+    }
+
+    public int findSellerNo(Connection conn,String sessionID) throws SQLException{
+        StringBuilder sql = new StringBuilder();
+        sql.append("   select   userNo   ");
+        sql.append("   from   users      ");
+        sql.append(" where  userID =  ?  ");
+        int result = 0;
+        ResultSet rs = null;
+        try(PreparedStatement pstmt = conn.prepareStatement(sql.toString())) {
+            pstmt.setString(1,sessionID);
+            rs = pstmt.executeQuery();
+            while (rs.next()){
+                result = rs.getInt("userNo");
+            }
+        }
+        return result;
+    }
+
+    public ProdDTO detailProd(Connection conn, int productNo) throws SQLException{
+        StringBuilder sql = new StringBuilder();
+        sql.append(" select  p.productNo         ");
+        sql.append("       ,p.productName         ");
+        sql.append(" ,p.description               ");
+        sql.append("  ,p.price, c.categoryName    ");
+        sql.append("  ,i.imagePath                ");
+        sql.append("   ,u.userName                ");
+        sql.append("  from  images i  inner join  ");
+        sql.append("  products p   on             ");
+        sql.append("  i.productNo = p.productNo   ");
+        sql.append("   inner join  categories  c  ");
+        sql.append("   on  c.categoryNo = p.categoryNo");
+        sql.append("   inner join users u            ");
+        sql.append("   on  u.userNo = p.sellerNo   ");
+        sql.append("  where  p.productNo =  ?      ");
+        ResultSet rs = null;
+        ProdDTO dto = new ProdDTO();
+        try(PreparedStatement pstmt = conn.prepareStatement(sql.toString())) {
+            pstmt.setInt(1,productNo);
+            rs = pstmt.executeQuery();
+            while (rs.next()){
+                dto.setProductNo(rs.getInt("productNo"));
+                dto.setProductName(rs.getString("productName"));
+                dto.setDescription(rs.getString("description"));
+                dto.setPrice(rs.getInt("price"));
+                dto.setCategoryName(rs.getString("categoryName"));
+                ImageDTO imgdto = new ImageDTO();
+                imgdto.setImagepath(rs.getString("imagePath"));
+                dto.setDto2(imgdto);
+                UserDTO userdto = new UserDTO();
+                userdto.setUserName(rs.getString("userName"));
+                dto.setUserdto(userdto);
+            }
+        }finally {
+            if(rs!=null)try {
+                rs.close();
+            }catch (Exception e){}
+        }
+        return dto;
+    }
+
+    public int modProd(Connection conn, ProdDTO dto) throws SQLException{
+        StringBuilder sql = new StringBuilder();
+        sql.append("   update    products    ");
+        sql.append("   set  productName  =  ?");
+        sql.append("    ,description   =  ?   ");
+        sql.append("    ,price   =    ?       ");
+        sql.append("   ,categoryNo  =   ?     ");
+        sql.append("  where  productNo = ?    ");
+        int result = 0;
+        try(PreparedStatement pstmt = conn.prepareStatement(sql.toString())) {
+            if(dto.getCategoryName().equals("book")){
+                dto.setCategoryNo(1);
+            }else if(dto.getCategoryName().equals("furniture")){
+                dto.setCategoryNo(2);
+            }else if(dto.getCategoryName().equals("req")){
+                dto.setCategoryNo(3);
+            }else if(dto.getCategoryName().equals("party")){
+                dto.setCategoryNo(4);
+            }else{
+                dto.setCategoryNo(5);
+            }
+            pstmt.setString(1,dto.getProductName());
+            pstmt.setString(2,dto.getDescription());
+            pstmt.setInt(3,dto.getPrice());
+            pstmt.setInt(4,dto.getCategoryNo());
+            pstmt.setInt(5,dto.getProductNo());
+            result = pstmt.executeUpdate();
+        }
+        return result;
+    }
 }

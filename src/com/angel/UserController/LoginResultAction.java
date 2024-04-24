@@ -30,8 +30,8 @@ public class LoginResultAction implements Action {
             if (userID.equals(dto.getUserID()) && password.equals(dto.getPassword())) {
                 HttpSession session = request.getSession();
                 session.setAttribute("sessionID", userID);
-//                session.setMaxInactiveInterval(0);
 
+//                session.setMaxInactiveInterval(0);
                 System.out.println("login success");
                 forward.setUrl("main.do");
             } else {
