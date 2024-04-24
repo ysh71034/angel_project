@@ -13,7 +13,7 @@ public class LogoutAction implements Action {
     @Override
     public Forward execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        String userID = (String)session.getAttribute("userID");
+        String userID = (String)session.getAttribute("sessionID");
 
         if(userID != null){
             session.invalidate();
