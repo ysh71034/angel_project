@@ -14,12 +14,11 @@ public class JoinResultAction implements Action {
     @Override
     public Forward execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        request.setCharacterEncoding("utf-8");
-
         String userID = request.getParameter("userID");
         String password = request.getParameter("password");
         String userName = request.getParameter("userName");
         String address = request.getParameter("address");
+
 
         UserDTO dto = new UserDTO();
         dto.setUserID(userID);

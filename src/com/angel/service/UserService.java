@@ -43,6 +43,7 @@ public class UserService {
 
         try{
             conn = db.getConnection();
+            System.out.println(dto.getAddress());
             dao.joinUser(conn, dto);
 
         }catch (SQLException | NamingException e){
