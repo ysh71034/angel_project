@@ -3,7 +3,7 @@ package com.angel.service;
 import com.angel.comm.DBConnection;
 import com.angel.dao.ChatDAO;
 import com.angel.dto.ChatDTO;
-import com.angel.dto.ChatEnterDTO;
+import com.angel.dto.ChatListDTO;
 
 import javax.naming.NamingException;
 import java.sql.Connection;
