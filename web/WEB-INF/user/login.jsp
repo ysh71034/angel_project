@@ -17,7 +17,7 @@
     <div id="login">
         <ul>
             <li>
-                <input type="text" name="userID" id="userID" placeholder="아이디">
+                <input type="text" name="userID" id="userID" placeholder="이메일">
             </li>
             <li>
                 <input type="password" name="password" id="password" placeholder="비밀번호">

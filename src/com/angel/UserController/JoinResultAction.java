@@ -17,19 +17,44 @@ public class JoinResultAction implements Action {
         String userID = request.getParameter("userID");
         String password = request.getParameter("password");
         String userName = request.getParameter("userName");
+        String postCode = request.getParameter("postcode");
+        String roadAddr = request.getParameter("roadAddress");
+        String jibunAddr = request.getParameter("jibunAddress");
+        String extraAddr = request.getParameter("extraAddress");
+        String detailAddr = request.getParameter("detailAddress");
+
+        StringBuilder address = new StringBuilder();
+        address.append(postCode);
+        address.append(" ");
+        address.append(roadAddr);
+        address.append(" ");
+        address.append(jibunAddr);
+        address.append(" ");
+        address.append(extraAddr);
+        address.append(" ");
+        address.append(detailAddr);
+
         String address = request.getParameter("address");
+
         UserDTO dto = new UserDTO();
         dto.setUserID(userID);
         dto.setPassword(password);
         dto.setUserName(userName);
-        dto.setAddress(address);
+        dto.setAddress(String.valueOf(address));
 
         UserService service = UserService.getInstance();
-        service.joinUser(dto);
+        int result = 0;
+        result = service.joinUser(dto);
 
         Forward forward = new Forward();
         forward.setForward(false);
-        forward.setUrl("login.do");
+        if(result>0){
+            System.out.println("회원가입 성공");
+            forward.setUrl("login.do");
+        }else{
+            System.out.println("회원가입 실패");
+            forward.setUrl("join.do");
+        }
         return forward;
     }
 }
