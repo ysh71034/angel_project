@@ -20,8 +20,9 @@
 li > input{
     border: none;
     border-bottom: 1px solid silver;
-    padding: 10px 0 10px 0;
-    width: 220px;
+    padding: 20px 20px 5px 20px;
+    width: 90%;
+    font-size: 1.2rem;
 }
 
 li > button{
@@ -30,6 +31,8 @@ li > button{
     border-color: #2189E9;;
     background-color: #2189E9;
     border-radius: 7px;
+    width: 90%;
+    font-size: 1.2rem;
 }
 li > button:hover{
     background-color: #192d49;

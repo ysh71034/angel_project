@@ -18,19 +18,19 @@
     <label>카테고리별 상품</label>
     <ul>
         <li>
-            <a href="category_detail.do"><img src="img/bluebear.jpg" alt="도서">도서</a>
+            <a href="category_detail.do"><img src="img/bear01.jpeg" alt="도서">도서</a>
         </li>
         <li>
-            <a href="category_detail.do"><img src="img/bluebear.jpg" alt="가구/장비">가구/장비</a>
+            <a href="category_detail.do"><img src="img/cat01.jpeg" alt="가구/장비">가구/장비</a>
         </li>
         <li>
-            <a href="category_detail.do"><img src="img/bluebear.jpg" alt="학습 준비물">학습 준비물</a>
+            <a href="category_detail.do"><img src="img/dog01.jpeg" alt="학습 준비물">학습 준비물</a>
         </li>
         <li>
-            <a href="category_detail.do"><img src="img/bluebear.jpg" alt="행사 용품">행사 용품</a>
+            <a href="category_detail.do"><img src="img/rabbit01.jpg" alt="행사 용품">행사 용품</a>
         </li>
         <li>
-            <a href="category_detail.do"><img src="img/bluebear.jpg" alt="기타">기타</a>
+            <a href="category_detail.do"><img src="img/etc.jpg" alt="기타">기타</a>
         </li>
     </ul>
 </div>

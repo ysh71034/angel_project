@@ -2,7 +2,7 @@
     border: 1px solid silver;
     position: relative;
     width: 100vw;
-    height: 23vh;
+    height: 30vh;
     margin: 20px 0 20px 0;
     padding: 0;
 }
@@ -16,6 +16,7 @@
     border: 1px solid silver;
     list-style: none;
     display: inline;
+    margin: 10px 50px 0 50px;
 }
 #category label{
     display: block;
@@ -35,7 +36,7 @@
 
 #category img{
     border: 1px solid silver;
-    width: 100px;
+    width: 180px;
     margin: 0 20px 0 20px;
     display: block;
     position: relative;

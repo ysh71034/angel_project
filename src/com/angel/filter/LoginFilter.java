@@ -14,7 +14,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @WebFilter(urlPatterns = "*.do", initParams = {@WebInitParam(
-        name="exclude", value ="/login.do, /login_result.do, /main.do, /join.do, /join_result.do, /logout.do"
+        name="exclude", value ="/login.do, /login_result.do, /main.do, /join.do, /join_result.do, /logout.do, /validate.do"
 )})
 public class LoginFilter implements Filter {
 
@@ -49,10 +49,14 @@ public class LoginFilter implements Filter {
                 if (sessionID != null) {
                     System.out.println("filter login");
                     filterChain.doFilter(request, response);
+                }else{
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/main.jsp?page=user/login.jsp");
+                    dispatcher.forward(request, response);
                 }
+            }else{
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/main.jsp?page=user/login.jsp");
+                dispatcher.forward(request, response);
             }
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/main.jsp?page=user/login.jsp");
-            dispatcher.forward(request, response);
         }
     }
 }

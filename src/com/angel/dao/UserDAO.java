@@ -35,18 +35,21 @@ public class UserDAO {
                 dto.setUserID(rs.getString("userID"));
                 dto.setPassword(rs.getString("password"));
             }
+        }finally {
+            if(rs!=null) try{rs.close();} catch (Exception e){}
         }
         return dto;
     }
 
-    public void joinUser(Connection conn, UserDTO dto) throws SQLException{
+    public int joinUser(Connection conn, UserDTO dto) throws SQLException{
         StringBuilder sql = new StringBuilder();
         sql.append(" insert into users ( userID        ");
         sql.append("                   , password      ");
         sql.append("                   , userName      ");
-        sql.append("                   , address)      ");
+        sql.append("                   , address )     ");
         sql.append(" values (?, ?, ?, ? )              ");
 
+        int result = 0;
         try(PreparedStatement pstmt = conn.prepareStatement(sql.toString());
         )
         {
@@ -55,8 +58,29 @@ public class UserDAO {
             pstmt.setString(3, dto.getUserName());
             pstmt.setString(4, dto.getAddress());
 
-            pstmt.executeUpdate();
+            result = pstmt.executeUpdate();
         }
+        return result;
     }
 
+    public boolean findUser(Connection conn, String uid) throws SQLException{
+        StringBuilder sql = new StringBuilder();
+        sql.append(" select userID           ");
+        sql.append(" from users              ");
+        sql.append(" where userID = ?        ");
+
+        boolean result = false;
+        ResultSet rs = null;
+        try(PreparedStatement pstmt = conn.prepareStatement(sql.toString());){
+            pstmt.setString(1, uid);
+            rs = pstmt.executeQuery();
+
+            if (rs.next()){
+                result = true;
+            }
+        }finally {
+            if(rs!=null) try{rs.close();} catch (Exception e){}
+        }
+        return result;
+    }
 }

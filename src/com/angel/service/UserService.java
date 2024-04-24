@@ -36,22 +36,40 @@ public class UserService {
     }
 
 
-    public void joinUser(UserDTO dto) {
+    public int joinUser(UserDTO dto) {
         DBConnection db = DBConnection.getDbConn();
         Connection conn = null;
         UserDAO dao = UserDAO.getDao();
 
+        int result = 0;
         try{
             conn = db.getConnection();
-            System.out.println(dto.getAddress());
-            dao.joinUser(conn, dto);
+            result = dao.joinUser(conn, dto);
 
         }catch (SQLException | NamingException e){
             System.out.println(e);
         }finally{
             if(conn!=null)try{conn.close();} catch (Exception e){}
         }
+        return result;
     }
 
+    public boolean findUser(String uid) {
+        DBConnection db = DBConnection.getDbConn();
+        Connection conn = null;
+        UserDAO dao = UserDAO.getDao();
 
+        boolean result = false;
+        try{
+            conn = db.getConnection();
+            result = dao.findUser(conn, uid);
+
+        }catch (SQLException | NamingException e){
+            System.out.println(e);
+        }finally{
+            if(conn!=null)try{conn.close();} catch (Exception e){}
+        }
+        return result;
+
+    }
 }
