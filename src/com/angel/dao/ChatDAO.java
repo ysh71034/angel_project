@@ -52,7 +52,6 @@ public class ChatDAO {
         sql.append("                     ,writer    ");
         sql.append("                     ,buyerNo ) ");
         sql.append(" VALUES ( ? ,? ,? ,? )          ");
-        int result = 0;
         try(PreparedStatement pstmt = conn.prepareStatement(sql.toString())){
             pstmt.setInt(1,dto.getProductNo());
             pstmt.setString(2,dto.getContent());

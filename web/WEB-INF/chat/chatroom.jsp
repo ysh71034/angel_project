@@ -11,9 +11,6 @@
 <head>
     <link rel="stylesheet" href="css/chat/chatroom.css">
     <script deter src="js/chatroom.js"></script>
-    <script>
-        init_data(${param.buyerNo},${param.productNo});
-    </script>
 </head>
 <body>
 <c:set var="sessionID" value="${sessionScope.sessionID}"/>
@@ -38,8 +35,11 @@
 <%--            <p class="seller_msg">${param.buyerNo}</p>--%>
         </section>
         <form>
+            <input type="text" name="productNo" value="${param.productNo}" hidden/>
+            <input type="text" name="buyerNo" value="${param.buyerNo}" hidden/>
+            <input type="text" name="sessionID" value="${sessionID}" hidden/>
             <input type="text" name="content" autofocus>
-            <button type="button">전송</button>
+            <button type="button" id="chatBtn">전송</button>
         </form>
     </div>
 </div>
