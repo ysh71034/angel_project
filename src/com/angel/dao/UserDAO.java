@@ -59,6 +59,9 @@ public class UserDAO {
             pstmt.setString(4, dto.getAddress());
 
             result = pstmt.executeUpdate();
+
+            pstmt.executeUpdate();
+
         }
         return result;
     }

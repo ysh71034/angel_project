@@ -3,7 +3,7 @@ package com.angel.service;
 import com.angel.comm.DBConnection;
 import com.angel.dao.ChatDAO;
 import com.angel.dto.ChatDTO;
-import com.angel.dto.ChatEnterDTO;
+import com.angel.dto.ChatListDTO;
 
 import javax.naming.NamingException;
 import java.sql.Connection;
@@ -36,7 +36,7 @@ public class ChatService {
             if(buyerNo==0) {
                 int getBno = dao.findBuyerNo(conn, sessionID);
                 dto.setProductNo(productNo);
-                dto.setContent(sessionID+" 님이 입장하셨습니다.");
+                dto.setContent(sessionID+" 님이 채팅에 참여하셨습니다.");
                 dto.setWriter(sessionID);
                 dto.setBuyerNo(getBno);
                 dao.insertChat(conn,dto);
@@ -84,5 +84,19 @@ public class ChatService {
             if(conn!=null)try{conn.close();}catch (Exception e){}
         }
         return isSeller;
+    }
+
+    public void insertChat(ChatDTO dto) {
+        DBConnection db = DBConnection.getDbConn();
+        Connection conn = null;
+        ChatDAO dao = ChatDAO.getChatDAO();
+        try{
+            conn = db.getConnection();
+            dao.insertChat(conn,dto);
+        }catch (SQLException|NamingException e){
+            System.out.println(e.getMessage());
+        }finally {
+            if(conn!=null)try{conn.close();}catch (Exception e){}
+        }
     }
 }

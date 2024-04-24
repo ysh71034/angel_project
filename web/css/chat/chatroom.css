@@ -91,6 +91,7 @@
     border-bottom: 1px solid #2189E9;
     background-color: rgba(33, 137, 233, 0.6);
     height: 440px;
+    overflow-y: auto;
 }
 
 #msg_box p {
@@ -101,7 +102,7 @@
     top: 10px;
 }
 
-#msg_box .enter {
+.enter {
     margin: 0vh 2vw;
     height: 30px;
     background-color: rgba(195, 213, 225, 0.94);
@@ -110,12 +111,12 @@
     height: auto;
 }
 
-#msg_box .buyer_name {
+.my_name {
     margin: 0vh 2vw;
     left: 1vw;
 }
 
-#msg_box .buyer_msg {
+.my_msg {
     margin: 0vh 2vw 1vh 2vw;
     height: 30px;
     background-color: #FFFFFF;
@@ -123,13 +124,13 @@
     height: auto;
 }
 
-#msg_box .seller_name {
+.your_name {
     text-align: right;
     margin: 0vh 2vw;
     left: 30vw;
 }
 
-#msg_box .seller_msg {
+.your_msg {
     margin: 0vh 2vw 1vh 2vw;
     height: 30px;
     background-color: yellow;

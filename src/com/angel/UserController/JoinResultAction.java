@@ -17,7 +17,6 @@ public class JoinResultAction implements Action {
         String userID = request.getParameter("userID");
         String password = request.getParameter("password");
         String userName = request.getParameter("userName");
-
         String postCode = request.getParameter("postcode");
         String roadAddr = request.getParameter("roadAddress");
         String jibunAddr = request.getParameter("jibunAddress");
@@ -34,6 +33,8 @@ public class JoinResultAction implements Action {
         address.append(extraAddr);
         address.append(" ");
         address.append(detailAddr);
+
+        String address = request.getParameter("address");
 
         UserDTO dto = new UserDTO();
         dto.setUserID(userID);

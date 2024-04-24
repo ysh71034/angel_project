@@ -17,22 +17,24 @@
 <form method="post" action="regprod_result.do" enctype="multipart/form-data">
 <ul>
     <li>
+
         <div class="square-button" id="squareButton">이미지</div>
-        <input type="file" name="img" id="fileinput" multiple>
+        <input type="file" name="img" id="fileinput"  multiple>
+<%--        <div id="preview"></div>--%>
     </li>
     <div class="prodinfo">
     <li class="title">
-        <label for="name">상품명</label>
-        <input type="text" name="name" id="name">
+        <label for="productName">상품명</label>
+        <input type="text" name="productName" id="productName">
     </li>
     <li>
         <label for="category">카테고리</label>
         <select name="category" id="category">
-            <option value="1">도서</option>
-            <option value="2">가구/장비</option>
-            <option value="3">학습 준비물</option>
-            <option value="4">행사 용품</option>
-            <option value="5">기타</option>
+            <option value="book" selected>도서</option>
+            <option value="furniture">가구/장비</option>
+            <option value="req">학습 준비물</option>
+            <option value="party">행사 용품</option>
+            <option value="etc">기타</option>
         </select>
     </li>
     <li>
@@ -40,8 +42,8 @@
         <input type="text" name="price" id="price">
     </li>
     <li>
-        <label for="info">제품설명</label>
-        <textarea name="info" id="info" rows="10" cols="30"></textarea>
+        <label for="description">제품설명</label>
+        <textarea name="description" id="description" rows="10" cols="30"></textarea>
     </li>
     </div>
     <li>
