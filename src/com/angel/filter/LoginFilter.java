@@ -49,10 +49,15 @@ public class LoginFilter implements Filter {
                 if (sessionID != null) {
                     System.out.println("filter login");
                     filterChain.doFilter(request, response);
+                } else {
+                    RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/main.jsp?page=user/login.jsp");
+                    dispatcher.forward(request, response);
                 }
+            } else {
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/main.jsp?page=user/login.jsp");
+                dispatcher.forward(request, response);
             }
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/main.jsp?page=user/login.jsp");
-            dispatcher.forward(request, response);
+
         }
     }
 }
