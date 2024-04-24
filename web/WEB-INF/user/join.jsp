@@ -13,28 +13,30 @@
 </head>
 <body>
 <form method="post" action="join_result.do">
-    <ul>
-        <li>
-            <label for="userID">이메일</label>
-            <input type="text" name="userID" id="userID">
-        </li>
-        <li>
-            <label for="password">비밀번호</label>
-            <input type="password" name="password" id="password">
-        </li>
-        <li>
-            <label for="userName">이름</label>
-            <input type="text" name="userName" id="userName">
-        </li>
-        <li>
-            <label for="address">주소</label>
-            <input type="text" name="address" id="address">
-        </li>
-        <li>
-            <input type="submit" value="회원가입">
-        </li>
-    </ul>
-    <a href="main.do">메인으로</a>
+    <div id="join">
+        <ul>
+            <li>
+                <label for="userID">이메일</label>
+                <input type="text" name="userID" id="userID">
+            </li>
+            <li>
+                <label for="password">비밀번호</label>
+                <input type="password" name="password" id="password">
+            </li>
+            <li>
+                <label for="userName">이름</label>
+                <input type="text" name="userName" id="userName">
+            </li>
+            <li>
+                <label for="address">주소</label>
+                <input type="text" name="address" id="address">
+            </li>
+            <li>
+                <input type="submit" value="회원가입">
+            </li>
+        </ul>
+        <a href="main.do">메인으로</a>
+    </div>
 </form>
 </body>
 </html>

@@ -14,21 +14,22 @@ import java.util.HashSet;
 import java.util.Set;
 
 @WebFilter(urlPatterns = "*.do", initParams = {@WebInitParam(
-        name="exclude", value ="/login.do, /login_result.do, /main.do, /join.do"
+        name="exclude", value ="/login.do, /login_result.do, /main.do, /join.do, /logout.do"
 )})
 public class LoginFilter implements Filter {
 
     private final Set<String> exclude_routerSet = Collections.synchronizedSet(new HashSet<>());
+
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
         String exclude_router = filterConfig.getInitParameter("exclude");
         String[] data = exclude_router.split(",");
-        for(String item:data){
+        for (String item : data) {
             exclude_routerSet.add(item.trim());
         }
     }
 
-    boolean isExclude(HttpServletRequest request){
+    boolean isExclude(HttpServletRequest request) {
         String path = request.getServletPath();
         return exclude_routerSet.contains(path);
     }
@@ -40,12 +41,12 @@ public class LoginFilter implements Filter {
 
         HttpSession session = request.getSession(false);
 
-        if(isExclude(request) || session == null){
+        if (isExclude(request) || session == null) {
             filterChain.doFilter(request, response);
-        }else {
-            if(session!=null){
-                String sessionID = (String)session.getAttribute("sessionID");
-                if(sessionID != null){
+        } else {
+            if (session != null) {
+                String sessionID = (String) session.getAttribute("sessionID");
+                if (sessionID != null) {
                     System.out.println("filter login");
                     filterChain.doFilter(request, response);
                 }
@@ -54,5 +55,6 @@ public class LoginFilter implements Filter {
             dispatcher.forward(request, response);
         }
     }
+}
 
 
