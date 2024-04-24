@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: db400tea
@@ -13,35 +14,45 @@
     <script defer src="js/prod/regprod.js"></script>
 </head>
 <body>
+<c:set var="dto" value="${requestScope.dto}"/>
 <div id="modprod_wrap">
     <form method="post" action="regprod_result.do" enctype="multipart/form-data">
         <ul>
             <li>
+                <input type="hidden" name="productNo" value="${dto.productNo}">
                 <div class="square-button" id="squareButton">이미지</div>
                 <input type="file" name="img" id="fileinput" multiple>
+                <img src="upload/${dto.dto2.imagepath}" alt="No image">
             </li>
             <div class="prodinfo">
                 <li class="title">
                     <label for="name">상품명</label>
-                    <input type="text" name="name" id="name">
+                    <input type="text" name="name" id="name" value="${dto.productName}">
                 </li>
                 <li>
                     <label for="category">카테고리</label>
                     <select name="category" id="category">
+                        <option value="book" ${dto.categoryName == "book" ? 'selected' : ''}>도서</option>
+                        <option value="furniture" ${dto.categoryName == "furniture" ? 'selected' : ''}>가구/장비</option>
+                        <option value="req" ${dto.categoryName == "req" ? 'selected' : ''}>학습 준비물</option>
+                        <option value="party" ${dto.categoryName == "party" ? 'selected' : ''}>행사 용품</option>
+                        <option value="etc" ${dto.categoryName == "etc" ? 'selected' : ''}>기타</option>
+                    </select>
+                    <%--<select name="category" id="category">
                         <option value="1">도서</option>
                         <option value="2">가구/장비</option>
                         <option value="3">학습 준비물</option>
                         <option value="4">행사 용품</option>
                         <option value="5">기타</option>
-                    </select>
+                    </select>--%>
                 </li>
                 <li>
                     <label for="price">가격</label>
-                    <input type="text" name="price" id="price">
+                    <input type="text" name="price" id="price" value="${dto.price}">
                 </li>
                 <li>
                     <label for="info">제품설명</label>
-                    <textarea name="info" id="info" rows="10" cols="30"></textarea>
+                    <textarea name="info" id="info" rows="10" cols="30">${dto.description}</textarea>
                 </li>
             </div>
             <li>
