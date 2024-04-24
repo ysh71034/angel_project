@@ -1,23 +1,47 @@
 #brandNew {
-    width: 100%;
     border: 1px solid silver;
     position: relative;
+    width: 100vw;
+    height: 23vh;
+    margin: 20px 0 20px 0;
+    padding: 0;
+}
+#brandNew ul{
+    display: flex;
+    justify-content: center;
+    text-align: center;
 }
 
+#brandNew ul li{
+    border: 1px solid silver;
+    list-style: none;
+    display: inline;
+}
 #brandNew label{
     display: block;
-}
-
-#brandNew img{
-    margin: 20px;
     position: relative;
+    left: 50px;
+    margin: 10px;
 }
 
 #brandNew a{
+    border: 1px solid silver;
     color: black;
     text-decoration: none;
+    position: relative;
+    word-break: break-all;
+    overflow-wrap: break-word;
+}
+
+#brandNew img{
+    border: 1px solid silver;
+    width: 100px;
+    margin: 0 20px 0 20px;
+    display: block;
+    position: relative;
 }
 
 #brandNew a:hover{
     color: deepskyblue;
 }
+

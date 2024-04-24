@@ -14,20 +14,20 @@
 
 <body>
 <form method="post" action="login_result.do">
-<ul>
-    <li>
-        <label for="userID">이메일</label>
-        <input type="text" name="userID" id="userID">
-    </li>
-    <li>
-        <label for="password">비밀번호</label>
-        <input type="password" name="password" id="password">
-    </li>
-    <li>
-        <input type="submit" value="로그인">
-    </li>
-</ul>
-    <a href="join.do">회원가입</a>
+    <div id="login">
+        <ul>
+            <li>
+                <input type="text" name="userID" id="userID" placeholder="아이디">
+            </li>
+            <li>
+                <input type="password" name="password" id="password" placeholder="비밀번호">
+            </li>
+            <li>
+                <button type="submit">로그인</button>
+            </li>
+            <a href="join.do">회원가입</a>
+        </ul>
+    </div>
 </form>
 </body>
 </html>

@@ -9,6 +9,7 @@
 <html>
 <head>
     <title>Title</title>
+    <link rel="stylesheet" href="css/user/join.css">
 </head>
 <body>
 <form method="post" action="join_result.do">
