@@ -17,10 +17,10 @@ public class DBConnection {
     }
     public Connection getConnection() throws SQLException, NamingException
     {
-        Context init=new InitialContext();
-        DataSource ds=(DataSource) init.lookup("java:comp/env/jdbc/angel");
+        Context init = new InitialContext();
+        DataSource ds=(DataSource) init.lookup("java:comp/env/jdbc/KDTJAVA5_3");
 
-        Connection conn=ds.getConnection();
+        Connection conn = ds.getConnection();
         return conn;
     }
 

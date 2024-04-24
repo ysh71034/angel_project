@@ -58,7 +58,6 @@ public class FrontController extends HttpServlet {
 
     private void doReq(HttpServletRequest request, HttpServletResponse response) throws  ServletException, IOException{
         String path = request.getServletPath();
-        //System.out.println(path);
         Action act = map.get(path);
         Forward result = act.execute(request,response);
         if(result.isForward()){
