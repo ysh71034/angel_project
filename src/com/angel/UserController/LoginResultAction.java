@@ -14,7 +14,7 @@ import java.io.IOException;
 public class LoginResultAction implements Action {
     @Override
     public Forward execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        System.out.println("Login result");
 
         String userID = request.getParameter("userID");
         String password = request.getParameter("password");
@@ -32,10 +32,10 @@ public class LoginResultAction implements Action {
                 session.setAttribute("sessionID", userID);
 //                session.setMaxInactiveInterval(0);
 
-                System.out.println("성공");
+                System.out.println("login success");
                 forward.setUrl("main.do");
             } else {
-                System.out.println("실패");
+                System.out.println("login fail");
                 forward.setUrl("login.do");
             }
         } else {
