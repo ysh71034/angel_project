@@ -4,7 +4,6 @@ public class ChatEnterDTO {
     private int buyerNo;
     private String buyerID;
     private String sellerID;
-    private boolean isBuyer;
 
     public int getBuyerNo() {
         return buyerNo;
@@ -30,11 +29,4 @@ public class ChatEnterDTO {
         this.sellerID = sellerID;
     }
 
-    public boolean isBuyer() {
-        return isBuyer;
-    }
-
-    public void setBuyer(boolean buyer) {
-        isBuyer = buyer;
-    }
 }

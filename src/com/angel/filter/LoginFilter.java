@@ -14,7 +14,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @WebFilter(urlPatterns = "*.do", initParams = {@WebInitParam(
-        name="exclude", value ="/login.do, /login_result.do, /main.do, /join.do, /logout.do"
+        name="exclude", value ="/login.do, /login_result.do, /main.do, /join.do, /join_result.do, /logout.do"
 )})
 public class LoginFilter implements Filter {
 

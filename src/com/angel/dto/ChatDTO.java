@@ -5,6 +5,7 @@ public class ChatDTO {
     private int productNo;
     private String content;
     private String writer;
+    private int buyerNo;
 
     public int getMessegeNo() {
         return messegeNo;
@@ -36,5 +37,13 @@ public class ChatDTO {
 
     public void setWriter(String writer) {
         this.writer = writer;
+    }
+
+    public int getBuyerNo() {
+        return buyerNo;
+    }
+
+    public void setBuyerNo(int buyerNo) {
+        this.buyerNo = buyerNo;
     }
 }

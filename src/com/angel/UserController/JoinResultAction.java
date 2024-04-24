@@ -20,7 +20,7 @@ public class JoinResultAction implements Action {
         String password = request.getParameter("password");
         String userName = request.getParameter("userName");
         String address = request.getParameter("address");
-
+        System.out.println(userName);
         UserDTO dto = new UserDTO();
         dto.setUserID(userID);
         dto.setPassword(password);
