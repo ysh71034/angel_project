@@ -19,7 +19,6 @@ public class JoinResultAction implements Action {
         String userName = request.getParameter("userName");
         String address = request.getParameter("address");
 
-
         UserDTO dto = new UserDTO();
         dto.setUserID(userID);
         dto.setPassword(password);
