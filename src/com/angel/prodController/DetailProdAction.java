@@ -8,15 +8,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class ModProdAction implements Action {
+public class DetailProdAction implements Action {
     @Override
     public Forward execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-/*        int productNo = Integer.parseInt(request.getParameter("productNo"));
-        String productName = request.getParameter("productName");
-        String description = request.getParameter("description");*/
         Forward forward = new Forward();
         forward.setForward(true);
-        forward.setUrl("/WEB-INF/main.jsp?page=prod/modprod.jsp");
+        forward.setUrl("/WEB-INF/main.jsp?page=prod/detailprod.jsp");
         return forward;
     }
 }

@@ -13,28 +13,28 @@
 </head>
 <body>
 <form method="post" action="join_result.do">
-    <div id="join">
-        <ul>
-            <li>
-                <input type="text" name="userID" id="userID" placeholder="아이디">
-            </li>
-            <li>
-                <input type="password" name="password" id="password" placeholder="비밀번호">
-            </li>
-            <li>
-                <input type="text" name="userName" id="userName" placeholder="이름">
-            </li>
-            <li>
-                <input type="text" name="address" id="address" placeholder="주소">
-                <input type="button" value="우편번호 찾기">
-            </li>
-            <li>
-                <button type="submit">회원가입</button>
-            </li>
-            <a href="main.do">메인으로</a>
-        </ul>
-    </div>
+    <ul>
+        <li>
+            <label for="userID">이메일</label>
+            <input type="text" name="userID" id="userID">
+        </li>
+        <li>
+            <label for="password">비밀번호</label>
+            <input type="password" name="password" id="password">
+        </li>
+        <li>
+            <label for="userName">이름</label>
+            <input type="text" name="userName" id="userName">
+        </li>
+        <li>
+            <label for="address">주소</label>
+            <input type="text" name="address" id="address">
+        </li>
+        <li>
+            <input type="submit" value="회원가입">
+        </li>
+    </ul>
+    <a href="main.do">메인으로</a>
 </form>
 </body>
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </html>
