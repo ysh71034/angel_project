@@ -1,6 +1,7 @@
 package com.angel.chatController;
 
 import com.angel.dto.ChatDTO;
+import com.angel.dto.ChatListDTO;
 import com.angel.service.ChatService;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;

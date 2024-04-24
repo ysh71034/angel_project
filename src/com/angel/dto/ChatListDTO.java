@@ -1,17 +1,12 @@
 package com.angel.dto;
 
-public class ChatEnterDTO {
-    private int buyerNo;
+public class ChatListDTO {
     private String buyerID;
     private String sellerID;
 
-    public int getBuyerNo() {
-        return buyerNo;
-    }
+    private String writer;
 
-    public void setBuyerNo(int buyerNo) {
-        this.buyerNo = buyerNo;
-    }
+    private String content;
 
     public String getBuyerID() {
         return buyerID;
@@ -29,4 +24,19 @@ public class ChatEnterDTO {
         this.sellerID = sellerID;
     }
 
+    public String getWriter() {
+        return writer;
+    }
+
+    public void setWriter(String writer) {
+        this.writer = writer;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
 }

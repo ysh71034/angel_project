@@ -18,7 +18,7 @@ public class DBConnection {
     public Connection getConnection() throws SQLException, NamingException
     {
         Context init = new InitialContext();
-        DataSource ds=(DataSource) init.lookup("java:comp/env/jdbc/KDTJAVA5_3");
+        DataSource ds=(DataSource) init.lookup("java:comp/env/jdbc/angel");
 
         Connection conn = ds.getConnection();
         return conn;
