@@ -23,5 +23,12 @@ public class DBConnection {
         Connection conn = ds.getConnection();
         return conn;
     }
+    public void disconn(Connection conn){
+        if(conn!=null){
+            try {
+                conn.close();
+            }catch (Exception e){}
+        }
+    }
 
 }

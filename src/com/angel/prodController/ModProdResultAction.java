@@ -23,14 +23,19 @@ public class ModProdResultAction implements Action {
         int filesize = 1024*1024*1024;
         String uploadpath = request.getServletContext().getRealPath("upload");
         MultipartRequest multi = new MultipartRequest(request,uploadpath,filesize,"utf-8",new DefaultFileRenamePolicy());
+
+
         int productNo = Integer.parseInt(multi.getParameter("productNo"));
-        System.out.println("pno: "+productNo);
+        System.out.println(productNo);
         String name = multi.getParameter("productName");
-        System.out.println("pname: "+name);
+        System.out.println(name);
+
         String category = multi.getParameter("category");
+        System.out.println(category);
         int price = Integer.parseInt(multi.getParameter("price"));
-        System.out.println("price: "+price);
+
         String description = multi.getParameter("description");
+        System.out.println(description);
 
         List<ImageDTO> imgList = new ArrayList<>();
         Enumeration files = multi.getFileNames();
