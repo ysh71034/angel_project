@@ -16,7 +16,7 @@
     border: 1px solid silver;
     list-style: none;
     display: inline;
-    margin: 10px 50px 0 50px;
+    margin: 20px;
 }
 #category label{
     display: block;
@@ -32,6 +32,7 @@
     position: relative;
     word-break: break-all;
     overflow-wrap: break-word;
+    font-size: 1.3rem;
 }
 
 #category img{

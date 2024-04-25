@@ -220,4 +220,45 @@ public class ProdDAO {
             pstmt.executeUpdate();
         }
     }
+
+    public List<ProdDTO> prodList(Connection conn, int categoryNo) throws SQLException{
+        StringBuilder sql = new StringBuilder();
+        sql.append(" select p.productName, p.price                ");
+        sql.append(" from products p inner join categories c   ");
+        sql.append("  on p.productNo = c.categoryNo            ");
+        sql.append(" where c.categoryNo = ?                    ");
+
+        ResultSet rs = null;
+        List<ProdDTO> arr = new ArrayList<>();
+        try(PreparedStatement pstmt = conn.prepareStatement(sql.toString())){
+            pstmt.setInt(1, categoryNo);
+            rs = pstmt.executeQuery();
+            while(rs.next()){
+                ProdDTO dto = new ProdDTO();
+                dto.setProductName(rs.getString("p.productName"));
+                dto.setPrice(rs.getInt("p.price"));
+                arr.add(dto);
+            }
+        }
+        return arr;
+    }
+
+//    public String findCatNo(Connection conn) throws SQLException{
+//        StringBuilder sql = new StringBuilder();
+//        sql.append(" select c.categoryNo                       ");
+//        sql.append(" from products p inner join categories c   ");
+//        sql.append("  on p.productNo = c.categoryNo            ");
+//        sql.append(" where c.categoryNo = ?                    ");
+//
+//        ResultSet rs = null;
+//        String catNo = "";
+//        try(PreparedStatement pstmt = conn.prepareStatement(sql.toString())){
+//            pstmt.setString(1, );
+//            rs = pstmt.executeQuery();
+//            if(rs.next()){
+//                catNo = rs.getString("c.categoryNo");
+//            }
+//        }
+//        return catNo;
+//    }
 }

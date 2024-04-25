@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%--
   Created by IntelliJ IDEA.
   User: user
@@ -13,22 +14,32 @@
     <link rel="stylesheet" href="css/category/category.css">
 </head>
 <body>
+
 <div id="tab">
     <ul>
-        <li><a href="#">도서</a></li>
-        <li><a href="#">가구/장비</a></li>
-        <li><a href="#">학습준비물</a></li>
-        <li><a href="#">행사용품</a></li>
-        <li><a href="#">기타</a></li>
+        <li><a href="category_detail.do?catNo=1">도서</a></li>
+        <li><a href="category_detail.do?catNo=2">가구/장비</a></li>
+        <li><a href="category_detail.do?catNo=3">학습준비물</a></li>
+        <li><a href="category_detail.do?catNo=4">행사용품</a></li>
+        <li><a href="category_detail.do?catNo=5">기타</a></li>
     </ul>
 </div>
 
+<c:set var="list" value="${requestScope.list}"/>
 <div id="prodList">
     <label>상품 목록</label>
     <ul>
-        <c:forEach var="i" begin="1" end="16" step="1">
-            <li><c:out value="${i}"/></li>
-        </c:forEach>
+        <c:choose>
+            <c:when test="${empty list || fn:length(list)==0}">
+                <li>자료가 없습니다.</li>
+            </c:when>
+            <c:otherwise>
+                <c:forEach var="item" items="${list}">
+                    <li>${item.productName}</li>
+                    <li>${item.price}</li>
+                </c:forEach>
+            </c:otherwise>
+        </c:choose>
     </ul>
 </div>
 

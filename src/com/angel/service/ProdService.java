@@ -192,4 +192,20 @@ public class ProdService {
     }
 
 
+    public List<ProdDTO> prodList(int catNo) {
+        Connection conn = null;
+        DBConnection db = DBConnection.getDbConn();
+        ProdDAO dao = ProdDAO.getDAO();
+
+        List<ProdDTO> arr = new ArrayList<>();
+        try {
+            conn= db.getConnection();
+            arr = dao.prodList(conn, catNo);
+
+        }catch (SQLException | NamingException e){
+            System.out.println(e);
+        }
+        return arr;
+    }
+
 }
