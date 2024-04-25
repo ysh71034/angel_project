@@ -20,10 +20,10 @@
     <div id="join">
         <ul>
             <li>
+                <span id="error_msg"></span>
                 <input type="email" name="userID" id="userID" placeholder="이메일" required>
             </li>
             <li>
-                <span id="error_msg"></span>
                 <button type="button" id="check_btn">중복확인</button>
             </li>
             <li>

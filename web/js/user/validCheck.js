@@ -20,10 +20,6 @@ const isMatch = function (password, pwdCheck) {
     return password === pwdCheck;
 }
 
-const isInsert = function (str){
-    return str > 0;
-}
-
 userPwd.onkeyup = function (){
     if(userPwd.value.length !== 0){
         if(strongPwd(userPwd.value)){
@@ -49,5 +45,13 @@ pwdCheck.onkeyup = function (){
 }
 
 detailAddr.onkeyup = function(){
-
+    if(detailAddr.value.length !== 0){
+        if(detailAddr.value.length > 1){
+            AddrCheck.classList.add('hide');
+        }else{
+            AddrCheck.classList.remove('hide');
+        }
+    }else{
+        AddrCheck.classList.add('hide');
+    }
 }

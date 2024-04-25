@@ -15,9 +15,10 @@ public class ListProdAction implements Action {
     @Override
     public Forward execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+
         Forward forward = new Forward();
         forward.setForward(true);
-        forward.setUrl("main.do");
+        forward.setUrl("/WEB-INF/main.jsp?page=");
         return forward;
     }
 }

@@ -1,7 +1,9 @@
 window.onload=function() {
     document.getElementById('check_btn').onclick=function() {
         const checkID = document.getElementById("userID").value;
+        const err_msg = document.getElementById('error_msg');
 
+        err_msg.innerHTML = '';
         fetch("dupidcheck?checkID="+checkID
         ,{
             method: 'GET'
@@ -12,7 +14,6 @@ window.onload=function() {
         }).then(res => {
             return res.text()
         }).then(data => {
-            const err_msg = document.getElementById('error_msg');
 
             err_msg.append(data);
         }).catch(error => {

@@ -221,6 +221,30 @@ public class ProdDAO {
         }
     }
 
+
+    public List<ProdDTO> prodList(Connection conn, int categoryNo) throws SQLException{
+        StringBuilder sql = new StringBuilder();
+        sql.append(" select p.productName, p.price                ");
+        sql.append(" from products p inner join categories c   ");
+        sql.append("  on p.productNo = c.categoryNo            ");
+        sql.append(" where c.categoryNo = ?                    ");
+
+        ResultSet rs = null;
+        List<ProdDTO> arr = new ArrayList<>();
+        try(PreparedStatement pstmt = conn.prepareStatement(sql.toString())){
+            pstmt.setInt(1, categoryNo);
+            rs = pstmt.executeQuery();
+            while(rs.next()){
+                ProdDTO dto = new ProdDTO();
+                dto.setProductName(rs.getString("p.productName"));
+                dto.setPrice(rs.getInt("p.price"));
+                arr.add(dto);
+            }
+        }
+        return arr;
+    }
+
+
     public void insertOrder(Connection conn, int pno, int bno) throws SQLException{
         StringBuilder sql = new StringBuilder();
         sql.append(" INSERT INTO orders ( productNo    ");
@@ -233,4 +257,5 @@ public class ProdDAO {
             pstmt.executeUpdate();
         }
     }
+
 }

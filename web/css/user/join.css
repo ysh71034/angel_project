@@ -5,10 +5,11 @@
 #join{
     margin: 0;
     padding: 0;
-    width: 50vw;
+    width: 40vw;
     height: 25vh;
     position: relative;
-    left: 50%;
+    left: 70%;
+    top: 5vw;
 }
 
 #join ul{
