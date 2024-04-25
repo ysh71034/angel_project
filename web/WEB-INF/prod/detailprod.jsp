@@ -14,6 +14,8 @@
 </head>
 <body>
 <c:set var="dto" value="${requestScope.dto}"/>
+<c:set var="sellerprod" value="${requestScope.sellerprod}"/>
+<c:set var="catprod" value="${requestScope.catprod}"/>
 <div id="detail_prod">
     <c:choose>
 
@@ -23,6 +25,7 @@
         <c:otherwise>
             <div class="info_prod">
                 <a href="modprod.do?productNo=${dto.productNo}">수정</a>
+                <a href="delete.do?productNo=${dto.productNo}">삭제</a>
                 <img src="upload/${dto.dto2.imagepath}" alt="불러오기 실패">
 
                 <ul>
@@ -35,15 +38,29 @@
                 <a href="">채팅하기</a>
                 <a href="">채팅방 목록</a>
             </div>
-            <div class="info">여기서 제품 설명${dto.description}</div>
-            <ul>
-                <li>판매자의 다른 상품
-                    <p>상품 목록들</p></li>
-                <li>같은 카테고리의 추천 상품
-                    <p>상품목록들</p></li>
-            </ul>
+            <div class="info"><p>여기서 제품 설명</p>${dto.description}</div>
         </c:otherwise>
     </c:choose>
+    <ul>
+            <li>판매자의 다른 상품 ${dto.userdto.userName}
+            <p>상품 목록들</p>
+            <c:forEach var="sellerprod" items="${sellerprod}">
+                <p>${sellerprod.productName}</p>
+                <img src="upload/${sellerprod.dto2.imagepath}"alt="NO image">
+                <p>${sellerprod.dto2.imagepath}</p>
+            </c:forEach>
+        </li>
+
+        </li>
+        <li>같은 카테고리의 추천 상품 ${dto.categoryName}
+            <p>상품목록들</p>
+            <c:forEach var="catprod" items="${catprod}">
+                <p>${catprod.productName}</p>
+                <img src="upload/${catprod.dto2.imagepath}" alt="No image">
+            </c:forEach>
+        </li>
+
+    </ul>
 </div>
 </body>
 </html>

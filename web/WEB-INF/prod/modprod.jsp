@@ -16,7 +16,7 @@
 <body>
 <c:set var="dto" value="${requestScope.dto}"/>
 <div id="modprod_wrap">
-    <form method="post" action="regprod_result.do" enctype="multipart/form-data">
+    <form method="post" action="modprod_result.do" enctype="multipart/form-data">
         <ul>
             <li>
                 <input type="hidden" name="productNo" value="${dto.productNo}">
@@ -26,8 +26,8 @@
             </li>
             <div class="prodinfo">
                 <li class="title">
-                    <label for="name">상품명</label>
-                    <input type="text" name="name" id="name" value="${dto.productName}">
+                    <label for="productName">상품명</label>
+                    <input type="text" name="productName" id="productName" value="${dto.productName}">
                 </li>
                 <li>
                     <label for="category">카테고리</label>
@@ -51,8 +51,8 @@
                     <input type="text" name="price" id="price" value="${dto.price}">
                 </li>
                 <li>
-                    <label for="info">제품설명</label>
-                    <textarea name="info" id="info" rows="10" cols="30">${dto.description}</textarea>
+                    <label for="description">제품설명</label>
+                    <textarea name="description" id="description" rows="10" cols="30">${dto.description}</textarea>
                 </li>
             </div>
             <li>

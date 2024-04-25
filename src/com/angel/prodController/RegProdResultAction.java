@@ -8,6 +8,7 @@ import com.angel.dto.UserDTO;
 import com.angel.service.ProdService;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+import org.checkerframework.checker.units.qual.A;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -48,6 +49,7 @@ public class RegProdResultAction implements Action {
 
         List<ImageDTO> imgList = new ArrayList<>();
         Enumeration files = multi.getFileNames();
+        List<String> filenames = new ArrayList<>();
         while (files.hasMoreElements()){
             String file = (String) files.nextElement();
             String filename = multi.getFilesystemName(file);
@@ -56,14 +58,21 @@ public class RegProdResultAction implements Action {
                 ImageDTO dto2 = new ImageDTO();
                 dto2.setImagepath(filename);
                 imgList.add(dto2);
+                filenames.add(filename);
             }
         }
+        for(String filename:filenames){
+            System.out.println(filename);
+        }
+
         ProdService service = ProdService.getService();
         int sellerNo = service.findSellerNo(sessionID);
+        System.out.println(sellerNo);
+
 
         ProdDTO dto = new ProdDTO();
-        dto.setSellerNo(sellerNo);
 
+        dto.setSellerNo(sellerNo);
         dto.setProductName(name);
         dto.setCategoryName(category);
         dto.setPrice(price);
@@ -71,6 +80,7 @@ public class RegProdResultAction implements Action {
         dto.setRegisterDate(registerDate);
 
         service.insertProd(dto,imgList);
+
         Forward forward = new Forward();
         forward.setForward(false);
 

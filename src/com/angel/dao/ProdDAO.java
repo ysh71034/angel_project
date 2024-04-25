@@ -5,6 +5,8 @@ import com.angel.dto.ProdDTO;
 import com.angel.dto.UserDTO;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProdDAO {
     public static ProdDAO dao = new ProdDAO();
@@ -69,6 +71,7 @@ public class ProdDAO {
         return result;
     }
 
+
     public ProdDTO detailProd(Connection conn, int productNo) throws SQLException{
         StringBuilder sql = new StringBuilder();
         sql.append(" select  p.productNo         ");
@@ -77,6 +80,8 @@ public class ProdDAO {
         sql.append("  ,p.price, c.categoryName    ");
         sql.append("  ,i.imagePath                ");
         sql.append("   ,u.userName                ");
+        sql.append("   ,p.sellerNo                ");
+        sql.append("   ,c.categoryNo              ");
         sql.append("  from  images i  inner join  ");
         sql.append("  products p   on             ");
         sql.append("  i.productNo = p.productNo   ");
@@ -102,6 +107,8 @@ public class ProdDAO {
                 UserDTO userdto = new UserDTO();
                 userdto.setUserName(rs.getString("userName"));
                 dto.setUserdto(userdto);
+                dto.setSellerNo(rs.getInt("sellerNo"));
+                dto.setCategoryNo(rs.getInt("categoryNo"));
             }
         }finally {
             if(rs!=null)try {
@@ -140,5 +147,77 @@ public class ProdDAO {
             result = pstmt.executeUpdate();
         }
         return result;
+    }
+
+    public List<ProdDTO> sellerProd(Connection conn, int sellerNo) throws SQLException{
+        StringBuilder sql =new StringBuilder();
+        sql.append("   select  p.productName   ");
+        sql.append("   ,i.imagePath            ");
+        sql.append("  from  images   i   inner join ");
+        sql.append("  products  p                  ");
+        sql.append("   on  i.productNo  = p.productNo ");
+        sql.append("  where  p.sellerNo   =  ?        ");
+        ResultSet rs = null;
+        List<ProdDTO> sellerprod = new ArrayList<>();
+        try(PreparedStatement pstmt = conn.prepareStatement(sql.toString())) {
+            pstmt.setInt(1,sellerNo);
+            rs = pstmt.executeQuery();;
+            while (rs.next()){
+                ProdDTO sellerdto = new ProdDTO();
+                sellerdto.setProductName(rs.getString("productName"));
+                ImageDTO dto2 = new ImageDTO();
+                dto2.setImagepath(rs.getString("imagePath"));
+                sellerdto.setDto2(dto2);
+                sellerprod.add(sellerdto);
+            }
+        }finally {
+            if(rs!=null)try {
+                rs.close();
+            }catch (Exception e){}
+        }
+        return sellerprod;
+    }
+
+    public List<ProdDTO> catProd(Connection conn, int categoryNo) throws SQLException{
+        StringBuilder sql = new StringBuilder();
+        sql.append(" select   p.productName    ");
+        sql.append("    ,i.imagePath           ");
+        sql.append("    ,c.categoryName        ");
+        sql.append(" from  images i inner join ");
+        sql.append(" products p         on     ");
+        sql.append(" i.productNo = p.productNo ");
+        sql.append(" inner  join  categories c ");
+        sql.append(" on c.categoryNo  = p.categoryNo");
+        sql.append("   where  c.categoryNo  = ? ");
+        ResultSet rs = null;
+        List<ProdDTO> catprod = new ArrayList<>();
+        try(PreparedStatement pstmt = conn.prepareStatement(sql.toString())) {
+            pstmt.setInt(1,categoryNo);
+            rs = pstmt.executeQuery();
+            while (rs.next()){
+                ProdDTO catdto = new ProdDTO();
+                catdto.setProductName(rs.getString("productName"));
+                ImageDTO dto2 = new ImageDTO();
+                dto2.setImagepath(rs.getString("imagePath"));
+                catdto.setDto2(dto2);
+                catprod.add(catdto);
+            }
+        }finally {
+            if(rs!=null)try {
+                rs.close();
+            }catch (Exception e){}
+        }
+        return catprod;
+    }
+
+    public void delProd(Connection conn, int productNo) throws SQLException{
+        StringBuilder sql = new StringBuilder();
+        sql.append("  delete  from         ");
+        sql.append("  products             ");
+        sql.append("  where    productNo = ?");
+        try(PreparedStatement pstmt = conn.prepareStatement(sql.toString())) {
+            pstmt.setInt(1,productNo);
+            pstmt.executeUpdate();
+        }
     }
 }

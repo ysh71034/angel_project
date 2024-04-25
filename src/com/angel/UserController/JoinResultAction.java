@@ -34,8 +34,6 @@ public class JoinResultAction implements Action {
         address.append(" ");
         address.append(detailAddr);
 
-        String address = request.getParameter("address");
-
         UserDTO dto = new UserDTO();
         dto.setUserID(userID);
         dto.setPassword(password);
