@@ -18,11 +18,11 @@ public class ChatServer {
     @OnOpen
     public void onOpen(Session session) {
         sessions.put(session,session.getId());
-        System.out.println("map_size: "+sessions.size());
+        System.out.println("in ChatServer map_size: "+sessions.size());
     }
 
     @OnMessage
-    public void onMessage(String msg, Session session) throws IOException {
+    public void onMessage(String msg, Session session) {
         ChatService service = ChatService.getChatService();
         ChatDTO dto = new ChatDTO();
         if(msg.contains("init_conn")){
@@ -36,7 +36,11 @@ public class ChatServer {
             else
                 sessions.put(session, user);
             for (Session s : sessions.keySet()) {
-                s.getBasicRemote().sendText(user+" 님이 입장하셨습니다.&enter");
+                try{
+                    s.getBasicRemote().sendText(user+" 님이 입장하셨습니다.&enter");
+                }catch (IOException e){
+                    System.out.println(e.getMessage());
+                }
             }
         } else {
             dto.setProductNo(Integer.parseInt(params[0]));
@@ -45,14 +49,31 @@ public class ChatServer {
             dto.setWriter(sessions.get(session));
             service.insertChat(dto);
             for (Session s : sessions.keySet()) {
-                s.getBasicRemote().sendText(msg+"&"+sessions.get(session));
+                try{
+                    s.getBasicRemote().sendText(msg+"&"+sessions.get(session));
+                }catch (IOException e){
+                    System.out.println(e.getMessage());
+                }
             }
         }
     }
 
     @OnClose
     public void onClose(Session session) {
-        System.out.println("Connection closed: " + session.getId());
+        System.out.println("in ChatServer socket closed: " + session.getId());
+        if(sessions.size()!=0){
+            for (Session s : sessions.keySet()) {
+                if(s.getId()!=session.getId()){
+                    try{
+                        s.getBasicRemote().sendText(sessions.get(session)+" 님이 퇴장하셨습니다.&enter");
+                    }catch (IOException e){
+                        System.out.println(e.getMessage());
+                    }
+                }
+            }
+            sessions.remove(session);
+        }
+
     }
 
     @OnError
