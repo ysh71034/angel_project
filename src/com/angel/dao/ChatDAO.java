@@ -110,7 +110,7 @@ public class ChatDAO {
         return isSeller;
     }
 
-    public int findBuyerNo(Connection conn, String sessionID) throws SQLException{
+    public int findUserNo(Connection conn, String sessionID) throws SQLException{
         StringBuilder sql = new StringBuilder();
         sql.append(" SELECT userNo    ");
         sql.append(" FROM users       ");
@@ -127,5 +127,15 @@ public class ChatDAO {
             if(rs!=null)try{rs.close();}catch (Exception e){}
         }
         return result;
+    }
+
+    public void deleteChat(Connection conn, int pno) throws SQLException {
+        StringBuilder sql = new StringBuilder();
+        sql.append(" DELETE FROM chat    ");
+        sql.append(" WHERE productNo = ? ");
+        try(PreparedStatement pstmt = conn.prepareStatement(sql.toString())){
+            pstmt.setInt(1,pno);
+            pstmt.executeUpdate();
+        }
     }
 }

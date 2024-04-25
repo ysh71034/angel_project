@@ -220,4 +220,17 @@ public class ProdDAO {
             pstmt.executeUpdate();
         }
     }
+
+    public void insertOrder(Connection conn, int pno, int bno) throws SQLException{
+        StringBuilder sql = new StringBuilder();
+        sql.append(" INSERT INTO orders ( productNo    ");
+        sql.append("                      , buyerNo    ");
+        sql.append("                      , orderDate )");
+        sql.append(" VALUES ( ? ,? ,DATE(NOW())       )");
+        try(PreparedStatement pstmt = conn.prepareStatement(sql.toString())){
+            pstmt.setInt(1,pno);
+            pstmt.setInt(2,bno);
+            pstmt.executeUpdate();
+        }
+    }
 }

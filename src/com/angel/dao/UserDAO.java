@@ -83,4 +83,15 @@ public class UserDAO {
         }
         return result;
     }
+
+    public void addSellCount(Connection conn, String sessionId) throws SQLException{
+        StringBuilder sql = new StringBuilder();
+        sql.append(" UPDATE users                  ");
+        sql.append(" SET sellCount = sellCount + 1 ");
+        sql.append(" WHERE userID = ?              ");
+        try(PreparedStatement pstmt = conn.prepareStatement(sql.toString());){
+            pstmt.setString(1, sessionId);
+            pstmt.executeUpdate();
+        }
+    }
 }
