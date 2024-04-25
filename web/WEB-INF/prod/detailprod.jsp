@@ -41,26 +41,30 @@
             <div class="info"><p>여기서 제품 설명</p>${dto.description}</div>
         </c:otherwise>
     </c:choose>
-    <ul>
-            <li>판매자의 다른 상품 ${dto.userdto.userName}
-            <p>상품 목록들</p>
-            <c:forEach var="sellerprod" items="${sellerprod}">
-                <p>${sellerprod.productName}</p>
-                <img src="upload/${sellerprod.dto2.imagepath}"alt="NO image">
-                <p>${sellerprod.dto2.imagepath}</p>
-            </c:forEach>
+    <ul class="prod_list">
+        <li class="seller_prod">
+            <span>판매자의 다른 상품 ${dto.userdto.userName}</span>
+            <ul>
+                <c:forEach var="sellerprod" items="${sellerprod}">
+                    <li class="prod_item">
+                        <p>${sellerprod.productName}</p>
+                        <img src="upload/${sellerprod.dto2.imagepath}" alt="NO image">
+                    </li>
+                </c:forEach>
+            </ul>
         </li>
 
+        <li class="cat_prod">
+            <span>같은 카테고리의 추천 상품 ${dto.categoryName}</span>
+            <ul>
+                <c:forEach var="catprod" items="${catprod}">
+                    <p>${catprod.productName}</p>
+                    <img src="upload/${catprod.dto2.imagepath}" alt="No image">
+                </c:forEach>
+            </ul>
         </li>
-        <li>같은 카테고리의 추천 상품 ${dto.categoryName}
-            <p>상품목록들</p>
-            <c:forEach var="catprod" items="${catprod}">
-                <p>${catprod.productName}</p>
-                <img src="upload/${catprod.dto2.imagepath}" alt="No image">
-            </c:forEach>
-        </li>
-
     </ul>
+
 </div>
 </body>
 </html>
