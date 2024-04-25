@@ -14,17 +14,6 @@ public class ImageDAO {
         return dao;
     }
 
-/*    public void insertImg(Connection conn, ImageDTO dto2) throws SQLException {
-        StringBuilder sql = new StringBuilder();
-        sql.append("  insert   into   images(productNo  ");
-        sql.append("      ,imagePath)                   ");
-        sql.append("        values(?,?)                 ");
-        try(PreparedStatement pstmt = conn.prepareStatement(sql.toString())) {
-            pstmt.setInt(1,dto2.getProductNo());
-            pstmt.setString(2,dto2.getImagepath());
-            pstmt.executeUpdate();
-        }
-    }*/
 public void insertImg(Connection conn, ImageDTO dto2) throws SQLException {
     StringBuilder sql = new StringBuilder();
     sql.append("  insert   into   images(productNo  ");
@@ -69,9 +58,8 @@ public void insertImg(Connection conn, ImageDTO dto2) throws SQLException {
         try(PreparedStatement pstmt = conn.prepareStatement(sql.toString())) {
             pstmt.setInt(1,productNo);
             rs = pstmt.executeQuery();
-            ImageDTO dto = new ImageDTO();
-            while (rs.next()){
-                dto.setImagepath(rs.getString("imagePath"));
+            if(rs.next()){
+                return rs.getString("imagePath");
             }
         }
         return "";
