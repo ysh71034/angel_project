@@ -17,10 +17,10 @@
 <form method="post" action="regprod_result.do" enctype="multipart/form-data">
 <ul>
     <li>
-
-        <div class="square-button" id="squareButton">이미지</div>
+        <div id="preview"></div>
+        <label for="fileinput" class="imagefile" id="fileLabel">파일 선택</label>
         <input type="file" name="img" id="fileinput"  multiple>
-<%--        <div id="preview"></div>--%>
+
     </li>
     <div class="prodinfo">
     <li class="title">

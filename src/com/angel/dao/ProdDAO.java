@@ -221,6 +221,7 @@ public class ProdDAO {
         }
     }
 
+
     public List<ProdDTO> prodList(Connection conn, int categoryNo) throws SQLException{
         StringBuilder sql = new StringBuilder();
         sql.append(" select p.productName, p.price                ");
@@ -243,22 +244,18 @@ public class ProdDAO {
         return arr;
     }
 
-//    public String findCatNo(Connection conn) throws SQLException{
-//        StringBuilder sql = new StringBuilder();
-//        sql.append(" select c.categoryNo                       ");
-//        sql.append(" from products p inner join categories c   ");
-//        sql.append("  on p.productNo = c.categoryNo            ");
-//        sql.append(" where c.categoryNo = ?                    ");
-//
-//        ResultSet rs = null;
-//        String catNo = "";
-//        try(PreparedStatement pstmt = conn.prepareStatement(sql.toString())){
-//            pstmt.setString(1, );
-//            rs = pstmt.executeQuery();
-//            if(rs.next()){
-//                catNo = rs.getString("c.categoryNo");
-//            }
-//        }
-//        return catNo;
-//    }
+
+    public void insertOrder(Connection conn, int pno, int bno) throws SQLException{
+        StringBuilder sql = new StringBuilder();
+        sql.append(" INSERT INTO orders ( productNo    ");
+        sql.append("                      , buyerNo    ");
+        sql.append("                      , orderDate )");
+        sql.append(" VALUES ( ? ,? ,DATE(NOW())       )");
+        try(PreparedStatement pstmt = conn.prepareStatement(sql.toString())){
+            pstmt.setInt(1,pno);
+            pstmt.setInt(2,bno);
+            pstmt.executeUpdate();
+        }
+    }
+
 }

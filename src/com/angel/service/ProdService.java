@@ -208,4 +208,19 @@ public class ProdService {
         return arr;
     }
 
+
+    public void contract(int pno, int bno) {
+        DBConnection db = DBConnection.getDbConn();
+        Connection conn = null;
+        ProdDAO dao = ProdDAO.getDAO();
+        try{
+            conn = db.getConnection();
+            dao.insertOrder(conn,pno,bno);
+        }catch (SQLException | NamingException e){
+            System.out.println(e);
+        }finally {
+            if(conn!=null)try{conn.close();}catch (Exception e){}
+        }
+    }
+
 }
