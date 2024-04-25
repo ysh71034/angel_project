@@ -1,8 +1,14 @@
+.hide{
+    display: none;
+}
+
 #join{
     margin: 0;
     padding: 0;
-    width: 100vw;
+    width: 50vw;
     height: 25vh;
+    position: relative;
+    left: 50%;
 }
 
 #join ul{
@@ -10,6 +16,12 @@
     position: relative;
     margin: 10px;
     text-align: center;
+}
+#join span{
+    color: red;
+}
+#join ul li:after:nth-child(1){
+    border: 1px solid #2189E9;
 }
 
 #join ul li{
@@ -49,3 +61,4 @@ button:hover{
 #join a:hover{
     color: #2189E9;
 }
+
