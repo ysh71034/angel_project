@@ -8,7 +8,6 @@ import com.angel.dto.UserDTO;
 import javax.naming.NamingException;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.List;
 
 public class UserService {
 
@@ -24,6 +23,7 @@ public class UserService {
         Connection conn = null;
         UserDAO dao = UserDAO.getDao();
         UserDTO dto = new UserDTO();
+
         try{
             conn = db.getConnection();
             dto = dao.loginUser(conn, userID, password);
@@ -47,7 +47,7 @@ public class UserService {
             result = dao.joinUser(conn, dto);
 
         }catch (SQLException | NamingException e){
-            System.out.println(e);
+            System.out.println("joinUser: "+e);
         }finally{
             if(conn!=null)try{conn.close();} catch (Exception e){}
         }
@@ -65,7 +65,7 @@ public class UserService {
             result = dao.findUser(conn, uid);
 
         }catch (SQLException | NamingException e){
-            System.out.println(e);
+            System.out.println("findUser "+e);
         }finally{
             if(conn!=null)try{conn.close();} catch (Exception e){}
         }

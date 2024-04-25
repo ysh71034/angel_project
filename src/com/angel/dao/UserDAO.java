@@ -15,7 +15,6 @@ public class UserDAO {
 
     private UserDAO(){}
 
-
     public UserDTO loginUser(Connection conn, String userID, String password) throws SQLException {
         StringBuilder sql = new StringBuilder();
         sql.append(" select userID, password            ");
@@ -58,9 +57,7 @@ public class UserDAO {
             pstmt.setString(3, dto.getUserName());
             pstmt.setString(4, dto.getAddress());
 
-            result = pstmt.executeUpdate();
-
-            pstmt.executeUpdate();
+           result = pstmt.executeUpdate();
 
         }
         return result;

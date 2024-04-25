@@ -13,26 +13,29 @@
     <link rel="stylesheet" href="css/user/join.css">
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="js/user/findAddress.js"></script>
-    <c:set var="checkID" value="${requestScope.checkID}"/>
-    <script src="js/user/validation.js"></script>
+    <script src="js/user/dupID.js"></script>
 </head>
 <body>
 <form method="post" action="join_result.do">
     <div id="join">
         <ul>
-            <c:out value="아이디확인: ${checkID}"/>
             <li>
-                <input type="text" name="userID" id="userID" placeholder="이메일">
-                <button type="button" onclick="validateCheck()">중복확인</button>
+                <input type="email" name="userID" id="userID" placeholder="이메일" required>
             </li>
             <li>
-                <input type="password" name="password" id="password" placeholder="비밀번호">
+                <span id="error_msg"></span>
+                <button type="button" id="check_btn">중복확인</button>
             </li>
             <li>
-                <input type="password" name="checkpwd" id="checkpwd" placeholder="비밀번호 확인">
+                <span class="pwd_type">8글자 이상, 영문, 숫자, 특수문자(@$!%*#?&)를 사용하세요.</span>
+                <input type="password" name="password" id="password" placeholder="비밀번호" required minlength="8">
             </li>
             <li>
-                <input type="text" name="userName" id="userName" placeholder="이름">
+                <span class="pwd_mismatch">비밀번호가 일치하지 않습니다.</span>
+                <input type="password" name="pwdCheck" id="pwdCheck" placeholder="비밀번호 확인" required>
+            </li>
+            <li>
+                <input type="text" name="userName" id="userName" placeholder="이름" required>
             </li>
             <li>
                 <input type="text" name="postcode" id="postcode" placeholder="우편번호" onclick="findAddr()" readonly>
@@ -47,14 +50,15 @@
                 <input type="text" name="extraAddress" id="extraAddress" placeholder="참고항목" readonly>
             </li>
             <li>
+                <span class="detail_addr">상세주소를 입력해주세요.</span>
                 <input type="text" name="detailAddress" id="detailAddress" placeholder="상세주소">
             </li>
             <li>
-                <div id="result"></div>
                 <button type="submit">회원가입</button>
             </li>
         </ul>
     </div>
 </form>
+<script src="js/user/validCheck.js"></script>
 </body>
 </html>

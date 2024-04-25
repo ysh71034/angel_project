@@ -1,8 +1,10 @@
 #login{
     margin: 0;
     padding: 0;
-    width: 100vw;
+    width: 50vw;
     height: 23vh;
+    position: relative;
+    left: 50%;
 }
 
 #login ul{

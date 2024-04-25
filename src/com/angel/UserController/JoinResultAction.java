@@ -46,7 +46,7 @@ public class JoinResultAction implements Action {
 
         Forward forward = new Forward();
         forward.setForward(false);
-        if(result>0){
+        if(result > 0){
             System.out.println("회원가입 성공");
             forward.setUrl("login.do");
         }else{
