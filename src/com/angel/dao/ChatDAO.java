@@ -47,7 +47,7 @@ public class ChatDAO {
 
     public void insertChat(Connection conn, ChatDTO dto) throws SQLException{
         StringBuilder sql = new StringBuilder();
-        sql.append(" INSERT INTO chats ( productNo  ");
+        sql.append(" INSERT INTO chat ( productNo   ");
         sql.append("                     ,content   ");
         sql.append("                     ,writer    ");
         sql.append("                     ,buyerNo ) ");
@@ -121,7 +121,7 @@ public class ChatDAO {
             pstmt.setString(1,sessionID);
             rs = pstmt.executeQuery();
             while(rs.next()){
-                result = rs.getInt(0);
+                result = rs.getInt("userNo");
             }
         }finally {
             if(rs!=null)try{rs.close();}catch (Exception e){}

@@ -21,9 +21,9 @@
             <a href="main.do">나가기</a>
         </section>
         <section class="detail_prod">
-            <img src="" alt="product_img">
-            <span>가구/장비</span>
-            <a href="detailprod.do?pid=">[디지털] EPSON)프로젝터 (EB-2065)</a>
+            <img src="upload/${requestScope.prodImg}" alt="product_img">
+            <span>${requestScope.prodCtg}</span>
+            <a href="detailprod.do?productNo=${param.productNo}">${requestScope.prodName}</a>
         </section>
     </div>
     <div class="chat_body">
@@ -36,9 +36,16 @@
         </section>
         <form>
             <input type="text" name="productNo" value="${param.productNo}" hidden/>
-            <input type="text" name="buyerNo" value="${param.buyerNo}" hidden/>
+            <c:choose>
+                <c:when test="${param.buyerNo == 0 || empty param.buyerNo}">
+                    <input type="text" name="buyerNo" value="${param.buyerNo}" hidden/>
+                </c:when>
+                <c:otherwise>
+                    <input type="text" name="buyerNo" value="${requestScope.buyerNo}" hidden/>
+                </c:otherwise>
+            </c:choose>
             <input type="text" name="sessionID" value="${sessionID}" hidden/>
-            <input type="text" name="content" autofocus>
+            <input type="text" name="content" autofocus required>
             <button type="button" id="chatBtn">전송</button>
         </form>
     </div>
