@@ -1,6 +1,7 @@
 package com.angel.service;
 
 import com.angel.comm.DBConnection;
+import com.angel.dao.ChatDAO;
 import com.angel.dao.UserDAO;
 import com.angel.dto.ChatDTO;
 import com.angel.dto.UserDTO;
@@ -16,6 +17,22 @@ public class UserService {
     public static UserService getInstance() {return instance;}
 
     private UserService(){}
+
+    public int findMyNo(String sessionId) {
+        DBConnection db = DBConnection.getDbConn();
+        Connection conn = null;
+        ChatDAO dao = ChatDAO.getChatDAO();
+        int result = 0;
+        try{
+            conn = db.getConnection();
+            result = dao.findUserNo(conn,sessionId);
+        }catch (SQLException | NamingException e){
+            System.out.println("findMyNo "+e);
+        }finally{
+            if(conn!=null)try{conn.close();} catch (Exception e){}
+        }
+        return result;
+    }
 
 
     public UserDTO loginUser(String userID, String password) {
@@ -71,5 +88,19 @@ public class UserService {
         }
         return result;
 
+    }
+
+    public void addSellCount(String sessionId) {
+        DBConnection db = DBConnection.getDbConn();
+        Connection conn = null;
+        UserDAO dao = UserDAO.getDao();
+        try{
+            conn = db.getConnection();
+            dao.addSellCount(conn,sessionId);
+        }catch (SQLException | NamingException e){
+            System.out.println("addSellCount "+e);
+        }finally{
+            if(conn!=null)try{conn.close();} catch (Exception e){}
+        }
     }
 }

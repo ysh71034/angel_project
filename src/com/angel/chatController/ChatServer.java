@@ -10,7 +10,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-@ServerEndpoint("/chat")
+@ServerEndpoint("/chat.ch")
 public class ChatServer {
     private static final Map<Session,String> sessions = Collections.synchronizedMap(new HashMap<>());
     private static final String[] params = new String[2];
@@ -18,7 +18,10 @@ public class ChatServer {
     @OnOpen
     public void onOpen(Session session) {
         sessions.put(session,session.getId());
-        System.out.println("in ChatServer map_size: "+sessions.size());
+        //System.out.println("in ChatServer map_size: "+sessions.size());
+        for(Session s:sessions.keySet()){
+            System.out.println("mapinit: "+sessions.get(s));
+        }
     }
 
     @OnMessage
@@ -26,6 +29,7 @@ public class ChatServer {
         ChatService service = ChatService.getChatService();
         ChatDTO dto = new ChatDTO();
         if(msg.contains("init_conn")){
+            System.out.println(msg);
             if(params[0]==null) {
                 params[0] = msg.split(":")[2];
                 params[1] = msg.split(":")[3];
@@ -43,6 +47,9 @@ public class ChatServer {
                 }
             }
         } else {
+            for(Session s:sessions.keySet()){
+                System.out.println("mapput: "+sessions.get(s));
+            }
             dto.setProductNo(Integer.parseInt(params[0]));
             dto.setBuyerNo(Integer.parseInt(params[1]));
             dto.setContent(msg);

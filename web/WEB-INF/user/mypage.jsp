@@ -9,6 +9,7 @@
 <html>
 <head>
     <link rel="stylesheet" href="css/user/mypage.css">
+    <script defer src="js/user/mypage.js"></script>
 </head>
 <body>
 <section class="headbox">
@@ -21,7 +22,7 @@
     <span>주요 판매 상품</span>
     <span class="statistic_content">가구/장비</span>
 </section>
-<img class="bluebear" src="img/bluebear.jpg" alt="bluebear_img">
+<img class="bluebear" src="img/default.jpg" alt="default_img">
 <section class="sectionlist chatlist">
     <h4>대화중인 채팅방</h4>
     <div id="chatlist"></div>

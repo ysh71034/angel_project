@@ -3,7 +3,7 @@ window.onload = function () {
     const buyerNo = document.getElementsByName("buyerNo")[0].value;
     const sessionId = document.getElementsByName("sessionID")[0].value;
     console.log(buyerNo);
-    const webSocket = new WebSocket("ws://localhost:8080/angel_project/chat");
+    const webSocket = new WebSocket("ws://localhost:8080/angel_project/chat.ch");
     let enter_p;
     let myName_p;
     let mymsg_p;
@@ -11,7 +11,7 @@ window.onload = function () {
     let yourmsg_p;
     webSocket.onopen = function(event) {
         console.log("Connected to WebSocket server.");
-        fetch("chatlist?pno="+productNo+"&bno="+buyerNo,{
+        fetch("chatlist.ch?pno="+productNo+"&bno="+buyerNo,{
                 method : "get"
                 ,headers : {"Content-Type" : "application/x-www-form-urlencoded" ,"Accept" : "text/json"}
         }).then(res=>res.json())

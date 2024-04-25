@@ -10,14 +10,14 @@
 <html>
 <head>
     <link rel="stylesheet" href="css/chat/chatroom.css">
-    <script deter src="js/chatroom.js"></script>
+    <script deter src="js/chat/chatroom.js"></script>
 </head>
 <body>
 <c:set var="sessionID" value="${sessionScope.sessionID}"/>
 <div id="chatwrap">
     <div class="top_bar">
         <section class="chat_interface">
-            <a href="contract.do">거래확정</a>
+            <a id="contract" href="contract.do?productNo=${param.productNo}&buyerNo=${param.buyerNo}">거래확정</a>
             <a href="main.do">나가기</a>
         </section>
         <section class="detail_prod">
@@ -38,10 +38,10 @@
             <input type="text" name="productNo" value="${param.productNo}" hidden/>
             <c:choose>
                 <c:when test="${param.buyerNo == 0 || empty param.buyerNo}">
-                    <input type="text" name="buyerNo" value="${param.buyerNo}" hidden/>
+                    <input type="text" name="buyerNo" value="${requestScope.buyerNo}" hidden/>
                 </c:when>
                 <c:otherwise>
-                    <input type="text" name="buyerNo" value="${requestScope.buyerNo}" hidden/>
+                    <input type="text" name="buyerNo" value="${param.buyerNo}" hidden/>
                 </c:otherwise>
             </c:choose>
             <input type="text" name="sessionID" value="${sessionID}" hidden/>
