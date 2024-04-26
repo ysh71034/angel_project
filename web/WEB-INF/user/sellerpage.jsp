@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: db400tea
@@ -6,6 +7,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<c:set var="dto" value="${requestScope.dto}"/>
+<c:set var="sellerprod" value="${requestScope.sellerprod}"/>
 <html>
 <head>
     <title>Title</title>
@@ -15,11 +18,11 @@
 <body>
 <section class="headbox">
     <img src="img/logo.jpg" alt="profile_icon_button">
-    <h3>판매자 홍길동 님의 정보입니다.</h3>
+    <h3>판매자 ${dto.userdto.userName} 님의 정보입니다. </h3>
 </section>
 <section class="statistics">
-    <span>안전거래</span>
-    <span class="statistic_content">17회</span>
+    <span>안전거래 ${dto.userdto.sellCount} 회</span>
+<%--    <span class="statistic_content">17회</span>--%>
     <span>주요 판매 상품</span>
     <span class="statistic_content">가구/장비</span>
 </section>
@@ -27,6 +30,15 @@
 <section class="sectionlist selllist">
     <h4>판매 상품 목록</h4>
     <div id="selllist"></div>
+    <ul>
+        <c:forEach var="sellerprod" items="${sellerprod}">
+            <li class="seller_border">
+                <a href="detailprod.do?productNo=${sellerprod.productNo}">
+                    <img src="upload/${sellerprod.dto2.imagepath}" alt="NO image"></a>
+                <p>${sellerprod.productName}</p>
+            </li>
+        </c:forEach>
+    </ul>
 </section>
 </body>
 </html>

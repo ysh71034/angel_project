@@ -25,12 +25,15 @@
         <c:otherwise>
             <div class="main">
                 <div class="info_prod">
+                    <input type="hidden" name="productNo" value="${dto.productNo}">
                     <img src="upload/${dto.dto2.imagepath}" alt="불러오기 실패">
                 </div>
                 <div class="detail">
                     <ul>
                         <li>카테고리 ${dto.categoryName}</li>
-                        <li>판매자 ${dto.userdto.userName}</li>
+                        <li>
+                            <a href="sellerpage.do?sellerNo=${dto.sellerNo}">판매자 ${dto.userdto.userName}</a>
+                        </li>
 
                         <li>상품명 ${dto.productName}</li>
                         <li>가격 ${dto.price}</li>
