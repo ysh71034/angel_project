@@ -4,6 +4,7 @@ import com.angel.dto.ImageDTO;
 import com.angel.dto.OrderDTO;
 import com.angel.dto.ProdDTO;
 import com.angel.dto.UserDTO;
+import com.sun.jna.platform.win32.COM.IConnectionPoint;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -149,7 +150,7 @@ public class ProdDAO {
         }
         return result;
     }
-
+// 판매자의 다른 상품 조회
     public List<ProdDTO> sellerProd(Connection conn, int sellerNo) throws SQLException{
         StringBuilder sql =new StringBuilder();
         sql.append("  select  p.productNo     ");
@@ -334,5 +335,28 @@ public class ProdDAO {
             }catch (Exception e){}
         }
         return arr;
+    }
+// 거래횟수 쿼리는 수정필요
+    public ProdDTO sellerInfo(Connection conn,int sellerNo) throws SQLException{
+        StringBuilder sql = new StringBuilder();
+        sql.append("   select  u.userName");
+        sql.append("    ,count(u.sellCount)  as cnt      ");
+        sql.append("  from  users u inner join  ");
+        sql.append("  products p   on         ");
+        sql.append("  p.sellerNo = u.userNo      ");
+        sql.append("  where  p.sellerNo =   ?");
+        ResultSet rs = null;
+        ProdDTO dto = new ProdDTO();
+        try(PreparedStatement pstmt = conn.prepareStatement(sql.toString())) {
+            pstmt.setInt(1,sellerNo);
+            rs= pstmt.executeQuery();
+            while (rs.next()){
+                UserDTO userdto = new UserDTO();
+                userdto.setUserName(rs.getString("userName"));
+                userdto.setSellCount(rs.getInt("cnt"));
+                dto.setUserdto(userdto);
+            }
+        }
+        return dto;
     }
 }

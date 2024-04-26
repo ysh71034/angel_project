@@ -120,7 +120,7 @@ public class ProdService {
         }
         return result;
     }
-
+// 판매자의 다른 상품 조회
     public List<ProdDTO> sellerProd(int sellerNo) {
         Connection conn = null;
         DBConnection db = DBConnection.getDbConn();
@@ -256,5 +256,28 @@ public class ProdService {
         }
         return arr;
     }
+// 판매자 정보 조회
+    public ProdDTO sellerInfo(int sellerNo) {
+        Connection conn = null;
+        DBConnection db = DBConnection.getDbConn();
+        ProdDAO dao = ProdDAO.getDAO();
+        ProdDTO dto = new ProdDTO();
+        try {
+            conn=db.getConnection();
+            conn.setAutoCommit(false);
 
+            dto = dao.sellerInfo(conn,sellerNo);
+            conn.commit();
+        }catch (SQLException | NamingException e){
+            System.out.println(e);
+            try {
+                if(conn!=null){
+                    conn.rollback();
+                }
+            }catch (Exception e2){}
+        }finally {
+            db.disconn(conn);
+        }
+        return dto;
+    }
 }
