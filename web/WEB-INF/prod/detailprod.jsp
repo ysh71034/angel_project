@@ -23,43 +23,50 @@
             <div>실패</div>
         </c:when>
         <c:otherwise>
-            <div class="info_prod">
-                <a href="modprod.do?productNo=${dto.productNo}">수정</a>
-                <a href="delete.do?productNo=${dto.productNo}">삭제</a>
-                <img src="upload/${dto.dto2.imagepath}" alt="불러오기 실패">
+            <div class="main">
+                <div class="info_prod">
+                    <img src="upload/${dto.dto2.imagepath}" alt="불러오기 실패">
+                </div>
+                <div class="detail">
+                    <ul>
+                        <li>카테고리 ${dto.categoryName}</li>
+                        <li>판매자 ${dto.userdto.userName}</li>
 
-                <ul>
-                    <li> ${dto.productNo}</li>
-                    <li>판매자 ${dto.userdto.userName}</li>
-                    <li>카테고리 ${dto.categoryName}</li>
-                    <li>상품명 ${dto.productName}</li>
-                    <li>가격 ${dto.price}</li>
-                </ul>
-                <a href="">채팅하기</a>
-                <a href="">채팅방 목록</a>
+                        <li>상품명 ${dto.productName}</li>
+                        <li>가격 ${dto.price}</li>
+                    </ul>
+                    <a href="">채팅하기</a>
+                    <a href="">채팅방 목록</a>
+                    <a href="modprod.do?productNo=${dto.productNo}">수정</a>
+                    <a href="delete.do?productNo=${dto.productNo}">삭제</a>
+                </div>
             </div>
-            <div class="info"><p>여기서 제품 설명</p>${dto.description}</div>
+            <div class="info"><p>상품 상세 설명</p>${dto.description}</div>
         </c:otherwise>
     </c:choose>
     <ul class="prod_list">
         <li class="seller_prod">
-            <span>판매자의 다른 상품 ${dto.userdto.userName}</span>
+            <span>${dto.userdto.userName}님이 판매중인 다른 상품 </span>
             <ul>
                 <c:forEach var="sellerprod" items="${sellerprod}">
-                    <li class="prod_item">
+                    <li class="seller_border">
+                        <a href="detailprod.do?productNo=${sellerprod.productNo}">
+                            <img src="upload/${sellerprod.dto2.imagepath}" alt="NO image"></a>
                         <p>${sellerprod.productName}</p>
-                        <img src="upload/${sellerprod.dto2.imagepath}" alt="NO image">
                     </li>
                 </c:forEach>
             </ul>
         </li>
 
         <li class="cat_prod">
-            <span>같은 카테고리의 추천 상품 ${dto.categoryName}</span>
+            <span>${dto.categoryName} 카테고리의 추천 상품 </span>
             <ul>
                 <c:forEach var="catprod" items="${catprod}">
-                    <p>${catprod.productName}</p>
-                    <img src="upload/${catprod.dto2.imagepath}" alt="No image">
+                    <li class="cat_border">
+                        <a href="detailprod.do?productNo=${catprod.productNo}">
+                            <img src="upload/${catprod.dto2.imagepath}" alt="No image"></a>
+                        <p>${catprod.productName}</p>
+                    </li>
                 </c:forEach>
             </ul>
         </li>

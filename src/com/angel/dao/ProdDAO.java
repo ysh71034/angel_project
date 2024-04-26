@@ -151,19 +151,22 @@ public class ProdDAO {
 
     public List<ProdDTO> sellerProd(Connection conn, int sellerNo) throws SQLException{
         StringBuilder sql =new StringBuilder();
-        sql.append("   select  p.productName   ");
+        sql.append("  select  p.productNo     ");
+        sql.append("         ,p.productName   ");
         sql.append("   ,i.imagePath            ");
         sql.append("  from  images   i   inner join ");
         sql.append("  products  p                  ");
         sql.append("   on  i.productNo  = p.productNo ");
         sql.append("  where  p.sellerNo   =  ?        ");
+        sql.append("  limit  2");
         ResultSet rs = null;
         List<ProdDTO> sellerprod = new ArrayList<>();
         try(PreparedStatement pstmt = conn.prepareStatement(sql.toString())) {
             pstmt.setInt(1,sellerNo);
-            rs = pstmt.executeQuery();;
+            rs = pstmt.executeQuery();
             while (rs.next()){
                 ProdDTO sellerdto = new ProdDTO();
+                sellerdto.setProductNo(rs.getInt("productNo"));
                 sellerdto.setProductName(rs.getString("productName"));
                 ImageDTO dto2 = new ImageDTO();
                 dto2.setImagepath(rs.getString("imagePath"));
@@ -180,7 +183,8 @@ public class ProdDAO {
 
     public List<ProdDTO> catProd(Connection conn, int categoryNo) throws SQLException{
         StringBuilder sql = new StringBuilder();
-        sql.append(" select   p.productName    ");
+        sql.append(" select  p.productNo       ");
+        sql.append("          ,p.productName    ");
         sql.append("    ,i.imagePath           ");
         sql.append("    ,c.categoryName        ");
         sql.append(" from  images i inner join ");
@@ -189,6 +193,7 @@ public class ProdDAO {
         sql.append(" inner  join  categories c ");
         sql.append(" on c.categoryNo  = p.categoryNo");
         sql.append("   where  c.categoryNo  = ? ");
+        sql.append("  limit  2");
         ResultSet rs = null;
         List<ProdDTO> catprod = new ArrayList<>();
         try(PreparedStatement pstmt = conn.prepareStatement(sql.toString())) {
@@ -196,6 +201,7 @@ public class ProdDAO {
             rs = pstmt.executeQuery();
             while (rs.next()){
                 ProdDTO catdto = new ProdDTO();
+                catdto.setProductNo(rs.getInt("productNo"));
                 catdto.setProductName(rs.getString("productName"));
                 ImageDTO dto2 = new ImageDTO();
                 dto2.setImagepath(rs.getString("imagePath"));

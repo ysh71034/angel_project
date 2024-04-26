@@ -1,0 +1,53 @@
+.headbox{
+    position: absolute;
+    top: 50px;
+    left: 100px;
+    width: 50vw;
+}
+.headbox image{
+    position: relative;
+    left: 10px;
+    top:10px;
+}
+.headbox h3{
+    display: inline-block;
+    position: relative;
+    left: 15px;
+}
+
+.statistics{
+    position: relative;
+    top:120px;
+    left: 100px;
+    width: 45vw;
+    padding: 0px 0px 20px 60px;
+    height: 80px;
+}
+
+.statistic_content{
+    font-weight: 600;
+    font-size: 1.5rem;
+    position: relative;
+    top:35px;
+    right: 30px;
+}
+.bluebear{
+    position: absolute;
+    left: 65vw;
+    width: 200px;
+    top:50px
+}
+.sectionlist{
+    position: absolute;
+    top:300px;
+    left: 100px;
+}
+.selllist{
+    position: absolute;
+    top: 600px;
+    left: 100px;
+}
+.selllist div{
+    height: 220px;
+    background: #D9D9D9;
+}
