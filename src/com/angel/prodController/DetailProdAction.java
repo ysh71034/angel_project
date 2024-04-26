@@ -23,13 +23,13 @@ public class DetailProdAction implements Action {
         System.out.println("상세"+productNo);
         //판매자의 다른 상품 확인
         int sellerNo = dto.getSellerNo();
-        System.out.println(sellerNo);
+        System.out.println("sellerNo"+sellerNo);
         List<ProdDTO> sellerprod = service.sellerProd(sellerNo);
         request.setAttribute("sellerprod",sellerprod);
 
         //같은 카테고리의 다른 상품
         int categoryNo = dto.getCategoryNo();
-        System.out.println(categoryNo);
+        System.out.println("categoryNo"+categoryNo);
         List<ProdDTO> catprod = service.catProd(categoryNo);
         request.setAttribute("catprod",catprod);
         Forward forward = new Forward();
