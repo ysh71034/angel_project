@@ -1,6 +1,7 @@
 package com.angel.dao;
 
 import com.angel.dto.ImageDTO;
+import com.angel.dto.OrderDTO;
 import com.angel.dto.ProdDTO;
 import com.angel.dto.UserDTO;
 
@@ -240,6 +241,10 @@ public class ProdDAO {
                 dto.setPrice(rs.getInt("p.price"));
                 arr.add(dto);
             }
+        }finally {
+            if(rs!=null)try {
+                rs.close();
+            }catch (Exception e){}
         }
         return arr;
     }
@@ -258,4 +263,35 @@ public class ProdDAO {
         }
     }
 
+    public List<OrderDTO> findOrderList(Connection conn, int myno) throws SQLException{
+        StringBuilder sql = new StringBuilder();
+        sql.append(" SELECT o.orderNo AS orderNo           ");
+        sql.append("        ,p.productName AS productName  ");
+        sql.append("        ,u.userName AS sellerName      ");
+        sql.append("        ,o.orderDate AS orderDate      ");
+        sql.append(" FROM orders o INNER JOIN products p   ");
+        sql.append("   ON o.productNo = p.productNo        ");
+        sql.append("   INNER JOIN users u                  ");
+        sql.append("   ON p.sellerNo = u.userNo            ");
+        sql.append(" WHERE o.buyerNo = ?                   ");
+        ResultSet rs = null;
+        List<OrderDTO> arr = new ArrayList<>();
+        try(PreparedStatement pstmt = conn.prepareStatement(sql.toString())){
+            pstmt.setInt(1, myno);
+            rs = pstmt.executeQuery();
+            while(rs.next()){
+                OrderDTO dto = new OrderDTO();
+                dto.setOrderNo(rs.getInt("orderNo"));
+                dto.setProductName(rs.getString("productName"));
+                dto.setSellerName(rs.getString("sellerName"));
+                dto.setOrderDate(rs.getDate("orderDate").toLocalDate());
+                arr.add(dto);
+            }
+        }finally {
+            if(rs!=null)try {
+                rs.close();
+            }catch (Exception e){}
+        }
+        return arr;
+    }
 }

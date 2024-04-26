@@ -50,26 +50,21 @@
 
 .chatlist {
     position: absolute;
-    top: 300px;
+    top: 200px;
     left: 100px;
 }
 
 .orderlist{
     position: absolute;
     left: 50vw;
-    top: 300px;
+    top: 200px;
 }
 
 .selllist{
     position: absolute;
-    top: 600px;
+    top: 500px;
     left: 100px;
-}
-
-.wishlist {
-    position: absolute;
-    top: 600px;
-    left: 50vw;
+    width: 75vw;
 }
 
 .sectionlist div {

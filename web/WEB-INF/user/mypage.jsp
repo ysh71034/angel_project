@@ -13,31 +13,30 @@
 </head>
 <body>
 <section class="headbox">
-    <img src="img/logo.jpg" alt="profile_icon_button">
-    <h3>홍길동 님 안녕하세요😍</h3>
+    <img src="img/logo.jpg" alt="profile_icon_button" id="headImg">
+<%--    <h3>홍길동 님 안녕하세요😍</h3>--%>
+    <input type="text" name="uno" value="${requestScope.uno}" hidden>
 </section>
 <section class="statistics">
-    <span>안전거래</span>
-    <span class="statistic_content">17회</span>
-    <span>주요 판매 상품</span>
-    <span class="statistic_content">가구/장비</span>
+    <span id="sellCount">판매횟수</span>
+<%--    <span class="statistic_content">17회</span>--%>
+    <span id="hotCtg">주요 판매 상품</span>
+<%--    <span class="statistic_content">가구/장비</span>--%>
 </section>
 <img class="bluebear" src="img/default.jpg" alt="default_img">
-<section class="sectionlist chatlist">
-    <h4>대화중인 채팅방</h4>
-    <div id="chatlist"></div>
-</section>
-<section class="sectionlist orderlist">
-    <h4>나의 거래 내역</h4>
-    <div id="orderlist"></div>
-</section>
-<section class="sectionlist selllist">
-    <h4>나의 판매상품</h4>
-    <div id="selllist"></div>
-</section>
-<section class="sectionlist wishlist">
-    <h4>내가 찜한 상품</h4>
-    <div id="wishlist"></div>
-</section>
+<div class="mysections">
+    <section class="sectionlist chatlist">
+        <h4>대화중인 채팅방</h4>
+        <div id="chatlist"></div>
+    </section>
+    <section class="sectionlist orderlist">
+        <h4>나의 구매 내역</h4>
+        <div id="orderlist"></div>
+    </section>
+    <section class="sectionlist selllist">
+        <h4>나의 판매상품</h4>
+        <div id="selllist"></div>
+    </section>
+</div>
 </body>
 </html>

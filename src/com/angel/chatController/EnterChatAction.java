@@ -23,14 +23,14 @@ public class EnterChatAction implements Action {
         // 채팅방에 띄울 상품 정보를 가져온다.
         ProdService prodService = ProdService.getService();
         ProdDTO prodDTO = prodService.detailProd(productNo);
-        // 현재 이 서블릿 접근자가 구매자인지 판매자인지 확인한다.
+        // 현재 이 서블릿 접근자가 해당 상품의 구매자인지 판매자인지 확인한다.
         ChatService service = ChatService.getChatService();
-        boolean isSeller = service.isSeller(sessionId);
+        boolean isSeller = service.isSeller(productNo,sessionId);
         Forward forward = new Forward();
         forward.setForward(true);
         if(!isSeller){
             // 서블릿 접근자가 구매자인 경우 자신의 buyerNo를 받아와서 해당 채팅방에 입장한다.
-            int getBuyerNo = service.findChat(productNo, sessionId);
+            int getBuyerNo = service.findChatRoom(productNo, sessionId);
             forward.setUrl("/WEB-INF/main.jsp?page=chat/chatroom.jsp?productNo="+productNo+"&buyerNo="+getBuyerNo);
             request.setAttribute("buyerNo",getBuyerNo);
         } else {
