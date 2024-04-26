@@ -1,0 +1,73 @@
+body{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* 상품 수정 폼*/
+#modprod_wrap{
+    position: relative;
+    width: 90%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: flex;
+    right: 80%;
+}
+
+ul li{
+    list-style: none;
+    margin-bottom: 20px;
+}
+/* 파일 선택 라벨(이미지 변경 가능) */
+#fileLabel{
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #f2f2f2;
+    color: #333;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 1px solid #dcdcdc;
+    transition: background-color 0.3s ease;
+}
+#fileLabel:hover {
+    background-color: #e2e2e2;
+}
+/*파일 입력부분 숨김 처리*/
+#fileinput{
+    display: none;
+}
+
+.imagefile{
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+/* 상품 정보 수정칸*/
+.prodinfo{
+    margin-bottom: 20px;
+}
+
+input[type="text"],select,textarea{
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+/*수정 완료 버튼*/
+.modbutton{
+    text-align: center;
+    width: 100%;
+    padding: 10px;
+    background-color: #2189E9;
+    border:none;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+}
