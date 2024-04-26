@@ -4,6 +4,7 @@ import com.angel.comm.DBConnection;
 import com.angel.dao.ChatDAO;
 import com.angel.dao.UserDAO;
 import com.angel.dto.ChatDTO;
+import com.angel.dto.InfoDTO;
 import com.angel.dto.UserDTO;
 
 import javax.naming.NamingException;
@@ -134,6 +135,22 @@ public class UserService {
         }finally{
             if(conn!=null)try{conn.close();} catch (Exception e){}
         }
+    }
+
+    public InfoDTO findMyInfo(int myno) {
+        DBConnection db = DBConnection.getDbConn();
+        Connection conn = null;
+        UserDAO dao = UserDAO.getDao();
+        InfoDTO info = new InfoDTO();
+        try{
+            conn = db.getConnection();
+            info = dao.findMyInfo(conn,myno);
+        }catch (SQLException | NamingException e){
+            System.out.println("addSellCount "+e);
+        }finally{
+            if(conn!=null)try{conn.close();} catch (Exception e){}
+        }
+        return info;
     }
 
 }

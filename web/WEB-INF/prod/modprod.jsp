@@ -10,8 +10,8 @@
 <html>
 <head>
     <title>Title</title>
-    <link rel="stylesheet" href="css/prod/regprod.css">
-    <script defer src="js/prod/regprod.js"></script>
+    <link rel="stylesheet" href="css/prod/modprod.css">
+    <script defer src="js/prod/modprod.js"></script>
 </head>
 <body>
 <c:set var="dto" value="${requestScope.dto}"/>
@@ -20,9 +20,12 @@
         <ul>
             <li>
                 <input type="hidden" name="productNo" value="${dto.productNo}">
-                <div class="square-button" id="squareButton">이미지</div>
-                <input type="file" name="img" id="fileinput" multiple>
-                <img src="upload/${dto.dto2.imagepath}" alt="No image">
+                <div id="preview"></div>
+                <div id="upload">
+                    <img src="upload/${dto.dto2.imagepath}" alt="No image" id="currimg">
+                    <label for="fileinput" class="imagefile" id="fileLabel">파일 선택</label>
+                    <input type="file" name="img" id="fileinput"  accept=".png,.jpeg,.jpg" multiple>
+                </div>
             </li>
             <div class="prodinfo">
                 <li class="title">
@@ -38,13 +41,6 @@
                         <option value="party" ${dto.categoryName == "party" ? 'selected' : ''}>행사 용품</option>
                         <option value="etc" ${dto.categoryName == "etc" ? 'selected' : ''}>기타</option>
                     </select>
-                    <%--<select name="category" id="category">
-                        <option value="1">도서</option>
-                        <option value="2">가구/장비</option>
-                        <option value="3">학습 준비물</option>
-                        <option value="4">행사 용품</option>
-                        <option value="5">기타</option>
-                    </select>--%>
                 </li>
                 <li>
                     <label for="price">가격</label>
@@ -56,7 +52,7 @@
                 </li>
             </div>
             <li>
-                <button type="submit" class="regbutton">수정하기</button>
+                <button type="submit" class="modbutton">수정하기</button>
             </li>
 
         </ul>

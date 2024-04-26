@@ -4,6 +4,7 @@ import com.angel.comm.DBConnection;
 import com.angel.dao.ImageDAO;
 import com.angel.dao.ProdDAO;
 import com.angel.dto.ImageDTO;
+import com.angel.dto.OrderDTO;
 import com.angel.dto.ProdDTO;
 
 import javax.naming.NamingException;
@@ -204,6 +205,8 @@ public class ProdService {
 
         }catch (SQLException | NamingException e){
             System.out.println(e);
+        }finally {
+            if(conn!=null)try{conn.close();}catch (Exception e){}
         }
         return arr;
     }
@@ -238,5 +241,20 @@ public class ProdService {
         }
     }
 
+    public List<OrderDTO> detailOrder(int myno) {
+        Connection conn = null;
+        DBConnection db = DBConnection.getDbConn();
+        ProdDAO dao = ProdDAO.getDAO();
+        List<OrderDTO> arr = new ArrayList<>();
+        try {
+            conn= db.getConnection();
+            arr = dao.findOrderList(conn, myno);
+        }catch (SQLException | NamingException e){
+            System.out.println(e);
+        }finally {
+            if(conn!=null)try{conn.close();}catch (Exception e){}
+        }
+        return arr;
+    }
 
 }

@@ -35,7 +35,7 @@ public class ChatServer {
                 params[1] = msg.split(":")[3];
             }
             String user = msg.split(":")[1];
-            if(service.isSeller(user))
+            if(service.isSeller(Integer.parseInt(msg.split(":")[2]),user))
                 sessions.put(session, user);
             else
                 sessions.put(session, user);

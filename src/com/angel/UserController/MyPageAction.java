@@ -21,6 +21,8 @@ public class MyPageAction implements Action {
         UserService service = UserService.getInstance();
         int uno = service.findMyNo(sessionId);
 
+        request.setAttribute("uno",uno);
+
         Forward forward = new Forward();
         forward.setForward(true);
         forward.setUrl("/WEB-INF/main.jsp?page=user/mypage.jsp&userNo="+uno);

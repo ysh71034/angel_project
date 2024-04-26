@@ -19,7 +19,7 @@
     <li>
         <div id="preview"></div>
         <label for="fileinput" class="imagefile" id="fileLabel">파일 선택</label>
-        <input type="file" name="img" id="fileinput"  multiple>
+        <input type="file" name="img" id="fileinput"  accept=".png,.jpeg,.jpg" multiple>
 
     </li>
     <div class="prodinfo">

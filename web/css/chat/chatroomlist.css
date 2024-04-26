@@ -1,0 +1,50 @@
+
+.prodinfo {
+    border: 1px solid;
+    position: relative;
+    left: 30vw;
+    width: 400px;
+}
+.prodinfo img {
+    width: 250px;
+    height: 200px;
+    position: relative;
+    left: 80px;
+}
+.prodinfo h2 {
+    text-align: center;
+}
+
+.listh {
+    position: relative;
+    left: 30vw;
+    border: 1px solid;
+    padding: 10px 20px;
+    background: #2189E9;
+    color: white;
+    font-size: 1.1rem;
+}
+
+.listh span:first-child{
+    display: inline-block;
+    width: 60px;
+}
+
+.listh span:nth-child(2){
+    position: relative;
+    left: 50px;
+}
+.roomtable {
+    display: flex;
+    position: relative;
+    left: 30vw;
+}
+
+.roomtable ul {
+    list-style: none;
+}
+
+.roomtable ul:first-child{
+    width: 60px;
+}
+
