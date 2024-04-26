@@ -1,5 +1,6 @@
 package com.angel.dao;
 
+import com.angel.dto.InfoDTO;
 import com.angel.dto.UserDTO;
 
 import java.sql.Connection;
@@ -93,5 +94,31 @@ public class UserDAO {
             pstmt.setString(1, sessionId);
             pstmt.executeUpdate();
         }
+    }
+
+    public InfoDTO findMyInfo(Connection conn, int myno)throws SQLException {
+        StringBuilder sql = new StringBuilder();
+        sql.append(" SELECT u.userName AS userName        ");
+        sql.append("       ,u.sellCount AS sellCount      ");
+        sql.append("       ,MAX(c.categoryName) AS hotCtg ");
+        sql.append(" FROM users u INNER JOIN products p   ");
+        sql.append("   ON u.userNo = p.sellerNo           ");
+        sql.append("   INNER JOIN categories c            ");
+        sql.append("   ON p.categoryNo = c.categoryNo     ");
+        sql.append(" WHERE u.userNo = ?                   ");
+        ResultSet rs = null;
+        InfoDTO dto = new InfoDTO();
+        try(PreparedStatement pstmt = conn.prepareStatement(sql.toString());){
+            pstmt.setInt(1, myno);
+            rs = pstmt.executeQuery();
+            if (rs.next()){
+                dto.setUserName(rs.getString("userName"));
+                dto.setSellCount(rs.getInt("sellCount"));
+                dto.setCategoryName(rs.getString("hotCtg"));
+            }
+        }finally {
+            if(rs!=null) try{rs.close();} catch (Exception e){}
+        }
+        return dto;
     }
 }

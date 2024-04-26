@@ -30,6 +30,8 @@ public class ContractAction implements Action {
         // 3. 해당 상품 채팅 메시지 전체 삭제
         ChatService chatService = ChatService.getChatService();
         chatService.deleteChat(pno);
+        // 4. 해당 상품 채팅방 전체 삭제
+        chatService.deleteRoom(pno);
         Forward forward = new Forward();
         forward.setForward(false);
         forward.setUrl("mypage.do");

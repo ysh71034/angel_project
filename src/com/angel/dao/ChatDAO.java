@@ -2,6 +2,7 @@ package com.angel.dao;
 
 import com.angel.dto.ChatDTO;
 import com.angel.dto.ChatListDTO;
+import com.angel.dto.RoomDTO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -86,21 +87,19 @@ public class ChatDAO {
         return list;
     }
 
-    public boolean isSeller(Connection conn, String sessionId)throws SQLException{
+    public boolean isSeller(Connection conn, int pno,String sessionId)throws SQLException{
         StringBuilder sql = new StringBuilder();
-        sql.append(" SELECT COUNT(*) AS countMsg       ");
-        sql.append(" FROM chat c INNER JOIN products p ");
-        sql.append("   ON c.productNo = p.productNo    ");
-        sql.append("   INNER JOIN users u              ");
-        sql.append("   ON p.sellerNo = u.userNo        ");
-        sql.append(" WHERE u.userID = ?                ");
+        sql.append(" SELECT u.userID AS sellerID        ");
+        sql.append(" FROM products p INNER JOIN users u ");
+        sql.append("   ON p.sellerNo = u.userNo         ");
+        sql.append(" WHERE p.productNo = ?              ");
         ResultSet rs = null;
         boolean isSeller = false;
         try(PreparedStatement pstmt = conn.prepareStatement(sql.toString())){
-            pstmt.setString(1,sessionId);
+            pstmt.setInt(1,pno);
             rs = pstmt.executeQuery();
             while(rs.next()){
-                if(rs.getInt("countMsg")!=0) {
+                if(rs.getString("sellerID").equals(sessionId)) {
                     isSeller = true;
                 }
             }
@@ -137,5 +136,98 @@ public class ChatDAO {
             pstmt.setInt(1,pno);
             pstmt.executeUpdate();
         }
+    }
+
+    public List<RoomDTO> findSellerRoomList(Connection conn, int pno) throws SQLException{
+        StringBuilder sql = new StringBuilder();
+        sql.append(" SELECT r.roomNo                        ");
+        sql.append("        , r.productNo                   ");
+        sql.append("        , r.buyerNo                     ");
+        sql.append("        , u.userID AS buyerID           ");
+        sql.append(" FROM chatroom r inner join users u     ");
+        sql.append("   ON r.buyerNo = u.userNo              ");
+        sql.append(" WHERE r.productNo = ?                  ");
+        ResultSet rs = null;
+        ArrayList<RoomDTO> list = new ArrayList<>();
+        try(PreparedStatement pstmt = conn.prepareStatement(sql.toString())){
+            pstmt.setInt(1,pno);
+            rs = pstmt.executeQuery();
+            while(rs.next()){
+                RoomDTO room = new RoomDTO();
+                room.setRoomNo(rs.getInt("roomNo"));
+                room.setProductNo(rs.getInt("productNo"));
+                room.setBuyerNo(rs.getInt("buyerNo"));
+                room.setBuyerID(rs.getString("buyerID"));
+                list.add(room);
+            }
+        }finally {
+            if(rs!=null)try{rs.close();}catch (Exception e){}
+        }
+        return list;
+    }
+
+    public void insertRoom(Connection conn, int productNo, int getBno) throws SQLException {
+        StringBuilder sql = new StringBuilder();
+        sql.append(" INSERT INTO chatroom ( productNo   ");
+        sql.append("                        ,buyerNo )  ");
+        sql.append(" VALUES ( ? ,? )                    ");
+        try(PreparedStatement pstmt = conn.prepareStatement(sql.toString())){
+            pstmt.setInt(1,productNo);
+            pstmt.setInt(2,getBno);
+            pstmt.executeUpdate();
+        }
+    }
+
+    public int findRoom(Connection conn, int productNo) throws SQLException{
+        StringBuilder sql = new StringBuilder();
+        sql.append(" SELECT buyerNo      ");
+        sql.append(" FROM chatroom       ");
+        sql.append(" WHERE productNo = ? ");
+        ResultSet rs = null;
+        int result = 0;
+        try(PreparedStatement pstmt = conn.prepareStatement(sql.toString())){
+            pstmt.setInt(1,productNo);
+            rs = pstmt.executeQuery();
+            while(rs.next()){
+                result = rs.getInt("buyerNo");
+            }
+        }finally {
+            if(rs!=null)try{rs.close();}catch (Exception e){}
+        }
+        return result;
+    }
+
+    public void deleteRoom(Connection conn, int pno) throws SQLException {
+        StringBuilder sql = new StringBuilder();
+        sql.append(" DELETE FROM chatroom ");
+        sql.append(" WHERE productNo = ?  ");
+        try(PreparedStatement pstmt = conn.prepareStatement(sql.toString())){
+            pstmt.setInt(1,pno);
+            pstmt.executeUpdate();
+        }
+    }
+
+    public List<RoomDTO> findBuyerRoomList(Connection conn, int myno)throws SQLException {
+        StringBuilder sql = new StringBuilder();
+        sql.append(" SELECT r.roomNo AS roomNo             ");
+        sql.append("        ,p.productName AS productName  ");
+        sql.append(" FROM chatroom r INNER JOIN products p ");
+        sql.append("   ON r.productNo = p.productNo        ");
+        sql.append(" WHERE r.buyerNo = ?                   ");
+        ResultSet rs = null;
+        ArrayList<RoomDTO> list = new ArrayList<>();
+        try(PreparedStatement pstmt = conn.prepareStatement(sql.toString())){
+            pstmt.setInt(1,myno);
+            rs = pstmt.executeQuery();
+            while(rs.next()){
+                RoomDTO room = new RoomDTO();
+                room.setRoomNo(rs.getInt("roomNo"));
+                room.setProductName(rs.getString("productName"));
+                list.add(room);
+            }
+        }finally {
+            if(rs!=null)try{rs.close();}catch (Exception e){}
+        }
+        return list;
     }
 }
