@@ -1,7 +1,5 @@
 package com.angel.filter;
 
-import com.angel.comm.Forward;
-
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.annotation.WebInitParam;
@@ -14,7 +12,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @WebFilter(urlPatterns = {"*.do","*.ch"}, initParams = {@WebInitParam(
-        name="exclude", value ="/login.do, /login_result.do, /main.do, /join.do, /join_result.do, /logout.do, /validate.do, /category_detail.do"
+        name="exclude", value ="/login.do, /login_result.do, /main.do, /brandnew.bn, /join.do, /join_result.do, /logout.do, /validate.do, /category_detail.do, /detailprod.do"
 )})
 public class LoginFilter implements Filter {
 

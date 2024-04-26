@@ -71,6 +71,38 @@ public class UserService {
         return result;
     }
 
+    public void modUser(UserDTO dto, int uno) {
+        DBConnection db = DBConnection.getDbConn();
+        Connection conn = null;
+        UserDAO dao = UserDAO.getDao();
+
+        try{
+            conn = db.getConnection();
+            dao.modUser(conn, dto, String.valueOf(uno));
+
+        }catch (SQLException | NamingException e){
+            System.out.println("joinUser: "+e);
+        }finally{
+            if(conn!=null)try{conn.close();} catch (Exception e){}
+        }
+    }
+
+    public void deleteUser(int uno) {
+        DBConnection db = DBConnection.getDbConn();
+        Connection conn = null;
+        UserDAO dao = UserDAO.getDao();
+
+        try{
+            conn = db.getConnection();
+            dao.deleteUser(conn, String.valueOf(uno));
+
+        }catch (SQLException | NamingException e){
+            System.out.println(e);
+        }finally{
+            if(conn!=null)try{conn.close();} catch (Exception e){}
+        }
+    }
+
     public boolean findUser(String uid) {
         DBConnection db = DBConnection.getDbConn();
         Connection conn = null;
@@ -103,4 +135,5 @@ public class UserService {
             if(conn!=null)try{conn.close();} catch (Exception e){}
         }
     }
+
 }

@@ -28,15 +28,22 @@
 <c:set var="list" value="${requestScope.list}"/>
 <div id="prodList">
     <label>상품 목록</label>
-    <ul>
+    <ul id="outerUl">
         <c:choose>
             <c:when test="${empty list || fn:length(list)==0}">
                 <li>자료가 없습니다.</li>
             </c:when>
             <c:otherwise>
                 <c:forEach var="item" items="${list}">
-                    <li>${item.productName}</li>
-                    <li>${item.price}</li>
+                    <li>
+                        <ul id="innerUl">
+                            <a href="detailprod.do?productNo=${item.productNo}">
+                            <li><img src="upload/${item.dto2.imagepath}" alt="파일이미지"></li>
+                            <li>상품명: ${item.productName}</li>
+                            <li>가격: ${item.price}원</li>
+                            </a>
+                        </ul>
+                    </li>
                 </c:forEach>
             </c:otherwise>
         </c:choose>

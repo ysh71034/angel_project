@@ -11,13 +11,13 @@ window.onload=function() {
                 "Content-Type": "application/x-www-form-urlencoded"
                 , "Accept": "text/plain"
             }
-        }).then(res => {
-            return res.text()
-        }).then(data => {
+            }).then(res => {
+                return res.text()
+            }).then(data => {
 
-            err_msg.append(data);
-        }).catch(error => {
-            console.log(error + "fetch error");
-        })
-    };
+                err_msg.append(data);
+            }).catch(error => {
+                console.log(error + "fetch error");
+            })
+        };
 }

@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%--
   Created by IntelliJ IDEA.
   User: user
@@ -12,6 +13,7 @@
     <title>Title</title>
     <link rel="stylesheet" href="css/main_category.css">
     <link rel="stylesheet" href="css/main_newProd.css">
+    <script src="js/main/brandnew.js"></script>
 </head>
 <body>
 <div id="category">
@@ -35,25 +37,9 @@
     </ul>
 </div>
 
+<%--<c:set var="list" value="${requestScope.list}"/>--%>
 <div id="brandNew">
     <label>최신 등록 상품</label>
-    <ul>
-        <li>
-            <a href="#구매상세"><img src="img/logo.jpg" alt="도서"></a>
-        </li>
-        <li>
-            <a href="#"><img src="img/logo.jpg" alt="가구/장비"></a>
-        </li>
-        <li>
-            <a href="#"><img src="img/logo.jpg" alt="학습 준비물"></a>
-        </li>
-        <li>
-            <a href="#"><img src="img/logo.jpg" alt="행사 용품"></a>
-        </li>
-        <li>
-            <a href="#"><img src="img/logo.jpg" alt="기타"></a>
-        </li>
-    </ul>
 </div>
 
 </body>

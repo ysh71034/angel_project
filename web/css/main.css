@@ -1,9 +1,13 @@
+#wrap{
+    margin: 0;
+    padding: 0;
+}
 #header {
     position: absolute;
     width: 100vw;
     height: 50px;
-    left: 0px;
-    top: 0px;
+    left: 0;
+    top: 0;
     background: linear-gradient(0deg, #2189E9, #2189E9), #74D742;
 }
 body {
@@ -73,9 +77,11 @@ body {
 }
 
 #footer {
-    position: fixed;
+    position: absolute;
     bottom: 5px;
     left: 100px;
     font-size: 1rem;
     color: dimgrey;
+    width: 100vw;
+    height: 50px;
 }

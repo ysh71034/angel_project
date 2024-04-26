@@ -2,8 +2,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: user
-  Date: 2024-04-22
-  Time: 오후 2:26
+  Date: 2024-04-26
+  Time: 오전 11:00
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -16,12 +16,14 @@
     <script src="js/user/dupID.js"></script>
 </head>
 <body>
-<form method="post" action="join_result.do">
+<c:set var="uno" value="${requestScope.uno}"/>
+<c:set var="dto" value="${requestScope.dto}"/>
+<form method="post" action=moduser_result.do?uno=${uno}">
     <div id="join">
         <ul>
             <li>
                 <span id="error_msg"></span>
-                <input type="email" name="userID" id="userID" placeholder="이메일" required>
+                <input type="email" name="userID" id="userID" placeholder="이메일" value="${dto.userID}" required>
             </li>
             <li>
                 <button type="button" id="check_btn">중복확인</button>
@@ -35,7 +37,7 @@
                 <input type="password" name="pwdCheck" id="pwdCheck" placeholder="비밀번호 확인" required>
             </li>
             <li>
-                <input type="text" name="userName" id="userName" placeholder="이름" required>
+                <input type="text" name="userName" id="userName" placeholder="이름" value="${dto.userName}" required>
             </li>
             <li>
                 <input type="text" name="postcode" id="postcode" placeholder="우편번호" onclick="findAddr()" readonly>
@@ -54,8 +56,9 @@
                 <input type="text" name="detailAddress" id="detailAddress" placeholder="상세주소">
             </li>
             <li>
-                <button type="submit">회원가입</button>
+                <button type="submit">정보수정</button>
             </li>
+            <a href="deluser.do?uno=${uno}" onclick="alert('정말 삭제할까요?')">회원탈퇴</a>
         </ul>
     </div>
 </form>

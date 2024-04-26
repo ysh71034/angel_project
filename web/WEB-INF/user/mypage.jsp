@@ -21,6 +21,7 @@
     <span class="statistic_content">17회</span>
     <span>주요 판매 상품</span>
     <span class="statistic_content">가구/장비</span>
+    <span><a href="moduser.do">내정보수정</a></span>
 </section>
 <img class="bluebear" src="img/default.jpg" alt="default_img">
 <section class="sectionlist chatlist">
