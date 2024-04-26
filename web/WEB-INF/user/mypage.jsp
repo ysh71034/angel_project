@@ -18,6 +18,7 @@
     <input type="text" name="uno" value="${requestScope.uno}" hidden>
 </section>
 <section class="statistics">
+   <span><a href="moduser.do">내정보수정</a></span>
     <span id="sellCount">판매횟수</span>
 <%--    <span class="statistic_content">17회</span>--%>
     <span id="hotCtg">주요 판매 상품</span>

@@ -204,8 +204,10 @@ public class ProdDAO {
                 ProdDTO catdto = new ProdDTO();
                 catdto.setProductNo(rs.getInt("productNo"));
                 catdto.setProductName(rs.getString("productName"));
+
                 ImageDTO dto2 = new ImageDTO();
                 dto2.setImagepath(rs.getString("imagePath"));
+
                 catdto.setDto2(dto2);
                 catprod.add(catdto);
             }
@@ -228,13 +230,14 @@ public class ProdDAO {
         }
     }
 
-
     public List<ProdDTO> prodList(Connection conn, int categoryNo) throws SQLException{
         StringBuilder sql = new StringBuilder();
-        sql.append(" select p.productName, p.price                ");
-        sql.append(" from products p inner join categories c   ");
-        sql.append("  on p.productNo = c.categoryNo            ");
-        sql.append(" where c.categoryNo = ?                    ");
+        sql.append(" select p.productNo, p.productName, p.price, i.imagePath ");
+        sql.append(" from images i inner join products p                     ");
+        sql.append("        on i.productNo = p.productNo                     ");
+        sql.append("      inner join categories c                            ");
+        sql.append("        on c.categoryNo = p.categoryNo                   ");
+        sql.append(" where c.categoryNo = ?                                  ");
 
         ResultSet rs = null;
         List<ProdDTO> arr = new ArrayList<>();
@@ -243,8 +246,13 @@ public class ProdDAO {
             rs = pstmt.executeQuery();
             while(rs.next()){
                 ProdDTO dto = new ProdDTO();
-                dto.setProductName(rs.getString("p.productName"));
-                dto.setPrice(rs.getInt("p.price"));
+                dto.setProductNo(rs.getInt("productNo"));
+                dto.setProductName(rs.getString("productName"));
+                dto.setPrice(rs.getInt("price"));
+
+                ImageDTO dto2 = new ImageDTO();
+                dto2.setImagepath(rs.getString("imagePath"));
+                dto.setDto2(dto2);
                 arr.add(dto);
             }
         }finally {
@@ -255,6 +263,33 @@ public class ProdDAO {
         return arr;
     }
 
+    public List<ProdDTO> brandNewList(Connection conn) throws SQLException{
+        StringBuilder sql = new StringBuilder();
+        sql.append(" select p.productNo, i.imagePath            ");
+        sql.append(" from images i inner join products p        ");
+        sql.append("        on i.productNo = p.productNo        ");
+        sql.append(" order by p.registerDate desc               ");
+        sql.append("           , productNo desc                 ");
+        sql.append(" limit 0, 5                                 ");
+
+        ResultSet rs = null;
+        List<ProdDTO> arr = new ArrayList<>();
+        try(PreparedStatement pstmt = conn.prepareStatement(sql.toString())){
+            rs = pstmt.executeQuery();
+            while(rs.next()){
+                ProdDTO dto = new ProdDTO();
+                dto.setProductNo(rs.getInt("productNo"));
+
+                ImageDTO dto2 = new ImageDTO();
+                dto2.setImagepath(rs.getString("imagePath"));
+                dto.setDto2(dto2);
+                arr.add(dto);
+            }
+        }finally {
+            if(rs!=null)try{rs.close();}catch (Exception e){}
+        }
+        return arr;
+    }
 
     public void insertOrder(Connection conn, int pno, int bno) throws SQLException{
         StringBuilder sql = new StringBuilder();

@@ -64,6 +64,37 @@ public class UserDAO {
         return result;
     }
 
+    public void modUser(Connection conn, UserDTO dto, String userNo) throws SQLException{
+        StringBuilder sql = new StringBuilder();
+        sql.append(" update users         ");
+        sql.append(" set userID = ?       ");
+        sql.append("    , password = ?    ");
+        sql.append("    , userName = ?    ");
+        sql.append("    , address = ?     ");
+        sql.append(" where userNo = ?     ");
+
+        try(PreparedStatement pstmt = conn.prepareStatement(sql.toString())){
+            pstmt.setString(1, dto.getUserID());
+            pstmt.setString(2, dto.getPassword());
+            pstmt.setString(3, dto.getUserName());
+            pstmt.setString(4, dto.getAddress());
+            pstmt.setString(5, userNo);
+
+            pstmt.executeUpdate();
+        }
+    }
+
+    public void deleteUser(Connection conn, String userNo) throws SQLException{
+        StringBuilder sql = new StringBuilder();
+        sql.append(" delete from users ");
+        sql.append(" where userNo = ?  ");
+
+        try(PreparedStatement pstmt = conn.prepareStatement(sql.toString())){
+            pstmt.setString(1, userNo);
+            pstmt.executeUpdate();
+        }
+    }
+
     public boolean findUser(Connection conn, String uid) throws SQLException{
         StringBuilder sql = new StringBuilder();
         sql.append(" select userID           ");

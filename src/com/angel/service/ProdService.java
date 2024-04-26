@@ -211,6 +211,21 @@ public class ProdService {
         return arr;
     }
 
+    public List<ProdDTO> brandNewList() {
+        Connection conn = null;
+        DBConnection db = DBConnection.getDbConn();
+        ProdDAO dao = ProdDAO.getDAO();
+
+        List<ProdDTO> arr = new ArrayList<>();
+        try {
+            conn= db.getConnection();
+            arr = dao.brandNewList(conn);
+
+        }catch (SQLException | NamingException e){
+            System.out.println(e);
+        }
+        return arr;
+    }
 
     public void contract(int pno, int bno) {
         DBConnection db = DBConnection.getDbConn();
@@ -241,4 +256,5 @@ public class ProdService {
         }
         return arr;
     }
+
 }

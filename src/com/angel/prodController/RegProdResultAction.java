@@ -44,7 +44,6 @@ public class RegProdResultAction implements Action {
 
         UserDTO userdto = new UserDTO();
 
-
         System.out.println(sessionID);
 
         List<ImageDTO> imgList = new ArrayList<>();

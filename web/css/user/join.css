@@ -8,7 +8,6 @@
     width: 40vw;
     height: 25vh;
     position: relative;
-    left: 70%;
     top: 5vw;
 }
 
@@ -16,7 +15,9 @@
     border: 1px solid silver;
     position: relative;
     margin: 10px;
+    padding: 0;
     text-align: center;
+    left: 70%;
 }
 #join span{
     color: red;
@@ -51,7 +52,7 @@ button{
 }
 
 button:hover{
-    background-color: #192d49;
+    background: #3c66ab;
 }
 
 #join a {
