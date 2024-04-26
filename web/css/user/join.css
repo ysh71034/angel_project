@@ -1,57 +1,55 @@
-.hide{
+/* Hide */
+.hide {
     display: none;
 }
 
-#join{
+/* Join */
+#join {
     margin: 0;
     padding: 0;
     width: 40vw;
-    height: 25vh;
     position: relative;
-    top: 5vw;
 }
 
-#join ul{
+#join ul {
     border: 1px solid silver;
     position: relative;
     margin: 10px;
-    padding: 0;
+    padding: 10px;
     text-align: center;
     left: 70%;
 }
-#join span{
+
+#join span {
     color: red;
 }
-#join ul li:after:nth-child(1){
-    border: 1px solid #2189E9;
-}
 
-#join ul li{
+#join ul li {
     list-style: none;
-    margin: 20px 0 20px 0px;
-    padding: 0 20px 0 20px;
+    margin: 20px 0;
+    padding: 0 20px;
 }
 
-li > input{
+li > input {
     border: none;
     border-bottom: 1px solid silver;
-    padding: 20px 20px 5px 20px;
+    padding: 10px;
     width: 90%;
     font-size: 1.2rem;
 }
 
-button{
-    padding: 6px 90px 6px 90px;
+button {
+    padding: 6px 90px;
     color: #FFFFFF;
-    border-color: #2189E9;;
+    border-color: #2189E9;
     background-color: #2189E9;
     border-radius: 7px;
     width: 90%;
     font-size: 1.2rem;
-    margin: 10px 0 0 0;
+    margin: 10px 0;
 }
 
-button:hover{
+button:hover {
     background: #3c66ab;
 }
 
@@ -60,7 +58,6 @@ button:hover{
     text-decoration: none;
 }
 
-#join a:hover{
+#join a:hover {
     color: #2189E9;
 }
-

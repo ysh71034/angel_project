@@ -50,8 +50,8 @@
                 <input type="text" name="extraAddress" id="extraAddress" placeholder="참고항목" readonly>
             </li>
             <li>
-                <span class="detail_addr">상세주소를 입력해주세요.</span>
-                <input type="text" name="detailAddress" id="detailAddress" placeholder="상세주소">
+                <span class="detail_addr">상세 주소를 입력해 주세요.</span>
+                <input type="text" name="detailAddress" id="detailAddress" placeholder="상세 주소">
             </li>
             <li>
                 <button type="submit">회원가입</button>
