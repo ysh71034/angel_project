@@ -1,87 +1,60 @@
-#wrap{
+body, #wrap {
     margin: 0;
     padding: 0;
 }
+
+/* Header */
 #header {
-    position: absolute;
-    width: 100vw;
-    height: 50px;
-    left: 0;
+    position: relative;
     top: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
     background: linear-gradient(0deg, #2189E9, #2189E9), #74D742;
-}
-body {
-    font-family: 'Inter';
-    font-style: normal;
 }
 
 #header a {
-    font-weight: 400;
-    font-size: 1.3rem;
-    padding: 5px 5px;
-    color: #FFFFFF;
     position: absolute;
-    text-decoration: none;
     display: inline-block;
-    text-align: center;
-    line-height: 2em;
     height: 40px;
+    line-height: 40px;
+    font-size: 1.3rem;
+    font-weight: 400;
+    padding: 5px 10px;
+    color: #FFFFFF;
+    text-decoration: none;
 }
-
-#header a:hover{
-    font-weight: 600;
-    background-color: #192d49;
-}
-
-/* logo img */
 
 #header img {
     position: absolute;
     width: 50px;
     height: 45px;
-    left:100px;
+    left: 100px;
     top: 3px;
 }
 
-/* 천사Mall */
+/* Navigation links */
+.home { left: 150px; }
+.sell { right: 257px; }
+.login { right: 150px; }
+.mypage { right: 33px; }
 
-.home {
-    width: 100px;
-    left: 150px;
-}
-
-/* 판매하기 */
-
-.sell{
-    width: 100px;
-    right: 257px;
-}
-
-/* 로그인, 로그아웃 */
-
-.login{
-    width: 100px;
-    right: 150px;
-}
-
-/* 마이페이지 */
-.mypage{
-    width: 104px;
-    right: 33px;
-}
-
-#jsp_body{
-    position: absolute;
+/* Body */
+#jsp_body {
+    position: relative;
     top: 50px;
     font-size: 1rem;
+    height: 100vw;
 }
 
+/* Footer */
 #footer {
-    position: absolute;
-    bottom: 5px;
-    left: 100px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px;
     font-size: 1rem;
     color: dimgrey;
-    width: 100vw;
-    height: 50px;
+    background-color: #f9f9f9;
 }
