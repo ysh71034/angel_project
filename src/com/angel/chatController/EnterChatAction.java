@@ -33,12 +33,13 @@ public class EnterChatAction implements Action {
             int getBuyerNo = service.findChatRoom(productNo, sessionId);
             forward.setUrl("/WEB-INF/main.jsp?page=chat/chatroom.jsp?productNo="+productNo+"&buyerNo="+getBuyerNo);
             request.setAttribute("buyerNo",getBuyerNo);
+            request.setAttribute("roll","buyer");
         } else {
             // 서블릿 접근자가 판매자인 경우 바로 해당 채팅방에 입장한다.
             int buyerNo = Integer.parseInt(request.getParameter("buyerNo")); // 구매자인 경우 0, 판매자인 경우 !0
             forward.setUrl("/WEB-INF/main.jsp?page=chat/chatroom.jsp?productNo="+productNo+"&buyerNo="+buyerNo);
+            request.setAttribute("roll","seller");
         }
-        request.setAttribute("sessionID",sessionId);
         request.setAttribute("prodImg",prodDTO.getDto2().getImagepath());
         request.setAttribute("prodCtg",prodDTO.getCategoryName());
         request.setAttribute("prodName",prodDTO.getProductName());

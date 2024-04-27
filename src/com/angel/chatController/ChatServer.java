@@ -12,8 +12,8 @@ import java.util.Map;
 
 @ServerEndpoint("/chat.ch")
 public class ChatServer {
-    private static final Map<Session,String> sessions = Collections.synchronizedMap(new HashMap<>());
-    private static final String[] params = new String[2];
+    private static Map<Session,String> sessions = Collections.synchronizedMap(new HashMap<>());
+    private static String[] params = new String[2];
 
     @OnOpen
     public void onOpen(Session session) {

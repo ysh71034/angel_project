@@ -3,6 +3,7 @@ package com.angel.prodController;
 import com.angel.comm.Action;
 import com.angel.comm.Forward;
 import com.angel.dto.ProdDTO;
+import com.angel.service.ChatService;
 import com.angel.service.ProdService;
 
 import javax.servlet.ServletException;
@@ -26,12 +27,20 @@ public class DetailProdAction implements Action {
         System.out.println("sellerNo"+sellerNo);
         List<ProdDTO> sellerprod = service.sellerProd(sellerNo);
         request.setAttribute("sellerprod",sellerprod);
-
         //같은 카테고리의 다른 상품
         int categoryNo = dto.getCategoryNo();
         System.out.println("categoryNo"+categoryNo);
         List<ProdDTO> catprod = service.catProd(categoryNo);
         request.setAttribute("catprod",catprod);
+        // 이 페이지 접속자가 판매자인지 구매자인지 결정
+        HttpSession session = request.getSession();
+        String sessionId = (String) session.getAttribute("sessionID");
+        ChatService chatService = ChatService.getChatService();
+        boolean isSeller = chatService.isSeller(productNo,sessionId);
+        if(isSeller)
+            request.setAttribute("roll","seller");
+        else
+            request.setAttribute("roll","buyer");
         Forward forward = new Forward();
         forward.setForward(true);
         forward.setUrl("/WEB-INF/main.jsp?page=prod/detailprod.jsp");

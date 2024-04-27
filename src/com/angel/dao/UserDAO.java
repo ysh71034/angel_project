@@ -129,18 +129,22 @@ public class UserDAO {
 
     public InfoDTO findMyInfo(Connection conn, int myno)throws SQLException {
         StringBuilder sql = new StringBuilder();
-        sql.append(" SELECT u.userName AS userName        ");
-        sql.append("       ,u.sellCount AS sellCount      ");
-        sql.append("       ,MAX(c.categoryName) AS hotCtg ");
-        sql.append(" FROM users u INNER JOIN products p   ");
-        sql.append("   ON u.userNo = p.sellerNo           ");
-        sql.append("   INNER JOIN categories c            ");
-        sql.append("   ON p.categoryNo = c.categoryNo     ");
-        sql.append(" WHERE u.userNo = ?                   ");
+        sql.append(" SELECT (SELECT userName                     ");
+        sql.append("           FROM users                        ");
+        sql.append("          WHERE userNo = ?) AS userName      ");
+        sql.append("       ,nvl(u.sellCount,0) AS sellCount      ");
+        sql.append("       ,nvl(MAX(c.categoryName),?) AS hotCtg ");
+        sql.append(" FROM users u INNER JOIN products p          ");
+        sql.append("   ON u.userNo = p.sellerNo                  ");
+        sql.append("   INNER JOIN categories c                   ");
+        sql.append("   ON p.categoryNo = c.categoryNo            ");
+        sql.append(" WHERE u.userNo = ?                          ");
         ResultSet rs = null;
         InfoDTO dto = new InfoDTO();
         try(PreparedStatement pstmt = conn.prepareStatement(sql.toString());){
             pstmt.setInt(1, myno);
+            pstmt.setString(2,"comming soon");
+            pstmt.setInt(3,myno);
             rs = pstmt.executeQuery();
             if (rs.next()){
                 dto.setUserName(rs.getString("userName"));

@@ -10,7 +10,7 @@
 <html>
 <body>
 <div id="header">
-    <img src="img/logo.jpg" alt="logo">
+    <img src="img/logo2.jpg" alt="logo">
     <a class="home" href="main.do"><span>천사Mall</span></a>
     <c:choose>
         <c:when test="${empty sessionScope.sessionID}">

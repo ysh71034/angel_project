@@ -14,10 +14,14 @@
 </head>
 <body>
 <c:set var="sessionID" value="${sessionScope.sessionID}"/>
+<c:set var="roll" value="${requestScope.roll}"/>
 <div id="chatwrap">
     <div class="top_bar">
         <section class="chat_interface">
-            <a id="contract" href="contract.do?productNo=${param.productNo}&buyerNo=${param.buyerNo}">거래확정</a>
+            <c:if test="${roll == 'seller'}">
+                <button id="contract" type="button">거래확정</button>
+<%--                <a href="contract.do?productNo=${param.productNo}&buyerNo=${param.buyerNo}">거래확정</a>--%>
+            </c:if>
             <a href="main.do">나가기</a>
         </section>
         <section class="detail_prod">
