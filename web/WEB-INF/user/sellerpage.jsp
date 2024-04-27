@@ -16,12 +16,14 @@
     <script defer src="js/user/sellerpage.js"></script>
 </head>
 <body>
+<div id="sellerInfo">
 <section class="headbox">
     <img src="img/logo.jpg" alt="profile_icon_button">
     <h3>판매자 ${dto.userdto.userName} 님의 정보입니다. </h3>
 </section>
 <section class="statistics">
-    <span>안전거래 ${dto.userdto.sellCount} 회</span>
+    <span>안전거래 </span>
+    <span class="statistic_content">${dto.userdto.sellCount} 회</span>
 <%--    <span class="statistic_content">17회</span>--%>
     <span>주요 판매 상품</span>
     <span class="statistic_content">가구/장비</span>
@@ -29,7 +31,7 @@
 <img  class="bluebear" src="img/default.jpg" alt="default_img">
 <section class="sectionlist selllist">
     <h4>판매 상품 목록</h4>
-    <div id="selllist"></div>
+    <div id="selllist">
     <ul>
         <c:forEach var="sellerprod" items="${sellerprod}">
             <li class="seller_border">
@@ -39,6 +41,8 @@
             </li>
         </c:forEach>
     </ul>
+    </div>
 </section>
+</div>
 </body>
 </html>
