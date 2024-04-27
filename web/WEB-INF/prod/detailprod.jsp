@@ -30,13 +30,13 @@
                 </div>
                 <div class="detail">
                     <ul>
-                        <li>카테고리 ${dto.categoryName}</li>
+                        <li>카테고리: ${dto.categoryName}</li>
                         <li>
-                            <a href="sellerpage.do?sellerNo=${dto.sellerNo}">판매자 ${dto.userdto.userName}</a>
+                            <a href="sellerpage.do?sellerNo=${dto.sellerNo}" class="seller">판매자: ${dto.userdto.userName}</a>
                         </li>
 
-                        <li>상품명 ${dto.productName}</li>
-                        <li>가격 ${dto.price}</li>
+                        <li>상품명: ${dto.productName}</li>
+                        <li>가격: ${dto.price}</li>
                     </ul>
                     <a href="">채팅하기</a>
                     <a href="">채팅방 목록</a>

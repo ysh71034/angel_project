@@ -66,11 +66,12 @@
     border: 1px solid #ddd;
     border-radius: 10px;
     padding: 20px;
-    margin-top: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     transition: all 0.3s ease-in-out;
 }
-#detail_prod .detail li{
+#detail_prod .detail ul li{
     padding: 8px 0px;
     border-bottom: 1px solid #eee;
     margin-bottom: 5px;
@@ -87,6 +88,7 @@
     padding: 10px;
     background-color: #f2f2f2;
     border-radius: 5px;
+    line-height: 1.5;
 }
 #detail_prod .detail ul li{
     background-color: white;
@@ -104,9 +106,18 @@
     border-radius: 5px;
     display: block;
 }
-
+/* 판매자 정보 확인*/
+#detail_prod ul li .seller{
+    background-color: #FFFFFF;
+    color: black;
+    margin-bottom: 5px;
+    padding: 8px 0px 0px 0px;
+    display: block;
+    text-decoration: none;
+}
 #detail_prod ul li p {
     margin-top: 5px;
+    text-align: center;
 }
 #detail_prod .info p{
     font-size: 20px;
@@ -121,8 +132,8 @@
     margin-top: 20px;
     border-radius: 5px;
     padding: 10px;
-    background-color: #e9ecef;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    background-color: #f8f9fa;
+    text-align: center;
 }
 #detail_prod .prod_list {
     display: flex;
@@ -133,7 +144,10 @@
     border-radius: 10px;
 }
 #detail_prod .prod_list a{
+    display: flex;
+    justify-content: center;
     background-color: white;
+    padding: 25px;
 }
 #detail_prod .prod_list > li {
     width: 48%; /* 리스트 너비 조정 */
@@ -145,6 +159,7 @@
 
 #detail_prod .prod_list li .prod_item {
     display: flex;
+    justify-content: center;
     align-items: center; /* 아이템 세로 정렬 */
     margin-bottom: 10px; /* 아이템 간 간격 */
 }
@@ -159,6 +174,5 @@
 #detail_prod .prod_list li .prod_item p {
     font-size: 14px; /* 텍스트 크기 조정 */
     color: #333; /* 텍스트 색상 조정 */
-    margin: 0; /* 기본 마진 제거 */
 }
 
