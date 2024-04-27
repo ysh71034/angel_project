@@ -3,6 +3,7 @@ window.onload = function () {
     const buyerNo = document.getElementsByName("buyerNo")[0].value;
     const sessionId = document.getElementsByName("sessionID")[0].value;
     console.log(buyerNo);
+    // 사용자가 들어오면 웹소켓 객체 생성
     const webSocket = new WebSocket("ws://localhost:8080/angel_project/chat.ch");
     let enter_p;
     let myName_p;
@@ -11,6 +12,7 @@ window.onload = function () {
     let yourmsg_p;
     webSocket.onopen = function(event) {
         console.log("Connected to WebSocket server.");
+        // 클라이언트의 웹소켓 오픈 시, 기존 대화 리스트 받아오기
         fetch("chatlist.ch?pno="+productNo+"&bno="+buyerNo,{
                 method : "get"
                 ,headers : {"Content-Type" : "application/x-www-form-urlencoded" ,"Accept" : "text/json"}
@@ -48,7 +50,7 @@ window.onload = function () {
             console.log("error: ",error);
         });
     };
-
+    // 채팅 메시지의 요소를 메시지 영역에 동적 추가
     webSocket.onmessage = function(event) {
         let data = event.data.split('&');
         if(data[1]==="enter"){
@@ -84,7 +86,7 @@ window.onload = function () {
     webSocket.onerror = function(event) {
         console.error("WebSocket error: " + event.data);
     };
-
+    // 엔터 버튼을 누르거나, 전송 버튼을 클릭 시 채팅 메시지 서버로 전송
     const chatmsg = document.getElementsByName("content")[0];
     chatmsg.onkeydown=function (e) {
         if(chatmsg.value !==''){
@@ -94,8 +96,16 @@ window.onload = function () {
         }
     };
     document.getElementById("chatBtn").onclick=function () {
-        webSocket.send(chatmsg.value);
+        if(chatmsg.value !=='') {
+            webSocket.send(chatmsg.value);
+        }
     };
+    // 거래확정 버튼 누르면 한번 더 알림
+    document.getElementById("contract").onclick=function () {
+        if (window.confirm("현재 구매자와 거래를 확정하시겠습니까? 거래는 취소할 수 없습니다.")) {
+            window.open("contract.do?productNo="+productNo+"&buyerNo="+buyerNo);
+        }
+    }
 }
 
 

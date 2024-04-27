@@ -6,10 +6,15 @@
     width: 50vw;
 }
 
-.headbox img {
+.headbox a {
     position: relative;
     left: 10px;
-    top: 10px
+}
+.headbox a img {
+    position: relative;
+    top: 10px;
+    width: 39px;
+    height: 37px;
 }
 
 .headbox h3 {
@@ -48,16 +53,64 @@
     width: 36vw;
 }
 
+.sectionlist div {
+    height: 220px;
+    background: #D9D9D9;
+}
+
 .chatlist {
     position: absolute;
     top: 200px;
     left: 100px;
 }
 
+.chatlist ul {
+    position: absolute;
+    list-style: none;
+}
+
+.roomNo {
+    width: 10vw;
+}
+
+.roomName {
+    width: 24vw;
+    left: 10vw;
+}
+
 .orderlist{
     position: absolute;
     left: 50vw;
     top: 200px;
+}
+
+.orderlist ul {
+    margin: 20px;
+    padding: 0;
+    list-style: none;
+}
+
+.orderNo {
+    width: 100px;
+    position: absolute;
+}
+
+.orderprod {
+    position: absolute;
+    left: 8vw;
+    width: 200px;
+}
+
+.orderseller {
+    position: absolute;
+    left: 23vw;
+    width: 100px;
+}
+
+.orderdate {
+    position: absolute;
+    left: 28vw;
+    width: 100px;
 }
 
 .selllist{
@@ -67,7 +120,19 @@
     width: 75vw;
 }
 
-.sectionlist div {
-    height: 220px;
-    background: #D9D9D9;
+.sellitem {
+    display: inline-block;
+    width: 20vw;
+    margin: 20px;
+    padding: 0;
+    list-style: none;
 }
+
+.sellitem img {
+    width: 100px;
+}
+
+.sellitem span {
+    display: block;
+}
+

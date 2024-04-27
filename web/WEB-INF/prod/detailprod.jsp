@@ -16,6 +16,7 @@
 <c:set var="dto" value="${requestScope.dto}"/>
 <c:set var="sellerprod" value="${requestScope.sellerprod}"/>
 <c:set var="catprod" value="${requestScope.catprod}"/>
+<c:set var="roll" value="${requestScope.roll}"/>
 <div id="detail_prod">
     <c:choose>
 
@@ -38,10 +39,16 @@
                         <li>상품명 ${dto.productName}</li>
                         <li>가격 ${dto.price}</li>
                     </ul>
-                    <a href="">채팅하기</a>
-                    <a href="">채팅방 목록</a>
-                    <a href="modprod.do?productNo=${dto.productNo}">수정</a>
-                    <a href="delete.do?productNo=${dto.productNo}">삭제</a>
+                    <c:choose>
+                        <c:when test="${roll == 'buyer'}">
+                            <a href="enterchat.do?productNo=${dto.productNo}">채팅하기</a>
+                        </c:when>
+                        <c:otherwise>
+                            <a href="chatroom.do?productNo=${dto.productNo}">채팅방 목록</a>
+                            <a href="modprod.do?productNo=${dto.productNo}">수정</a>
+                            <a href="delete.do?productNo=${dto.productNo}">삭제</a>
+                        </c:otherwise>
+                    </c:choose>
                 </div>
             </div>
             <div class="info"><p>상품 상세 설명</p>${dto.description}</div>

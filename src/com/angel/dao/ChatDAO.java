@@ -128,12 +128,14 @@ public class ChatDAO {
         return result;
     }
 
-    public void deleteChat(Connection conn, int pno) throws SQLException {
+    public void deleteChat(Connection conn, int pno, int bno) throws SQLException {
         StringBuilder sql = new StringBuilder();
         sql.append(" DELETE FROM chat    ");
         sql.append(" WHERE productNo = ? ");
+        sql.append("   AND buyerNo <> ?   ");
         try(PreparedStatement pstmt = conn.prepareStatement(sql.toString())){
             pstmt.setInt(1,pno);
+            pstmt.setInt(2,bno);
             pstmt.executeUpdate();
         }
     }
@@ -197,12 +199,14 @@ public class ChatDAO {
         return result;
     }
 
-    public void deleteRoom(Connection conn, int pno) throws SQLException {
+    public void deleteRoom(Connection conn, int pno, int bno) throws SQLException {
         StringBuilder sql = new StringBuilder();
         sql.append(" DELETE FROM chatroom ");
         sql.append(" WHERE productNo = ?  ");
+        sql.append("   AND buyerNo <> ?   ");
         try(PreparedStatement pstmt = conn.prepareStatement(sql.toString())){
             pstmt.setInt(1,pno);
+            pstmt.setInt(2,bno);
             pstmt.executeUpdate();
         }
     }
@@ -210,6 +214,7 @@ public class ChatDAO {
     public List<RoomDTO> findBuyerRoomList(Connection conn, int myno)throws SQLException {
         StringBuilder sql = new StringBuilder();
         sql.append(" SELECT r.roomNo AS roomNo             ");
+        sql.append("        ,r.productNo AS productNo      ");
         sql.append("        ,p.productName AS productName  ");
         sql.append(" FROM chatroom r INNER JOIN products p ");
         sql.append("   ON r.productNo = p.productNo        ");
@@ -222,6 +227,7 @@ public class ChatDAO {
             while(rs.next()){
                 RoomDTO room = new RoomDTO();
                 room.setRoomNo(rs.getInt("roomNo"));
+                room.setProductNo(rs.getInt("productNo"));
                 room.setProductName(rs.getString("productName"));
                 list.add(room);
             }

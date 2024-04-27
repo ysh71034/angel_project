@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -37,6 +36,7 @@ public class MyListServlet extends HttpServlet {
         int myno = Integer.parseInt(req.getParameter("uno"));
         String find = req.getParameter("find");
         ProdService prodService = ProdService.getService();
+        ChatService chatService = ChatService.getChatService();
         resp.setContentType("text/json;charset=utf-8");
         PrintWriter out = resp.getWriter();
         if("info".equals(find)){
@@ -49,12 +49,12 @@ public class MyListServlet extends HttpServlet {
             out.print(o);
         } else if("chat".equals(find)){
             // 1. 구매 대화중인 채팅방 목록
-            ChatService chatService = ChatService.getChatService();
             List<RoomDTO> roomlist = chatService.findBuyerRoomList(myno);
             JSONArray roomlist_json = new JSONArray();
             for(RoomDTO r:roomlist){
                 JSONObject o = new JSONObject();
                 o.put("roomNo",r.getRoomNo());
+                o.put("productNo",r.getProductNo());
                 o.put("productName",r.getProductName());
                 roomlist_json.add(o);
             }
@@ -68,7 +68,7 @@ public class MyListServlet extends HttpServlet {
                 o.put("orderNo",or.getOrderNo());
                 o.put("productName",or.getProductName());
                 o.put("sellerName",or.getSellerName());
-                o.put("orderDate",or.getOrderDate());
+                o.put("orderDate",or.getOrderDate().toString());
                 orderlist_json.add(o);
             }
             out.print(orderlist_json);
@@ -78,9 +78,9 @@ public class MyListServlet extends HttpServlet {
             JSONArray prodlist_json = new JSONArray();
             for(ProdDTO p:prodlist){
                 JSONObject o = new JSONObject();
+                o.put("productNo",p.getProductNo());
                 o.put("imgpath",p.getDto2().getImagepath());
                 o.put("pname",p.getProductName());
-                o.put("price",p.getPrice());
                 prodlist_json.add(o);
             }
             out.print(prodlist_json);

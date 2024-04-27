@@ -107,13 +107,13 @@ public class ChatService {
         }
     }
 
-    public void deleteChat(int pno) {
+    public void deleteChat(int pno, int bno) {
         DBConnection db = DBConnection.getDbConn();
         Connection conn = null;
         ChatDAO dao = ChatDAO.getChatDAO();
         try{
             conn = db.getConnection();
-            dao.deleteChat(conn,pno);
+            dao.deleteChat(conn,pno,bno);
         }catch (SQLException|NamingException e){
             System.out.println(e.getMessage());
         }finally {
@@ -137,13 +137,13 @@ public class ChatService {
         return list;
     }
 
-    public void deleteRoom(int pno) {
+    public void deleteRoom(int pno, int bno) {
         DBConnection db = DBConnection.getDbConn();
         Connection conn = null;
         ChatDAO dao = ChatDAO.getChatDAO();
         try{
             conn = db.getConnection();
-            dao.deleteRoom(conn,pno);
+            dao.deleteRoom(conn,pno,bno);
         }catch (SQLException|NamingException e){
             System.out.println(e.getMessage());
         }finally {

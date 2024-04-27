@@ -27,11 +27,11 @@ public class ContractAction implements Action {
         // 2. 판매자의 sellcount +1
         UserService userService = UserService.getInstance();
         userService.addSellCount(sessionId);
-        // 3. 해당 상품 채팅 메시지 전체 삭제
+        // 3. 거래확정 구매자를 제외한 해당 상품에 대한 채팅 메시지 전체 삭제
         ChatService chatService = ChatService.getChatService();
-        chatService.deleteChat(pno);
-        // 4. 해당 상품 채팅방 전체 삭제
-        chatService.deleteRoom(pno);
+        chatService.deleteChat(pno,bno);
+        // 4. 거래확정 구매자를 제외한 해당 상품 채팅방 전체 삭제
+        chatService.deleteRoom(pno,bno);
         Forward forward = new Forward();
         forward.setForward(false);
         forward.setUrl("mypage.do");
