@@ -197,7 +197,7 @@ public class ProdDAO {
         sql.append(" inner  join  categories c ");
         sql.append(" on c.categoryNo  = p.categoryNo");
         sql.append("   where  c.categoryNo  = ? ");
-        sql.append("     and p.productNo not in ( select procuctNo ");
+        sql.append("     and p.productNo not in ( select productNo ");
         sql.append("                               from orders ) ");
         sql.append("  limit  2");
         ResultSet rs = null;
