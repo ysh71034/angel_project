@@ -340,10 +340,13 @@ public class ProdDAO {
     public ProdDTO sellerInfo(Connection conn,int sellerNo) throws SQLException{
         StringBuilder sql = new StringBuilder();
         sql.append("   select  u.userName");
-        sql.append("    ,count(u.sellCount)  as cnt      ");
+        sql.append("    ,nvl(u.sellCount,0)  as cnt      ");
+        sql.append("    ,MAX(c.categoryName) as ctg   ");
         sql.append("  from  users u inner join  ");
         sql.append("  products p   on         ");
         sql.append("  p.sellerNo = u.userNo      ");
+        sql.append("  inner join  categories c  ");
+        sql.append(" on p.categoryNo = c.categoryNo ");
         sql.append("  where  p.sellerNo =   ?");
         ResultSet rs = null;
         ProdDTO dto = new ProdDTO();
@@ -354,6 +357,7 @@ public class ProdDAO {
                 UserDTO userdto = new UserDTO();
                 userdto.setUserName(rs.getString("userName"));
                 userdto.setSellCount(rs.getInt("cnt"));
+                dto.setCategoryName(rs.getString("ctg"));
                 dto.setUserdto(userdto);
             }
         }

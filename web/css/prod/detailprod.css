@@ -84,12 +84,34 @@
     margin-bottom: 10px;
 }
 
-#detail_prod .info {
+/*#detail_prod .info {
     padding: 10px;
     background-color: #f2f2f2;
     border-radius: 5px;
     line-height: 1.5;
+}*/
+#detail_prod .info {
+    padding: 20px; /* 패딩을 조금 더 넓게 조정 */
+    background-color: #f8f9fa; /* 배경색을 좀 더 부드러운 색으로 변경 */
+    border-radius: 10px; /* 모서리를 좀 더 둥글게 */
+    line-height: 1.6; /* 줄 간격을 넓혀 가독성 향상 */
+    font-size: 18px; /* 글자 크기를 조금 더 크게 */
+    color: #333; /* 글자 색상을 조금 더 진하게 */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* 그림자 추가로 입체감 부여 */
+    margin-bottom: 20px; /* 아래쪽 마진 추가로 주변 요소와의 간격 확보 */
+    transition: transform 0.3s ease-in-out; /* 상호작용 효과 추가 */
 }
+
+#detail_prod .info p {
+    margin-bottom: 10px; /* 단락 간 간격 추가 */
+    text-align: justify; /* 양쪽 정렬로 깔끔한 레이아웃 */
+    font-weight: normal; /* 기본 글자 굵기로 변경 */
+}
+
+#detail_prod .info p:last-child {
+    margin-bottom: 10px; /* 마지막 단락은 마진 제거 */
+}
+
 #detail_prod .detail ul li{
     background-color: white;
     border-radius: 0;
@@ -115,9 +137,20 @@
     display: block;
     text-decoration: none;
 }
+#detail_prod ul li a.seller:hover{
+    background-color: #2189E9; /* 밝은 파란색 배경 */
+    color: white; /* 흰색 글자 */
+    padding: 8px 12px; /* 좀 더 넉넉한 padding */
+    border-radius: 8px; /* 둥근 모서리 */
+    transition: background-color 0.3s ease, color 0.3s ease; /* 부드러운 전환 효과 */
+    text-decoration: none; /* 밑줄 제거 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 은은한 그림자 효과 */
+
+}
 #detail_prod ul li p {
     margin-top: 5px;
     text-align: center;
+    font-weight: bold;
 }
 #detail_prod .info p{
     font-size: 20px;
@@ -140,21 +173,35 @@
     justify-content: space-between; /* 상품 리스트를 양쪽으로 정렬 */
     margin-top: 20px;
 }
-#detail_prod .prod_list .seller_border,.cat_border{
+/*같은 판매자가 판매중인 다른 상품*/
+#detail_prod .prod_list .seller_border {
+    border: 1px solid #ccc;
+    background-color: white;
+    padding: 30px;
     border-radius: 10px;
+    margin-bottom: 30px;
+}
+/* 같은 카테고리의 추천 상품*/
+#detail_prod .prod_list .cat_border{
+    border: 1px solid #ccc;
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    margin-bottom: 30px;
 }
 #detail_prod .prod_list a{
     display: flex;
     justify-content: center;
     background-color: white;
-    padding: 25px;
+    margin-bottom: 0;
+    padding: 0;
 }
 #detail_prod .prod_list > li {
     width: 48%; /* 리스트 너비 조정 */
     background-color: #f8f9fa; /* 배경색 추가 */
-    border-radius: 8px; /* 모서리 둥글게 */
+    border-radius: 10px; /* 모서리 둥글게 */
     box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* 그림자 추가 */
-    padding: 10px;
+    padding: 30px;
 }
 
 #detail_prod .prod_list li .prod_item {
@@ -174,5 +221,6 @@
 #detail_prod .prod_list li .prod_item p {
     font-size: 14px; /* 텍스트 크기 조정 */
     color: #333; /* 텍스트 색상 조정 */
+    text-align: center;
 }
 
