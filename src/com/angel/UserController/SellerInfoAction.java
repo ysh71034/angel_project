@@ -23,7 +23,7 @@ public class SellerInfoAction implements Action {
         request.setAttribute("dto",dto);
 
         //판매중인 상품
-        List<ProdDTO> sellerprod = service.sellerProd(sellerNo);
+        List<ProdDTO> sellerprod = service.sellerProd(sellerNo,"sellerInfo");
         request.setAttribute("sellerprod",sellerprod);
         Forward forward = new Forward();
         forward.setForward(true);

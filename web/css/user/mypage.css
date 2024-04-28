@@ -130,11 +130,28 @@
     flex-wrap: wrap;
 }
 
-.sellitem img {
+.pastlist{
+    position: absolute;
+    top: 800px;
+    left: 100px;
+    width: 75vw;
+}
+
+.pastitem {
+    margin: 20px;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    width: 72vw;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.sellitem img, .pastitem img {
     width: 100px;
 }
 
-.sellitem span {
+.sellitem span, .pastitem span{
     display: block;
 }
 

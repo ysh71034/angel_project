@@ -117,14 +117,14 @@ public class ProdService {
         return result;
     }
 // 판매자의 다른 상품 조회
-    public List<ProdDTO> sellerProd(int sellerNo) {
+    public List<ProdDTO> sellerProd(int sellerNo, String from) {
         Connection conn = null;
         DBConnection db = DBConnection.getDbConn();
         ProdDAO dao = ProdDAO.getDAO();
         List<ProdDTO> sellerprod = new ArrayList<>();
         try {
             conn = db.getConnection();
-            sellerprod = dao.sellerProd(conn,sellerNo);
+            sellerprod = dao.sellerProd(conn,sellerNo,from);
         }catch (SQLException | NamingException e){
             System.out.println(e);
         }finally {

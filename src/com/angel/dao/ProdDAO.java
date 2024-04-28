@@ -151,18 +151,25 @@ public class ProdDAO {
         return result;
     }
 // 판매자의 다른 상품 조회
-    public List<ProdDTO> sellerProd(Connection conn, int sellerNo) throws SQLException{
+    public List<ProdDTO> sellerProd(Connection conn, int sellerNo, String from) throws SQLException{
         StringBuilder sql =new StringBuilder();
-        sql.append("  select  p.productNo     ");
-        sql.append("         ,p.productName   ");
-        sql.append("   ,i.imagePath            ");
-        sql.append("  from  images   i   inner join ");
-        sql.append("  products  p                  ");
-        sql.append("   on  i.productNo  = p.productNo ");
-        sql.append("  where  p.sellerNo   =  ?        ");
-        sql.append("    and  p.productNo not in ( select productNo ");
-        sql.append("                              from orders ) ");
-        sql.append("  limit  2");
+            sql.append("  select  p.productNo     ");
+            sql.append("         ,p.productName   ");
+            sql.append("   ,i.imagePath            ");
+            sql.append("  from  images   i   inner join ");
+            sql.append("  products  p                  ");
+            sql.append("   on  i.productNo  = p.productNo ");
+            sql.append("  where  p.sellerNo   =  ?        ");
+        if("myPastSell".equals(from)) {
+            sql.append("    and  p.productNo in ( select productNo ");
+            sql.append("                              from orders ) ");
+        } else {
+            sql.append("    and  p.productNo not in ( select productNo ");
+            sql.append("                              from orders ) ");
+        }
+            sql.append("  order by p.registerDate desc, productNo desc ");
+        if(!"my".contains(from))
+            sql.append("  limit  2");
         ResultSet rs = null;
         List<ProdDTO> sellerprod = new ArrayList<>();
         try(PreparedStatement pstmt = conn.prepareStatement(sql.toString())) {
@@ -315,6 +322,7 @@ public class ProdDAO {
     public List<OrderDTO> findOrderList(Connection conn, int myno) throws SQLException{
         StringBuilder sql = new StringBuilder();
         sql.append(" SELECT o.orderNo AS orderNo           ");
+        sql.append("        ,p.productNo AS productNo      ");
         sql.append("        ,p.productName AS productName  ");
         sql.append("        ,u.userName AS sellerName      ");
         sql.append("        ,o.orderDate AS orderDate      ");
@@ -331,6 +339,7 @@ public class ProdDAO {
             while(rs.next()){
                 OrderDTO dto = new OrderDTO();
                 dto.setOrderNo(rs.getInt("orderNo"));
+                dto.setProductNo(rs.getInt("productNo"));
                 dto.setProductName(rs.getString("productName"));
                 dto.setSellerName(rs.getString("sellerName"));
                 dto.setOrderDate(rs.getDate("orderDate").toLocalDate());

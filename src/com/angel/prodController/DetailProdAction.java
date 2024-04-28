@@ -25,7 +25,7 @@ public class DetailProdAction implements Action {
         //판매자의 다른 상품 확인
         int sellerNo = dto.getSellerNo();
         System.out.println("sellerNo"+sellerNo);
-        List<ProdDTO> sellerprod = service.sellerProd(sellerNo);
+        List<ProdDTO> sellerprod = service.sellerProd(sellerNo,"detail");
         request.setAttribute("sellerprod",sellerprod);
         //같은 카테고리의 다른 상품
         int categoryNo = dto.getCategoryNo();
