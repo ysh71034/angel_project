@@ -19,33 +19,6 @@ public class ChatDAO {
         return chatDAO;
     }
 
-    public int findChat(Connection conn, int productNo, String sessionID) throws SQLException {
-        StringBuilder sql = new StringBuilder();
-        sql.append(" SELECT u.userNo AS buyerNo          ");
-        sql.append(" FROM users u INNER JOIN chat c      ");
-        sql.append("    ON c.writer = u.userID           ");
-        sql.append("    INNER JOIN products p            ");
-        sql.append("    ON c.productNo = p.productNo     ");
-        sql.append("    INNER JOIN users u2              ");
-        sql.append("    ON p.sellerNo = u2.userNo        ");
-        sql.append(" WHERE c.productNo = ?               ");
-        sql.append("       AND c.writer = ?              ");
-        sql.append(" LIMIT 0,1                           ");
-        ResultSet rs = null;
-        int result = 0;
-        try(PreparedStatement pstmt = conn.prepareStatement(sql.toString())){
-            pstmt.setInt(1,productNo);
-            pstmt.setString(2,sessionID);
-            rs = pstmt.executeQuery();
-            while(rs.next()){
-                result = rs.getInt("buyerNo");
-            }
-        }finally {
-            if(rs!=null)try{rs.close();}catch (Exception e){}
-        }
-        return result;
-    }
-
     public void insertChat(Connection conn, ChatDTO dto) throws SQLException{
         StringBuilder sql = new StringBuilder();
         sql.append(" INSERT INTO chat ( productNo   ");
@@ -180,23 +153,37 @@ public class ChatDAO {
         }
     }
 
-    public int findRoom(Connection conn, int productNo) throws SQLException{
+    public RoomDTO findRoom(Connection conn, int productNo, String sessionId, int buyerNo) throws SQLException{
         StringBuilder sql = new StringBuilder();
-        sql.append(" SELECT buyerNo      ");
-        sql.append(" FROM chatroom       ");
-        sql.append(" WHERE productNo = ? ");
+            sql.append(" SELECT r.roomNo AS roomNo          ");
+            sql.append("        ,r.buyerNo AS buyerNo       ");
+        if(buyerNo!=0){
+            sql.append(" FROM chatroom r                    ");
+            sql.append(" WHERE r.productNo = ?              ");
+            sql.append("   AND r.buyerNo = ?                ");
+        } else {
+            sql.append(" FROM chatroom r INNER JOIN users u ");
+            sql.append("   ON r.buyerNo = u.userNo          ");
+            sql.append(" WHERE r.productNo = ?              ");
+            sql.append("   AND u.userID = ?                 ");
+        }
         ResultSet rs = null;
-        int result = 0;
+        RoomDTO dto = new RoomDTO();
         try(PreparedStatement pstmt = conn.prepareStatement(sql.toString())){
             pstmt.setInt(1,productNo);
+            if(buyerNo!=0)
+                pstmt.setInt(2,buyerNo);
+            else
+                pstmt.setString(2,sessionId);
             rs = pstmt.executeQuery();
             while(rs.next()){
-                result = rs.getInt("buyerNo");
+                dto.setRoomNo(rs.getInt("roomNo"));
+                dto.setBuyerNo(rs.getInt("buyerNo"));
             }
         }finally {
             if(rs!=null)try{rs.close();}catch (Exception e){}
         }
-        return result;
+        return dto;
     }
 
     public void deleteRoom(Connection conn, int pno, int bno) throws SQLException {
@@ -235,5 +222,28 @@ public class ChatDAO {
             if(rs!=null)try{rs.close();}catch (Exception e){}
         }
         return list;
+    }
+
+    public RoomDTO findRoomInfo(Connection conn, int rno) throws SQLException {
+        StringBuilder sql = new StringBuilder();
+        sql.append(" SELECT roomNo      ");
+        sql.append("        ,productNo  ");
+        sql.append("        ,buyerNo    ");
+        sql.append(" FROM chatroom      ");
+        sql.append(" WHERE roomNo = ?   ");
+        ResultSet rs = null;
+        RoomDTO dto = new RoomDTO();
+        try(PreparedStatement pstmt = conn.prepareStatement(sql.toString())){
+            pstmt.setInt(1,rno);
+            rs = pstmt.executeQuery();
+            while(rs.next()){
+                dto.setRoomNo(rs.getInt("roomNo"));
+                dto.setProductNo(rs.getInt("productNo"));
+                dto.setBuyerNo(rs.getInt("buyerNo"));
+            }
+        }finally {
+            if(rs!=null)try{rs.close();}catch (Exception e){}
+        }
+        return dto;
     }
 }

@@ -160,6 +160,8 @@ public class ProdDAO {
         sql.append("  products  p                  ");
         sql.append("   on  i.productNo  = p.productNo ");
         sql.append("  where  p.sellerNo   =  ?        ");
+        sql.append("    and  p.productNo not in ( select productNo ");
+        sql.append("                              from orders ) ");
         sql.append("  limit  2");
         ResultSet rs = null;
         List<ProdDTO> sellerprod = new ArrayList<>();
@@ -195,6 +197,8 @@ public class ProdDAO {
         sql.append(" inner  join  categories c ");
         sql.append(" on c.categoryNo  = p.categoryNo");
         sql.append("   where  c.categoryNo  = ? ");
+        sql.append("     and p.productNo not in ( select procuctNo ");
+        sql.append("                               from orders ) ");
         sql.append("  limit  2");
         ResultSet rs = null;
         List<ProdDTO> catprod = new ArrayList<>();
@@ -239,6 +243,7 @@ public class ProdDAO {
         sql.append("      inner join categories c                            ");
         sql.append("        on c.categoryNo = p.categoryNo                   ");
         sql.append(" where c.categoryNo = ?                                  ");
+        sql.append("  and p.productNo not in ( select productNo from orders )");
 
         ResultSet rs = null;
         List<ProdDTO> arr = new ArrayList<>();
@@ -266,12 +271,14 @@ public class ProdDAO {
 
     public List<ProdDTO> brandNewList(Connection conn) throws SQLException{
         StringBuilder sql = new StringBuilder();
-        sql.append(" select p.productNo, i.imagePath            ");
-        sql.append(" from images i inner join products p        ");
-        sql.append("        on i.productNo = p.productNo        ");
-        sql.append(" order by p.registerDate desc               ");
-        sql.append("           , productNo desc                 ");
-        sql.append(" limit 0, 5                                 ");
+        sql.append(" select p.productNo, i.imagePath             ");
+        sql.append(" from images i inner join products p         ");
+        sql.append("   on i.productNo = p.productNo              ");
+        sql.append(" where p.productNo not in ( select productNo ");
+        sql.append("                              from orders  ) ");
+        sql.append(" order by p.registerDate desc                ");
+        sql.append("           , productNo desc                  ");
+        sql.append(" limit 0, 5                                  ");
 
         ResultSet rs = null;
         List<ProdDTO> arr = new ArrayList<>();
