@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 public class OrderDTO {
     private int orderNo;
+    private int productNo;
     private String productName;
     private String sellerName;
     private LocalDate orderDate;
@@ -14,6 +15,14 @@ public class OrderDTO {
 
     public void setOrderNo(int orderNo) {
         this.orderNo = orderNo;
+    }
+
+    public int getProductNo() {
+        return productNo;
+    }
+
+    public void setProductNo(int productNo) {
+        this.productNo = productNo;
     }
 
     public String getProductName() {

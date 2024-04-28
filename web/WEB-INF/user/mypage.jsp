@@ -56,9 +56,15 @@
         </div>
     </section>
     <section class="sectionlist selllist">
-        <h4>나의 판매 상품</h4>
+        <h4>나의 현재 판매 상품</h4>
         <div id="selllist">
             <ul class="sellitem"></ul>
+        </div>
+    </section>
+    <section class="sectionlist pastlist">
+        <h4>나의 지난 판매 상품</h4>
+        <div id="pastlist">
+            <ul class="pastitem"></ul>
         </div>
     </section>
 </div>

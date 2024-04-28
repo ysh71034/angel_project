@@ -66,15 +66,16 @@ public class MyListServlet extends HttpServlet {
             for(OrderDTO or:orderlist){
                 JSONObject o = new JSONObject();
                 o.put("orderNo",or.getOrderNo());
+                o.put("productNo", or.getProductNo());
                 o.put("productName",or.getProductName());
                 o.put("sellerName",or.getSellerName());
                 o.put("orderDate",or.getOrderDate().toString());
                 orderlist_json.add(o);
             }
             out.print(orderlist_json);
-        } else {
+        } else if("currsell".equals(find)){
             // 3. 나의 판매 상품
-            List<ProdDTO> prodlist = prodService.sellerProd(myno);
+            List<ProdDTO> prodlist = prodService.sellerProd(myno,"myCurrSell");
             JSONArray prodlist_json = new JSONArray();
             for(ProdDTO p:prodlist){
                 JSONObject o = new JSONObject();
@@ -84,6 +85,18 @@ public class MyListServlet extends HttpServlet {
                 prodlist_json.add(o);
             }
             out.print(prodlist_json);
+        } else{
+            // 4. 나의 지난 판매 상품
+            List<ProdDTO> pastlist = prodService.sellerProd(myno,"myPastSell");
+            JSONArray pastlist_json = new JSONArray();
+            for(ProdDTO p:pastlist){
+                JSONObject o = new JSONObject();
+                o.put("productNo",p.getProductNo());
+                o.put("imgpath",p.getDto2().getImagepath());
+                o.put("pname",p.getProductName());
+                pastlist_json.add(o);
+            }
+            out.print(pastlist_json);
         }
 
     }

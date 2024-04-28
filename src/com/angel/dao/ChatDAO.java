@@ -206,6 +206,8 @@ public class ChatDAO {
         sql.append(" FROM chatroom r INNER JOIN products p ");
         sql.append("   ON r.productNo = p.productNo        ");
         sql.append(" WHERE r.buyerNo = ?                   ");
+        sql.append("   AND r.productNo NOT IN ( SELECT productNo ");
+        sql.append("                              FROM orders )  ");
         ResultSet rs = null;
         ArrayList<RoomDTO> list = new ArrayList<>();
         try(PreparedStatement pstmt = conn.prepareStatement(sql.toString())){

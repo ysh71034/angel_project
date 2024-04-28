@@ -64,8 +64,11 @@ window.onload=function () {
                     ono_li.appendChild(no_txt);
                     document.getElementsByClassName("orderNo")[0].appendChild(ono_li);
                     let oprod_li = document.createElement("li");
+                    let oprod_a = document.createElement("a");
+                    oprod_a.setAttribute("href","enterchat.do?productNo="+d.productNo);
                     let prod_txt = document.createTextNode(d.productName);
-                    oprod_li.appendChild(prod_txt);
+                    oprod_a.appendChild(prod_txt);
+                    oprod_li.appendChild(oprod_a);
                     document.getElementsByClassName("orderprod")[0].appendChild(oprod_li);
                     let oseller_li = document.createElement("li");
                     let seller_txt = document.createTextNode(d.sellerName);
@@ -81,7 +84,7 @@ window.onload=function () {
         console.log("error: ",error);
     });
     // 나의 판매 상품
-    fetch("findlist.my?uno="+uno.value+"&find=sell",{
+    fetch("findlist.my?uno="+uno.value+"&find=currsell",{
         method : "get"
         ,headers : {"Content-Type" : "application/x-www-form-urlencoded" ,"Accept" : "text/json"}
     }).then(res=>res.json())
@@ -101,6 +104,32 @@ window.onload=function () {
                     sell_title.appendChild(title_txt);
                     sell_li.append(sell_a,sell_title);
                     document.getElementsByClassName("sellitem")[0].appendChild(sell_li);
+                });
+            }
+        }).catch(error=>{
+        console.log("error: ",error);
+    });
+    // 나의 지난 판매상품
+    fetch("findlist.my?uno="+uno.value+"&find=pastsell",{
+        method : "get"
+        ,headers : {"Content-Type" : "application/x-www-form-urlencoded" ,"Accept" : "text/json"}
+    }).then(res=>res.json())
+        .then((data)=>{
+            console.log("past",data);
+            if(data.length>0){
+                data.forEach(d=>{
+                    let past_li = document.createElement("li");
+                    let past_a = document.createElement("a");
+                    past_a.setAttribute("href","detailprod.do?productNo="+d.productNo);
+                    let past_img = document.createElement("img");
+                    past_img.setAttribute("src","upload/"+d.imgpath);
+                    past_img.setAttribute("alt","my_product_img");
+                    past_a.appendChild(past_img);
+                    let past_title = document.createElement("span");
+                    let past_txt = document.createTextNode(d.pname);
+                    past_title.appendChild(past_txt);
+                    past_li.append(past_a,past_title);
+                    document.getElementsByClassName("pastitem")[0].appendChild(past_li);
                 });
             }
         }).catch(error=>{
