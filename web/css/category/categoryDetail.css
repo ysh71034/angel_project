@@ -1,6 +1,9 @@
 /* Tab and Product List */
 #tab, #prodList {
-    width: 100vw;
+    width: 100%;
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
 #tab ul {
@@ -28,7 +31,6 @@
 }
 
 #prodList #outerUl {
-    width: 1360px;
     text-align: center;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(20%, auto));
@@ -45,10 +47,26 @@
     margin: 10px;
 }
 
+#innerUl a {
+    color: black;
+    text-decoration: none;
+}
+
+#innerUl a:hover {
+    color: deepskyblue;
+}
+
 #prodList #innerUl img {
-    width: 205px;
-    height: 200px;
+    width: 100%;
+    height: auto; /* 이미지의 가로 세로 비율을 유지 */
     margin: 0;
     display: block;
     position: relative;
+}
+
+
+@media screen and (max-width: 768px) {
+    #prodList #outerUl {
+        grid-template-columns: repeat(auto-fill, minmax(40%, auto));
+    }
 }

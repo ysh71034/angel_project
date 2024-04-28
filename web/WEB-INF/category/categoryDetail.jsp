@@ -11,7 +11,7 @@
 <html>
 <head>
     <title>Title</title>
-    <link rel="stylesheet" href="css/category/category.css">
+    <link rel="stylesheet" href="css/category/categoryDetail.css">
 </head>
 <body>
 
@@ -35,13 +35,13 @@
             <c:otherwise>
                 <c:forEach var="item" items="${list}">
                     <li>
-                        <a href="detailprod.do?productNo=${item.productNo}">
-                            <ul id="innerUl">
+                        <ul id="innerUl">
+                            <a href="detailprod.do?productNo=${item.productNo}">
                                 <li><img src="upload/${item.dto2.imagepath}" alt="파일이미지"></li>
                                 <li>${item.productName}</li>
                                 <li>${item.price}</li>
-                            </ul>
-                        </a>
+                            </a>
+                        </ul>
                     </li>
                 </c:forEach>
             </c:otherwise>
