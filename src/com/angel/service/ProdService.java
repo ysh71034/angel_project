@@ -46,9 +46,7 @@ public class ProdService {
                 conn.rollback();
             }catch (Exception e2){}
         }finally {
-            if(conn!=null)try {
-                conn.close();
-            }catch (Exception e){}
+            db.disconn(conn);
         }
     }
 
@@ -70,9 +68,7 @@ public class ProdService {
                 conn.rollback();
             }catch (Exception e2){}
         }finally {
-            if(conn!=null)try {
-                conn.close();
-            }catch (Exception e){}
+            db.disconn(conn);
         }
         return sellerNo;
     }
@@ -88,6 +84,8 @@ public class ProdService {
             dto = dao.detailProd(conn,productNo);
         }catch (SQLException | NamingException e){
             System.out.println(e);
+        }finally {
+            db.disconn(conn);
         }
         return dto;
     }
@@ -114,9 +112,7 @@ public class ProdService {
         }catch (Exception e){
             System.out.println(e);
         }finally {
-            if(conn!=null)try {
-                conn.close();
-            }catch (Exception e){}
+            db.disconn(conn);
         }
         return result;
     }
@@ -131,6 +127,8 @@ public class ProdService {
             sellerprod = dao.sellerProd(conn,sellerNo);
         }catch (SQLException | NamingException e){
             System.out.println(e);
+        }finally {
+            db.disconn(conn);
         }
         return sellerprod;
     }
@@ -145,6 +143,8 @@ public class ProdService {
             catprod = dao.catProd(conn,categoryNo);
         }catch (SQLException | NamingException e){
             System.out.println(e);
+        }finally {
+            db.disconn(conn);
         }
         return catprod;
     }
@@ -188,6 +188,8 @@ public class ProdService {
             dto.setImagepath(imagePath);
         }catch (SQLException | NamingException e){
             System.out.println(e);
+        }finally {
+            db.disconn(conn);
         }
         return dto;
     }
@@ -206,7 +208,7 @@ public class ProdService {
         }catch (SQLException | NamingException e){
             System.out.println(e);
         }finally {
-            if(conn!=null)try{conn.close();}catch (Exception e){}
+            db.disconn(conn);
         }
         return arr;
     }
@@ -223,6 +225,8 @@ public class ProdService {
 
         }catch (SQLException | NamingException e){
             System.out.println(e);
+        }finally {
+            db.disconn(conn);
         }
         return arr;
     }
@@ -237,7 +241,7 @@ public class ProdService {
         }catch (SQLException | NamingException e){
             System.out.println(e);
         }finally {
-            if(conn!=null)try{conn.close();}catch (Exception e){}
+            db.disconn(conn);
         }
     }
 
@@ -252,7 +256,7 @@ public class ProdService {
         }catch (SQLException | NamingException e){
             System.out.println(e);
         }finally {
-            if(conn!=null)try{conn.close();}catch (Exception e){}
+            db.disconn(conn);
         }
         return arr;
     }

@@ -3,6 +3,7 @@ package com.angel.chatController;
 import com.angel.comm.Action;
 import com.angel.comm.Forward;
 import com.angel.dto.ProdDTO;
+import com.angel.dto.RoomDTO;
 import com.angel.service.ChatService;
 import com.angel.service.ProdService;
 
@@ -25,21 +26,24 @@ public class EnterChatAction implements Action {
         ProdDTO prodDTO = prodService.detailProd(productNo);
         // 현재 이 서블릿 접근자가 해당 상품의 구매자인지 판매자인지 확인한다.
         ChatService service = ChatService.getChatService();
+        RoomDTO roominfo;
         boolean isSeller = service.isSeller(productNo,sessionId);
         Forward forward = new Forward();
         forward.setForward(true);
         if(!isSeller){
             // 서블릿 접근자가 구매자인 경우 자신의 buyerNo를 받아와서 해당 채팅방에 입장한다.
-            int getBuyerNo = service.findChatRoom(productNo, sessionId);
-            forward.setUrl("/WEB-INF/main.jsp?page=chat/chatroom.jsp?productNo="+productNo+"&buyerNo="+getBuyerNo);
-            request.setAttribute("buyerNo",getBuyerNo);
+            roominfo = service.findChatRoom(productNo, sessionId, 0);
+            forward.setUrl("/WEB-INF/main.jsp?page=chat/chatroom.jsp?productNo="+productNo+"&buyerNo="+roominfo.getBuyerNo());
             request.setAttribute("roll","buyer");
         } else {
             // 서블릿 접근자가 판매자인 경우 바로 해당 채팅방에 입장한다.
             int buyerNo = Integer.parseInt(request.getParameter("buyerNo")); // 구매자인 경우 0, 판매자인 경우 !0
+            roominfo = service.findChatRoom(productNo, "", buyerNo);
             forward.setUrl("/WEB-INF/main.jsp?page=chat/chatroom.jsp?productNo="+productNo+"&buyerNo="+buyerNo);
             request.setAttribute("roll","seller");
         }
+        request.setAttribute("roomNo",roominfo.getRoomNo());
+        request.setAttribute("buyerNo",roominfo.getBuyerNo());
         request.setAttribute("prodImg",prodDTO.getDto2().getImagepath());
         request.setAttribute("prodCtg",prodDTO.getCategoryName());
         request.setAttribute("prodName",prodDTO.getProductName());

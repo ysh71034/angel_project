@@ -39,15 +39,9 @@
 <%--            <p class="seller_msg">${param.buyerNo}</p>--%>
         </section>
         <form>
+            <input type="text" name="roomNo" value="${requestScope.roomNo}" hidden/>
             <input type="text" name="productNo" value="${param.productNo}" hidden/>
-            <c:choose>
-                <c:when test="${param.buyerNo == 0 || empty param.buyerNo}">
-                    <input type="text" name="buyerNo" value="${requestScope.buyerNo}" hidden/>
-                </c:when>
-                <c:otherwise>
-                    <input type="text" name="buyerNo" value="${param.buyerNo}" hidden/>
-                </c:otherwise>
-            </c:choose>
+            <input type="text" name="buyerNo" value="${requestScope.buyerNo}" hidden/>
             <input type="text" name="sessionID" value="${sessionID}" hidden/>
             <input type="text" name="content" autofocus required>
             <button type="button" id="chatBtn">전송</button>

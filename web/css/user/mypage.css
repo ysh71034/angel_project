@@ -121,11 +121,13 @@
 }
 
 .sellitem {
-    display: inline-block;
-    width: 20vw;
     margin: 20px;
     padding: 0;
     list-style: none;
+    display: flex;
+    width: 72vw;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 .sellitem img {

@@ -21,22 +21,20 @@ public class ChatService {
     }
 
 
-    public int findChatRoom(int productNo, String sessionID) {
-        // 이 메서드는 구매자에만 적용된다.
+    public RoomDTO findChatRoom(int productNo, String sessionID, int buyerNo) {
         DBConnection db = DBConnection.getDbConn();
         Connection conn = null;
         ChatDAO dao = ChatDAO.getChatDAO();
         ChatDTO dto = new ChatDTO();
         RoomDTO roomDTO = new RoomDTO();
-        int buyerNo = -1;
         try{
             conn = db.getConnection();
             conn.setAutoCommit(false);
             // 이미 채팅에 입장했던 구매자인 경우 바로 buyerNo를 받는다.
-            //buyerNo = dao.findChat(conn,productNo,sessionID);
-            buyerNo = dao.findRoom(conn,productNo);
+            roomDTO = dao.findRoom(conn,productNo,sessionID,buyerNo);
+            System.out.println("findroomBno: "+roomDTO.getBuyerNo());
             // 채팅방에 최초로 입장한 구매자인 경우 채팅방 및 채팅 입장 메시지를 만들고 buyerNo를 받는다.
-            if(buyerNo==0) {
+            if(roomDTO.getRoomNo()==0) {
                 int getBno = dao.findUserNo(conn, sessionID);
                 // 채팅방 추가
                 dao.insertRoom(conn,productNo,getBno);
@@ -46,8 +44,7 @@ public class ChatService {
                 dto.setWriter(sessionID);
                 dto.setBuyerNo(getBno);
                 dao.insertChat(conn,dto);
-                //buyerNo = dao.findChat(conn,productNo,sessionID);
-                buyerNo = dao.findRoom(conn,productNo);
+                roomDTO = dao.findRoom(conn,productNo,sessionID,buyerNo);
             }
             conn.commit();
         }catch (SQLException | NamingException e){
@@ -58,7 +55,7 @@ public class ChatService {
         }finally {
             if(conn!=null)try{conn.close();}catch (Exception e){}
         }
-        return buyerNo;
+        return roomDTO;
     }
 
     public List<ChatDTO> findChatList(int bno, int pno) {
@@ -165,5 +162,21 @@ public class ChatService {
             if(conn!=null)try{conn.close();}catch (Exception e){}
         }
         return list;
+    }
+
+    public RoomDTO findRoomInfo(int rno) {
+        DBConnection db = DBConnection.getDbConn();
+        Connection conn = null;
+        ChatDAO dao = ChatDAO.getChatDAO();
+        RoomDTO roominfo = new RoomDTO();
+        try{
+            conn = db.getConnection();
+            roominfo = dao.findRoomInfo(conn,rno);
+        }catch (SQLException|NamingException e){
+            System.out.println(e.getMessage());
+        }finally {
+            if(conn!=null)try{conn.close();}catch (Exception e){}
+        }
+        return roominfo;
     }
 }

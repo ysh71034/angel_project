@@ -1,4 +1,5 @@
 window.onload = function () {
+    const roomNo = document.getElementsByName("roomNo")[0].value;
     const productNo = document.getElementsByName("productNo")[0].value;
     const buyerNo = document.getElementsByName("buyerNo")[0].value;
     const sessionId = document.getElementsByName("sessionID")[0].value;
@@ -35,7 +36,7 @@ window.onload = function () {
                             document.getElementById("msg_box").prepend(mymsg_p);
                         } else {
                             yourName_p = document.createElement("p");
-                            yourName_p.appendChild(document.createTextNode("😊 판매자"));
+                            yourName_p.appendChild(document.createTextNode("😊 " + d.writer));
                             yourName_p.setAttribute("class", "your_name");
                             yourmsg_p = document.createElement("p");
                             yourmsg_p.appendChild(document.createTextNode(d.content));
@@ -45,7 +46,7 @@ window.onload = function () {
                         }
                     });
             }).then(()=>{
-                webSocket.send("init_conn:"+sessionId+":"+productNo+":"+buyerNo);
+                webSocket.send("init_conn&"+sessionId+":"+roomNo);
             }).catch(error=>{
             console.log("error: ",error);
         });
@@ -58,7 +59,7 @@ window.onload = function () {
             enter_p.appendChild(document.createTextNode(data[0]));
             enter_p.setAttribute("class", "enter");
             document.getElementById("msg_box").prepend(enter_p);
-        }else if(data[1]===sessionId){
+        }else if(data[1]===sessionId+":"+roomNo){
             myName_p = document.createElement("p");
             myName_p.appendChild(document.createTextNode("😊 " + sessionId));
             myName_p.setAttribute("class", "my_name")
@@ -67,9 +68,9 @@ window.onload = function () {
             mymsg_p.setAttribute("class", "my_msg");
             document.getElementById("msg_box").prepend(myName_p);
             document.getElementById("msg_box").prepend(mymsg_p);
-        } else{
+        } else {
             yourName_p = document.createElement("p");
-            yourName_p.appendChild(document.createTextNode("😊 판매자"));
+            yourName_p.appendChild(document.createTextNode("😊 "+data[1].split(":")[0]));
             yourName_p.setAttribute("class", "your_name");
             yourmsg_p = document.createElement("p");
             yourmsg_p.appendChild(document.createTextNode(data[0]));
@@ -92,12 +93,14 @@ window.onload = function () {
         if(chatmsg.value !==''){
             if(e.key==='Enter'){
                 webSocket.send(chatmsg.value);
+                chatmsg.value = '';
             }
         }
     };
     document.getElementById("chatBtn").onclick=function () {
         if(chatmsg.value !=='') {
             webSocket.send(chatmsg.value);
+            chatmsg.value = '';
         }
     };
     // 거래확정 버튼 누르면 한번 더 알림
