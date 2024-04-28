@@ -5,7 +5,7 @@ import com.angel.comm.Forward;
 import com.angel.service.ChatService;
 import com.angel.service.ProdService;
 import com.angel.service.UserService;
-import com.sun.jna.platform.win32.Netapi32Util;
+//import com.sun.jna.platform.win32.Netapi32Util;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
