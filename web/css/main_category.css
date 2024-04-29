@@ -2,7 +2,7 @@
     border: 1px solid silver;
     position: relative;
     width: 100vw;
-    height: 300px;
+    height: 250px;
     margin: 20px 0;
     padding: 0;
 }
@@ -13,7 +13,6 @@
 }
 
 #category ul li{
-    border: 1px solid silver;
     list-style: none;
     display: inline;
     margin: 20px;
@@ -26,7 +25,6 @@
 }
 
 #category a{
-    border: 1px solid silver;
     color: black;
     text-decoration: none;
     position: relative;

@@ -2,7 +2,7 @@
     border: 1px solid silver;
     position: relative;
     width: 100vw;
-    height: 350px;
+    height: 300px;
     margin: 60px 0 20px 0;
     padding: 0;
 }
@@ -14,7 +14,6 @@
 }
 
 #brandNew ul li{
-    border: 1px solid silver;
     list-style: none;
     display: inline;
     margin: 10px 50px 0 50px;
@@ -28,7 +27,6 @@
 }
 
 #brandNew a{
-    border: 1px solid silver;
     color: black;
     text-decoration: none;
     position: relative;

@@ -153,4 +153,19 @@ public class UserService {
         return info;
     }
 
+    public UserDTO userInfo(int uno) {
+        DBConnection db = DBConnection.getDbConn();
+        Connection conn = null;
+        UserDAO dao = UserDAO.getDao();
+        UserDTO dto = new UserDTO();
+        try{
+            conn = db.getConnection();
+            dto = dao.userInfo(conn, uno);
+        }catch (SQLException | NamingException e){
+            System.out.println("addSellCount "+e);
+        }finally{
+            if(conn!=null)try{conn.close();} catch (Exception e){}
+        }
+        return dto;
+    }
 }
