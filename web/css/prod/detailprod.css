@@ -8,6 +8,7 @@
     width: 80vw;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* 그림자 추가 */
     border-radius: 10px;
+    left: 10%;
 }
 #detail_prod > .main{
     display: flex;
@@ -71,11 +72,7 @@
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     transition: all 0.3s ease-in-out;
 }
-#detail_prod .detail ul li{
-    padding: 8px 0px;
-    border-bottom: 1px solid #eee;
-    margin-bottom: 5px;
-}
+
 #detail_prod .detail li:last-child{
     border-bottom: none;
     margin-bottom: 0;
@@ -84,12 +81,6 @@
     margin-bottom: 10px;
 }
 
-/*#detail_prod .info {
-    padding: 10px;
-    background-color: #f2f2f2;
-    border-radius: 5px;
-    line-height: 1.5;
-}*/
 #detail_prod .info {
     padding: 20px; /* 패딩을 조금 더 넓게 조정 */
     background-color: #f8f9fa; /* 배경색을 좀 더 부드러운 색으로 변경 */
@@ -113,7 +104,9 @@
 }
 
 #detail_prod .detail ul li{
-    background-color: white;
+    padding: 8px 0px;
+    margin-bottom: 5px;
+    background-color: #f8f9fa;
     border-radius: 0;
     border-bottom: 1px solid black;
 }
@@ -130,7 +123,7 @@
 }
 /* 판매자 정보 확인*/
 #detail_prod ul li .seller{
-    background-color: #FFFFFF;
+    background-color: #f8f9fa;
     color: black;
     margin-bottom: 5px;
     padding: 8px 0px 0px 0px;

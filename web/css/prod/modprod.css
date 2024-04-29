@@ -1,10 +1,6 @@
 body{
     margin: 0;
     padding: 0;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 /* 상품 수정 폼*/
 #modprod_wrap{
@@ -16,7 +12,6 @@ body{
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     display: flex;
-    right: 80%;
 }
 
 ul li{
