@@ -39,7 +39,7 @@
                             <a href="detailprod.do?productNo=${item.productNo}">
                                 <li><img src="upload/${item.dto2.imagepath}" alt="파일이미지"></li>
                                 <li>${item.productName}</li>
-                                <li>${item.price}</li>
+                                <li>${item.price}원</li>
                             </a>
                         </ul>
                     </li>

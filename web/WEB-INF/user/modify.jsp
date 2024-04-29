@@ -27,13 +27,13 @@
             </li>
             <li>
                 <span class="pwd_mismatch">비밀번호가 일치하지 않습니다.</span>
-                <input type="password" name="pwdCheck" id="pwdCheck" placeholder="비밀번호 확인" >
+                <input type="password" name="pwdCheck" id="pwdCheck" placeholder="비밀번호 확인">
             </li>
             <li>
-                <input type="text" name="userName" id="userName" placeholder="이름" value="${dto.userName}" >
+                <input type="text" name="userName" id="userName" placeholder="이름" value="${dto.userName}">
             </li>
             <li>
-                <input type="text" name="postcode" id="postcode" placeholder="우편번호" onclick="findAddr()" >
+                <input type="text" name="postcode" id="postcode" placeholder="우편번호" onclick="findAddr()">
             </li>
             <li>
                 <input type="text" name="roadAddress" id="roadAddress" placeholder="도로명주소" readonly>
@@ -51,9 +51,10 @@
             <li>
                 <button type="submit">정보수정</button>
             </li>
-            <input type="text" name="uno" value="${uno}" hidden>
-            <button type="button" id="delete_btn">회원탈퇴</button>
-<%--            <a href="deluser.do?uno=${uno}" onclick="confirm('정말 삭제할까요?')">회원탈퇴</a>--%>
+            <li>
+                <input type="text" name="uno" value="${uno}" hidden>
+                <button type="button" id="delete_btn">회원탈퇴</button>
+            </li>
         </ul>
     </div>
 </form>
