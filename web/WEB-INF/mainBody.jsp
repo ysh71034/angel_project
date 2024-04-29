@@ -37,7 +37,6 @@
     </ul>
 </div>
 
-<%--<c:set var="list" value="${requestScope.list}"/>--%>
 <div id="brandNew">
     <label>최신 등록 상품</label>
 </div>
