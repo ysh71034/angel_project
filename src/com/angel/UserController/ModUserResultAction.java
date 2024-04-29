@@ -50,8 +50,8 @@ public class ModUserResultAction implements Action {
         request.setAttribute("dto", dto);
 
         Forward forward = new Forward();
-        forward.setForward(true);
-        forward.setUrl("/WEB-INF/main.jsp?page=user/mypage.jsp&userNo="+uno);
+        forward.setForward(false);
+        forward.setUrl("main.do");
         return forward;
     }
 }

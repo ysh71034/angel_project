@@ -5,7 +5,7 @@ window.onload = function () {
     const sessionId = document.getElementsByName("sessionID")[0].value;
     console.log(buyerNo);
     // 사용자가 들어오면 웹소켓 객체 생성
-    const webSocket = new WebSocket("ws://localhost:8080/angel_project/chat.ch");
+    const webSocket = new WebSocket("ws://43.202.67.3/angel/chat.ch");
     let enter_p;
     let myName_p;
     let mymsg_p;
