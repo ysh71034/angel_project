@@ -58,10 +58,11 @@
 
 #prodList #innerUl img {
     width: 100%;
-    height: auto; /* 이미지의 가로 세로 비율을 유지 */
+    height: auto;
     margin: 0;
     display: block;
     position: relative;
+    max-height: 100px;
 }
 
 
