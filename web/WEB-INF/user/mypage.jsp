@@ -31,10 +31,10 @@
         <h4>구매 대화중인 채팅방</h4>
         <div id="chatlist">
             <ul class="roomNo">
-                <li>방번호</li>
+                <li><strong>방번호</strong></li>
             </ul>
             <ul class="roomName">
-                <li>채팅방</li>
+                <li><strong>채팅방</strong></li>
             </ul>
         </div>
     </section>
@@ -42,16 +42,16 @@
         <h4>나의 구매 내역</h4>
         <div id="orderlist">
             <ul class="orderNo">
-                <li>주문번호</li>
+                <li><strong>주문번호</strong></li>
             </ul>
             <ul class="orderprod">
-                <li>상품명</li>
+                <li><strong>상품명</strong></li>
             </ul>
             <ul class="orderseller">
-                <li>판매자</li>
+                <li><strong>판매자</strong></li>
             </ul>
             <ul class="orderdate">
-                <li>거래일</li>
+                <li><strong>거래일</strong></li>
             </ul>
         </div>
     </section>

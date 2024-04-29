@@ -14,9 +14,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${requestScope.title}</title>
     <link rel="stylesheet" href="css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poor+Story&family=Stylish&family=Yeon+Sung&display=swap" rel="stylesheet">
 </head>
 <body>
-<div id="wrap">
+<div id="wrap" class="poor-story-regular">
     <haeder id="header">
         <jsp:include page="header.jsp"/>
     </haeder>

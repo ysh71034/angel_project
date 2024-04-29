@@ -3,6 +3,13 @@ body, #wrap {
     padding: 0;
 }
 
+.poor-story-regular {
+    font-family: "Poor Story", system-ui;
+    font-weight: 400;
+    font-style: normal;
+}
+
+
 /* Header */
 #header {
     position: relative;
@@ -18,11 +25,11 @@ body, #wrap {
     display: inline-block;
     height: 40px;
     line-height: 40px;
-    font-size: 1.3rem;
-    font-weight: 400;
+    font-size: 1.5rem;
     padding: 5px 10px;
     color: #FFFFFF;
     text-decoration: none;
+
 }
 
 #header img {
@@ -43,7 +50,7 @@ body, #wrap {
 #jsp_body {
     position: relative;
     top: 50px;
-    font-size: 1rem;
+    font-size: 1.2rem;
     height: 100vw;
 }
 
