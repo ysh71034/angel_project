@@ -8,6 +8,7 @@ document.getElementById('fileinput').addEventListener('change', function(e) {
     }
     if(fileName){
         document.getElementById('fileLabel').innerHTML=fileName;
+        //document.getElementById("currimg").setAttribute("style","display:none;");
     }else {
         document.getElementById('fileLabel').innerHTML="파일 선택";
     }
@@ -31,5 +32,6 @@ document.getElementById('fileinput').addEventListener('change', function(e) {
             reader.readAsDataURL(file);
         }
     }
+
 });
 

@@ -55,7 +55,8 @@
 
 .sectionlist div {
     height: 220px;
-    background: #D9D9D9;
+    background: #f8f9fa;
+    box-shadow: 3px 3px 5px rgba(230, 230, 230, 10);
 }
 
 .chatlist {
@@ -78,9 +79,20 @@
     left: 10vw;
 }
 
+.roomName a, .orderprod a {
+    text-decoration: none;
+    color : #2189E9;
+}
+
+.roomName a:hover, .orderprod a:hover {
+    font-weight: 600;
+    color: white;
+    background: #2189E9;
+}
+
 .orderlist{
     position: absolute;
-    left: 50vw;
+    left: 45vw;
     top: 200px;
 }
 
@@ -91,26 +103,26 @@
 }
 
 .orderNo {
-    width: 100px;
+    width: 10vw;
     position: absolute;
 }
 
 .orderprod {
     position: absolute;
-    left: 8vw;
-    width: 200px;
+    left: 10vw;
+    width: 15vw;
 }
 
 .orderseller {
     position: absolute;
-    left: 23vw;
-    width: 100px;
+    left: 20vw;
+    width: 10vw;
 }
 
 .orderdate {
     position: absolute;
-    left: 28vw;
-    width: 100px;
+    left: 25vw;
+    width: 10vw;
 }
 
 .selllist{
@@ -124,6 +136,7 @@
     margin: 20px;
     padding: 0;
     list-style: none;
+    padding: 10px 0px;
     display: flex;
     width: 72vw;
     flex-direction: row;
@@ -141,6 +154,7 @@
     margin: 20px;
     padding: 0;
     list-style: none;
+    padding: 10px 0px;
     display: flex;
     width: 72vw;
     flex-direction: row;
@@ -149,6 +163,11 @@
 
 .sellitem img, .pastitem img {
     width: 100px;
+    height: 100px;
+}
+
+.sellitem li, .pastitem li {
+    margin: 0 10px;
 }
 
 .sellitem span, .pastitem span{
