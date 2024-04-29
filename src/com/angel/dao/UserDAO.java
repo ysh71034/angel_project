@@ -16,6 +16,8 @@ public class UserDAO {
 
     private UserDAO(){}
 
+
+
     public UserDTO loginUser(Connection conn, String userID, String password) throws SQLException {
         StringBuilder sql = new StringBuilder();
         sql.append(" select userID, password            ");
@@ -153,6 +155,27 @@ public class UserDAO {
             }
         }finally {
             if(rs!=null) try{rs.close();} catch (Exception e){}
+        }
+        return dto;
+    }
+
+    public UserDTO userInfo(Connection conn, int uno) throws SQLException{
+        StringBuilder sql = new StringBuilder();
+        sql.append(" select userName, password, address   ");
+        sql.append(" from users                    ");
+        sql.append(" WHERE userNo = ?              ");
+
+        UserDTO dto = new UserDTO();
+        ResultSet rs = null;
+        try(PreparedStatement pstmt = conn.prepareStatement(sql.toString());){
+            pstmt.setInt(1, uno);
+            rs = pstmt.executeQuery();
+
+            while(rs.next()){
+                dto.setUserName(rs.getString("userName"));
+                dto.setPassword(rs.getString("password"));
+                dto.setAddress(rs.getString("address"));
+            }
         }
         return dto;
     }

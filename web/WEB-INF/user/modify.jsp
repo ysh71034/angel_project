@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="css/user/join.css">
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="js/user/findAddress.js"></script>
-    <script src="js/user/dupID.js"></script>
 </head>
 <body>
 <c:set var="uno" value="${requestScope.uno}"/>
@@ -21,13 +20,6 @@
 <form method="post" action=moduser_result.do?uno=${uno}">
     <div id="join">
         <ul>
-            <li>
-                <span id="error_msg"></span>
-                <input type="email" name="userID" id="userID" placeholder="이메일" value="${dto.userID}" required>
-            </li>
-            <li>
-                <button type="button" id="check_btn">중복확인</button>
-            </li>
             <li>
                 <span class="pwd_type">8글자 이상, 영문, 숫자, 특수문자 @$!%*#?&를 사용하세요.</span>
                 <input type="password" name="password" id="password" placeholder="비밀번호" required minlength="8">
@@ -37,10 +29,10 @@
                 <input type="password" name="pwdCheck" id="pwdCheck" placeholder="비밀번호 확인" required>
             </li>
             <li>
-                <input type="text" name="userName" id="userName" placeholder="이름" value="${dto.userName}" required>
+                <input type="text" name="userName" id="userName" placeholder="이름" value="${dto.userName}" readonly>
             </li>
             <li>
-                <input type="text" name="postcode" id="postcode" placeholder="우편번호" onclick="findAddr()" readonly>
+                <input type="text" name="postcode" id="postcode" placeholder="우편번호" onclick="findAddr()" required>
             </li>
             <li>
                 <input type="text" name="roadAddress" id="roadAddress" placeholder="도로명주소" readonly>
@@ -53,7 +45,7 @@
             </li>
             <li>
                 <span class="detail_addr">상세주소를 입력해주세요.</span>
-                <input type="text" name="detailAddress" id="detailAddress" placeholder="상세주소">
+                <input type="text" name="detailAddress" id="detailAddress" placeholder="상세주소" value="${dto.address}">
             </li>
             <li>
                 <button type="submit">정보수정</button>

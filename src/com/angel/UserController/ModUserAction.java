@@ -2,6 +2,7 @@ package com.angel.UserController;
 
 import com.angel.comm.Action;
 import com.angel.comm.Forward;
+import com.angel.dto.UserDTO;
 import com.angel.service.UserService;
 
 import javax.servlet.ServletException;
@@ -19,6 +20,11 @@ public class ModUserAction implements Action {
         UserService service = UserService.getInstance();
         int uno = service.findMyNo(sessionId);
         System.out.println("mod user action "+uno);
+
+        UserDTO dto = new UserDTO();
+        dto = service.userInfo(uno);
+
+        request.setAttribute("dto", dto);
 
         Forward forward = new Forward();
         forward.setForward(true);
