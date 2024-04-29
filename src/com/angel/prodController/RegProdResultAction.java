@@ -52,12 +52,15 @@ public class RegProdResultAction implements Action {
         while (files.hasMoreElements()){
             String file = (String) files.nextElement();
             String filename = multi.getFilesystemName(file);
-
+            ImageDTO dto2 = new ImageDTO();
             if(filename!=null){
-                ImageDTO dto2 = new ImageDTO();
                 dto2.setImagepath(filename);
                 imgList.add(dto2);
                 filenames.add(filename);
+            } else{
+                dto2.setImagepath("default.jpg");
+                imgList.add(dto2);
+                filenames.add("default.jpg");
             }
         }
         for(String filename:filenames){
