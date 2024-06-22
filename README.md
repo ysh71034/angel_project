@@ -1,6 +1,10 @@
 <div>
 <h1><img src="https://github.com/ysh71034/angel_project/assets/113234712/6c620d0f-b902-49a7-ba2d-b1589bdd95ff" width=100> 천사Mall</h1>
-<h3> 온라인 중고 직거래 서비스 (2024.04.17 ~2024.04-26) </h3>
+<h3> 교사 대상 온라인 중고 거래 서비스 (2024.04.17 ~2024.04.26) </h3>
+  <ul>
+    <li>교육에 관련된 중고 물품을 카테고리 별로 분류하여 쉽고 빠른 상품조회</li>
+    <li>일대일 채팅을 통한 직거래 방식</li>
+</ul>
 </div>
 
 
@@ -9,7 +13,7 @@
 
 |김혜연 (34%)|양세현 (33%)|황현준 (33%)| 
 |:---:|:---:|:---:|
-|<img src="https://avatars.githubusercontent.com/loveyrooney" width="100" > <p>채팅,마이페이지</p> |<img src="https://avatars.githubusercontent.com/ysh71034" width="100" > <p>회원,메인페이지</p>|<img src="https://avatars.githubusercontent.com/skd9712" width="100"> <p>상품,판매자정보</p>|
+|<img src="https://avatars.githubusercontent.com/loveyrooney" width="100" > <p>채팅,마이페이지</p> 요구사항 분석 |<img src="https://avatars.githubusercontent.com/ysh71034" width="100" > <p>회원,메인페이지</p>DB관리|<img src="https://avatars.githubusercontent.com/skd9712" width="100"> <p>상품,판매자정보</p>UML관리|
 |<a href="https://github.com/loveyrooney"><img src="https://img.shields.io/badge/GitHub-181717?style=plastic&logo=GitHub&logoColor=white"/></a>|<a href="https://github.com/ysh71034"><img src="https://img.shields.io/badge/GitHub-181717?style=plastic&logo=GitHub&logoColor=white"/></a>|<a href="https://github.com/skd9712"><img src="https://img.shields.io/badge/GitHub-181717?style=plastic&logo=GitHub&logoColor=white"/></a>|
 
 
@@ -44,42 +48,40 @@ apache tomcat 9.89</br>
 
 <h2>프로젝트 주요이슈</h2>
 <h4>채팅 관련</h4>
-<h6>⚠️문제 상황</h6>
-<ol>
-  <li>판매자와 구매자의 role 구분이 없어서 채팅방 입장시 접속자 식별의 복잡성</li>
-  <li>일대일 채팅을 구현하기 위한 WebSocket 서버 세션 식별의 문제</li>
-</ol>
-
-<h6>📌해결 과정</h6>
-<ol>
-    <p>최초 시도시에는 chatroom 테이블 없이 chat 테이블만 가지고 채팅방 입장 시 기본 메시지 하나 추가하는 방식이었음<br>
-    => chatroom 테이블을 만들어 채팅방 입장 시 필요한 정보 일괄 관리</p>
-  <li>
-    <ul>
-      <li>⚙️접근 uri을 다르게 설정 : 구매자의 경우 파라미터에 상품id만, 판매자는 구매자id 까지 포함되도록 함</li>
-      <li>판매자는 구매자의 최초 접속 이후에 채팅방에 접근할 수 있도록 함</li>
-    </ul>
-  </li>
-  <br>
-  <li>
-    <ul>
-      <li>WebSocket 세션과 HttpServlet 세션은 독립적이고, servletContext 를 웹소켓 서버 내에서 사용할 수 없다.</li>
-      <li>웹소켓 서버 내에 접속 세션을 관리할 맵 형성</li>
-      <li>웹소켓 접속 시, 세션 식별 정보를 맵에 등록하고, 메시지를 식별정보와 일치하는 세션에게만 전송</li>
-    </ul>
-  </li>
-</ol>
+<p>⚠️요구사항 관련하여 발생한 문제</p>
+<ul>
+  <li>사용자는 판매자도 될 수 있고, 구매자도 될 수 있도록 가입 시 역할 구분 없음</li>
+  <li>채팅 방에는 이전 채팅 메시지가 보관되어 있어야 함</li>
+  <li>⚠️역할 구분이 없어서 채팅 방 입장 시 <strong>접속자 식별 과정이 복잡</strong>해짐</li>
+</ul>
+<br>
+<p>📌 chatroom 테이블을 만들어 채팅 방 입장 시 필요한 정보 일괄 관리</p>
+<ul>
+  <li>URL parameter 역할에 따라 구별 ( 구매자 - 상품id  /  판매자 - 상품id, 구매자 id )</li>
+  <li>구매자의 최초 접속 시, chatroom 테이블 정보 생성</li>
+  <li>판매자는 구매자의 최초 접속 이후에 채팅 방에 접근할 수 있도록 구현</li>
+</ul>
+<br>
+<p>⚠️ 기술의 특징 관련하여 발생한 문제</p>
+<ul>
+  <li>WebSocket 서버는 HttpServletContext 와 독립적임</li>
+  <li>⚠️ 일대일 채팅을 구현하려면 <strong>WebSocket session 식별</strong>이 필요</li>
+</ul>
+<br>
+<p>📌 WebSocket 서버 내에 접속자 관리 Map 생성하여 메시지 타겟팅</p>
+<ul>
+  <li>ConcurrentHashMap<Session,String> 구조의 접속자 Map 생성</li>
+  <li>채팅 방 접속 시, 해당 session 및 chatroom 테이블 정보를 Map 에 등록</li>
+  <li>메시지는 Map 내의 session 중 chatroom 테이블 정보가 일치하는 대상에게만 전송</li>
+</ul>
 
 <h4>상품 관련</h4> 
-<h6>⚠️문제 상황</h6>
+<p>⚠️ 구현 관련하여 발생한 문제</p>
 <ul>
-  <li>상품 수정시 기존 이미지가 삭제되지 않는 문제</li>
+  <li>상품 정보 수정 시 기존의 이미지가 삭제되지 않음</li>
 </ul>
-<h6>📌해결 과정</h6>
-    <ul>
-      <li>파일 업로드 경로를 확인 후, 올바른 위치로 수정</li>
-    </ul>
-  <br>
+<p>📌 업로드 경로의 올바른 설정</p>
+    
 
 <h2>프로젝트 주요기능</h2>
 
@@ -94,7 +96,7 @@ apache tomcat 9.89</br>
 |판매자정보| 1. 판매자 인적 정보 조회 <br> 2. 판매자의 현재 판매중인 다른 상품 조회 및 해당 페이지 접근|
 
 <h2>ErDiagram</h2>
-<img style="width: 600px" src="https://github.com/ysh71034/angel_project/assets/113234712/c1032fa4-98aa-463f-ace5-e801c1569e16">
+<img style="width: 600px" src="https://github.com/ysh71034/angel_project/assets/113234712/059b8771-44d2-4fb1-a222-1d36eb727a81">
 
 <h2>UseCase Diagram</h2>
 <img style="width: 500px" src="https://github.com/ysh71034/angel_project/assets/113234712/a45a8d8c-fbb9-4fe1-9398-e56fd0b15ddc">
